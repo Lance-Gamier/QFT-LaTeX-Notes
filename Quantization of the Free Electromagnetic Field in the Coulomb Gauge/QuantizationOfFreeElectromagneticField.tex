@@ -1,0 +1,689 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{Quantization of the Free Electromagnetic Field In the Coulomb Gauge}
+    \maketitle
+
+    This entire calculation is done in natural units. The Lagrangian Density of the free Electromagnetic Field is
+    as follows:
+
+    \begin{equation}
+        \mathcal{L} = - \frac{1}{4} F_{\mu \nu} F^{\mu \nu}
+    \end{equation}
+
+    Where:
+
+    \begin{equation}
+        F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\nu}
+    \end{equation}
+
+    Because $A_{\mu}$ is a real vector field, and there is no mass term, we are dealing with a massless spin
+    one chargeless field theory. Now let's consider gauge transformations:
+
+    \begin{equation}
+        A_{\mu} \rightarrow A_{\mu} + \partial_{\mu} \Lambda
+    \end{equation}
+
+    his gauge invariance will be important later. We will now try and quantize the theory as is. It turns out
+    that very quickly we will now run into problems. The first step is of course to calculate the conjugate field:
+
+    \begin{equation}
+        \pi^{\mu} = \frac{\partial \mathcal{L}}{\partial (\partial_{0} A_{\mu})} = - \frac{1}{4} 2 F^{\alpha \beta} \frac{\partial F^{\alpha \beta}}{\partial (\partial_{0} A_{\mu})} = - F^{0 \mu} = F^{\mu 0}
+    \end{equation}
+
+    \begin{equation}
+        \pi^{0} = 0 \qquad \pi^{i} = E^{i}
+    \end{equation}
+
+    Because $\pi^{0} = 0$, the cannonical equal-time commutation relations cannot possibly be satisfied here because they would demand that the commutator of $\phi$ with 0
+    is some nonzero number, which is impossible. It turns out that one can solve this problem by breaking the gauge. There are many specific prescriptions for fixing this
+    problem, because ther aremany different ways of breaking the gauge. In this case, we will use the Coulomb gauge (vector fields satisfying the Coulomb gauge are called
+    transverse fields):
+
+    \begin{equation}
+        \nabla \cdot \vec{A} = 0 \qquad \phi = 0
+    \end{equation}
+
+    Where $\phi = 0$ follows from $\nabla \cdot \vec{A} = 0$. If appropriate boundary conditions are adhered to. Namely, if one demands that $\phi$ vanishes at infinity, then
+    $\nabla \cdot \vec{A} = 0$ implies that $\phi = 0$. It is the fact that $A_{0} = \phi = 0$ that rescues the calculation when using the Coulomb Gauge. Specifically, the
+    vanishing of the conjugate field to $\phi$ no longer matters because we can ignre the equal time commutation relation of $\phi$ and $\pi^{0}$. In this gauge, one might want
+    to try imposing the following commutation relations:
+
+    \begin{equation}
+        [A_{i} (\vec{x}, t), A_{j} (\vec{x}, t)] = [E^{i} (\vec{x}, t), E^{j} (\vec{x}, t)] = 0
+    \end{equation}
+
+    \begin{equation}
+        \overbrace{[E^{i} (\vec{x}, t), E^{j} (\vec{x}, t)] = i \delta^{j}_{i} \delta^{3} (\vec{x} - \vec{x'})}^{wrong}
+    \end{equation}
+
+    There, however is a problem. We can see that even after the fields and their Fourier coefficients have become operators, one can see that these relations $\nabla \cdot \vec{A}
+    \nabla \cdot \vec{E} = 0$ are still preserved. The problem is that the last commutation relation above is inconsistent with these. Specificaly, if we take $\nabla \cdot \vec{A}
+    \nabla \cdot \vec{E} = 0$ to be true, then it implies the following nonsense:
+
+    \begin{equation}
+        0 = [\nabla \cdot \vec{A} (\vec{x}, t), \nabla \cdot \vec{E} (\vec{x}, t)] = i \nabla^{2} \delta^{3} (\vec{x} \vec{x'}) \neq 0
+    \end{equation}
+
+    Clearly, the fix to this is to select the following commutator:
+
+    \begin{equation}
+        [E^{i} (\vec{x}, t), E^{j} (\vec{x}, t)] = i \bigg( \delta^{i}_{j} - \frac{\partial_{i} \partial^{j}}{\nabla^{2}} \bigg) \delta^{3} (\vec{x} \vec{x'})
+    \end{equation}
+
+    \begin{equation}
+        [E^{i} (\vec{x}, t), E^{j} (\vec{x}, t)] = i \int \bigg( \delta^{i}_{j} - \frac{p_{i} p^{j}}{\nabla^{2}} \bigg) e^{i \vec{k} \cdot (\vec{x} - \vec{x'})} \frac{d^{3} k}{(2 \pi)^3}
+    \end{equation}
+
+
+    So, the complete set of correct anticommutation relations is:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}
+                \quad [\vec{A_{i}} (\vec{x}, t), \vec{A_{j}} (\vec{x}, t)] = [\vec{E^{i}} (\vec{x}, t), \vec{E^{j}} (\vec{x}, t)] = 0 \\
+                \quad [\vec{A_{i}} (\vec{x}, t), \vec{A_{j}} (\vec{x}, t)] = i \int \bigg( \delta^{i}_{j} - \frac{p_{i} p^{j}}{\nabla^{2}} \bigg) e^{i \vec{k} \cdot (\vec{x} - \vec{x'})} \frac{d^{3} k}{(2 \pi)^3}
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    Also, in this gauge, the equations of motion become:
+
+    \begin{equation}
+        \partial_{\mu} F^{\mu \nu} = 0
+    \end{equation}
+
+    \begin{equation}
+        \partial_{\mu} (\partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \partial_{\mu} (\partial_{\mu} A_{0} - \partial_{0} A_{\mu}) = 0 \quad \partial_{\mu} (\partial^{\mu} \vec{A} + \nabla A^{\mu}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \nabla^{2} + \frac{\partial}{\partial t} \nabla \cdot \vec{A} = 0 \qquad \frac{\partial^2}{\partial t^2} \vec{A} + \frac{\partial}{\partial t} \nabla \phi - \nabla^{2} \vec{A} + \nabla (\nabla \cdot \vec{A}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \nabla \cdot \vec{A} = 0 \qquad \phi = 0
+    \end{equation}
+
+    \begin{equation}
+        0 = 0 \qquad \frac{\partial^2}{\partial t^2} \vec{A} - \nabla^{2} \vec{A} = 0
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            \square \vec{A} = 0
+        \end{equation}
+    \end{framed}
+
+    The plane wave solutions therefore take the following form:
+
+    \begin{equation}
+        \vec{A} = \vec{\epsilon} e^{-i (\vec{k} \cdot \vec{x} - \omega t)}
+    \end{equation}
+
+    However, given that this is in the Coulomb gauge, this field must be transverse, so:
+
+    \begin{equation}
+        \nabla \cdot \vec{A} = \vec{k} \cdot \vec{\epsilon} e^{-i (\vec{k} \cdot \vec{x} - \omega t)} = 0
+    \end{equation}
+
+    There are two linearly independent transverse polarizations. Therefore, there are two polarization possibilities
+    for the field quanta (which, as you probably already know, are called photons). A subscript that can have two
+    values added to the polarization vector to index this duplicity:
+
+    \begin{equation}
+        \vec{\epsilon} \rightarrow \vec{\epsilon}_{\lambda}
+    \end{equation}
+
+    For simplicity, the polarization vector is usually taken to be the unit norm, and they are usually taken to be
+    orthogonal to each other:
+
+    \begin{equation}
+        \vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda} = \delta_{\lambda \lambda'}
+    \end{equation}
+
+    One can then write the general solution by constructing an arbitrary linear combination of them (that transforms like
+    a 3-vector):
+
+    \begin{equation}
+        A_{i} = \sum_{\lambda} \int - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Where the Fourier coefficients are Hermitian conjugates of each other to ensure that the field is real. We can also
+    compute for the conjugate Fields:
+
+    \begin{equation}
+        \pi^{i} = E^{i} = - \frac{\partial}{\partial t} A_{i} = \sum_{\lambda} \int - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    With these results established, we can now invert them
+
+    \begin{equation}
+        \begin{aligned}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} A_{i} (\vec{x}, t) d^{3} x = & \\
+            & \sum_{\lambda} \int \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \int e^{i (\vec{k}' - \vec{k}) \cdot x} \frac{d^{3} x}{(2 \pi)^{3}} = \delta^{3} (\vec{k}' - \vec{k})
+    \end{equation}
+
+    \begin{equation}
+        \int e^{i (\vec{k}' + \vec{k}) \cdot x} \frac{d^{3} x}{(2 \pi)^{3}} = \delta^{3} (\vec{k}' + \vec{k})
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} A_{i} d^{3} x = & \\
+            & \sum_{\lambda} \int \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} A_{i} (\vec{x}, t) d^{3} x = & \\
+            & \sum_{\lambda} \int \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg) \\
+            & \sum_{\lambda} \frac{1}{2 \omega'} [\epsilon_{\lambda i} a_{\lambda} (\vec{k}) + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) d^3 x = \sum_{\lambda} \frac{1}{2 \omega'} [\vec{\epsilon}_{\lambda'} \cdot \epsilon_{\lambda} a_{\lambda} (\vec{k}) + \vec{\epsilon}_{\lambda'} \cdot \epsilon_{\lambda} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+
+    \begin{equation}
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) d^3 x = \sum_{\lambda} \frac{1}{2 \omega'} [\delta_{\lambda \lambda'} a_{\lambda} (\vec{k}) + \delta_{\lambda \lambda'} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+
+    \begin{equation}
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) d^3 x = \frac{1}{2 \omega'} [a_{\lambda'} (\vec{k}) + a_{\lambda'} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+    
+    The primes can now be dropped because the integrals and sums are all done. The final result for this integral is:
+
+    \begin{framed}
+        \begin{equation}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) = [a_{\lambda'} (\vec{k}) + a_{\lambda'} (\vec{k}) e^{i2 \omega' t}]
+        \end{equation}
+    \end{framed}
+
+    Now for the second one:
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \begin{aligned}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \pi_{i} (\vec{x}, t) d^{3} x = & \\
+            & \sum_{\lambda} \int \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \int e^{i (\vec{k}' - \vec{k}) \cdot x} \frac{d^{3} x}{(2 \pi)^{3}} = \delta^{3} (\vec{k}' - \vec{k})
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \int e^{i (\vec{k}' + \vec{k}) \cdot x} \frac{d^{3} x}{(2 \pi)^{3}} = \delta^{3} (\vec{k}' + \vec{k})
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \begin{aligned}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \pi_{i} d^{3} x = & \\
+            & \sum_{\lambda} \int \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \begin{aligned}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \pi_{i} (\vec{x}, t) d^{3} x = & \\
+            & \sum_{\lambda} \int \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} - i \omega \bigg( \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \bigg) \\
+            & \sum_{\lambda} \frac{1}{2 \omega'} [\epsilon_{\lambda i} a_{\lambda} (\vec{k}) + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot \pi_{i} (\vec{x}, t) d^3 x = \sum_{\lambda} \frac{1}{2 \omega'} [\epsilon_{\lambda}^{i} a_{\lambda} (\vec{k}) + \epsilon_{\lambda}^{i} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot \pi_{i} (\vec{x}, t) d^3 x = \sum_{\lambda} \frac{1}{2 \omega'} [\vec{\epsilon}_{\lambda'} \cdot \epsilon_{\lambda} a_{\lambda} (\vec{k}) + \vec{\epsilon}_{\lambda'} \cdot \epsilon_{\lambda} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot \pi_{i} (\vec{x}, t) d^3 x = \sum_{\lambda} \frac{1}{2 \omega'} [\delta_{\lambda \lambda'} a_{\lambda} (\vec{k}) + \delta_{\lambda \lambda'} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+
+    \begin{equation} % Double Check, timestamp = 9:34
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot \pi_{i} (\vec{x}, t) d^3 x = \frac{1}{2 \omega'} [a_{\lambda'} (\vec{k}) + a_{\lambda'} (\vec{k}) e^{i2 \omega' t}]
+    \end{equation}
+
+    The primes can now be dropped because the integrals and sums are all done. The final result for this integral is:
+
+    \begin{framed}
+        \begin{equation}
+            \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot \pi_{i} (\vec{x}, t) = [a_{\lambda'} (\vec{k}) + a_{\lambda'} (\vec{k}) e^{i 2 \omega' t}]
+        \end{equation}
+    \end{framed}
+
+    Collecting the two integrals we just found in one place, we have:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}
+                \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) = \frac{1}{2 \omega'} [\epsilon_{\lambda i} a_{\lambda} (\vec{k}) + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i2 \omega' t}] \\
+                \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot \pi_{i} (\vec{x}, t) = \frac{1}{2 \omega'} [\epsilon_{\lambda i} a_{\lambda} (\vec{k}) + \epsilon_{\lambda i} a_{\lambda} (\vec{k}) e^{i2 \omega' t}]
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    With these, we can find the desired inverted relations:
+
+    \begin{equation}
+        \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) + i \int e^{i (\omega' t - \vec{k}' \cdot \vec{x})} \vec{\epsilon}_{\lambda'} \cdot A_{i} (\vec{x}, t) = a_{\lambda} (\vec{k})
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            a_{\lambda} (\vec{k}) = \int e^{- i (\omega t - \vec{k} \cdot \vec{x})} [i \vec{\epsilon}_{\lambda} + \cdot \vec{\pi} (\vec{x}, t) + \omega \vec{\epsilon}_{\lambda} \cdot \vec{A} (\vec{x}, t)] d^{3} x
+        \end{equation}
+    \end{framed}
+
+    Hermitian conjugation then gives the other one:
+
+    \begin{framed}
+        \begin{equation}
+            a_{\lambda}^{\dagger} (\vec{k}) = \int e^{i (\omega t - \vec{k} \cdot \vec{x})} [- i \vec{\epsilon}_{\lambda} + \cdot \vec{\pi} (\vec{x}, t) + \omega \vec{\epsilon}_{\lambda} \cdot \vec{A} (\vec{x}, t)] d^{3} x
+        \end{equation}
+    \end{framed}
+
+    Now we can start working out the commutation relations for the Fourier coefficients. Let's start with
+    $[a_{\lambda} (\vec{k}), a^{k}_{\lambda} (\vec{k})]$:
+
+    \begin{equation}
+        \begin{aligned} []
+            [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \\
+            \int e^{i (k-k') \cdot x} [(i \vec{\epsilon}_{\lambda} + \cdot \vec{\pi} (\vec{x}, t) + \omega \vec{\epsilon}_{\lambda} \cdot \vec{A} (\vec{x}, t))(- i \vec{\epsilon}_{\lambda} + \cdot \vec{\pi} (\vec{x}, t) + \omega \vec{\epsilon}_{\lambda} \cdot \vec{A} (\vec{x}, t)) \\
+            (- i \vec{\epsilon}_{\lambda} + \cdot \vec{\pi} (\vec{x}, t) + \omega \vec{\epsilon}_{\lambda} \cdot \vec{A} (\vec{x}, t))(i \vec{\epsilon}_{\lambda} + \cdot \vec{\pi} (\vec{x}, t) + \omega \vec{\epsilon}_{\lambda} \cdot \vec{A} (\vec{x}, t))] d^{3} x d^{3} x'
+        \end{aligned}
+    \end{equation}
+
+    Where $k \cdot x = k_{\mu} x^{\mu}$ and $t = t'$. Now applying $[A_{i} (\vec{x}, t), A_{j} (\vec{x}, t)] = 0$ and 
+    $[E^{i} (\vec{x}, t), E^{j} (\vec{x}, t)] = 0$:
+
+    \begin{equation}
+        \begin{aligned} []
+            [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \\
+            \int e^{i (k-k') \cdot x} i \omega [\epsilon_{\lambda i} \epsilon_{\lambda'}^{j} [\pi^{i} (\vec{x}, t), A_{j} (\vec{x}, t)] - \epsilon_{\lambda}^{j} \epsilon_{\lambda' i} [A_{j} (\vec{x}, t), \pi^{i} (\vec{x}, t)]] d^{3} x d^{3} x'
+        \end{aligned}
+    \end{equation}
+
+    Now applying $[A_{i} (\vec{x}, t), E^{j} (\vec{x}, t)] = i \int (\delta_{i}^{j} - \frac{k_i k^j}{k^2}) e^{i \vec{k} \cdot (\vec{x} - \vec{x'})} \frac{d^3 k}{(2 \pi)^3}$:
+
+    \begin{equation}
+        \begin{aligned} []
+            [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \\
+            \int e^{i (k-k') \cdot x} i \omega [\epsilon_{\lambda i} \epsilon_{\lambda'}^{j} i (\delta_{i}^{j} - \frac{k_i k^j}{k^2}) e^{i \vec{k} \cdot (\vec{x} - \vec{x'})} - \epsilon_{\lambda}^{j} \epsilon_{\lambda' i} i (\delta_{i}^{j} - \frac{k_i k^j}{k^2}) e^{i \vec{k} \cdot (\vec{x} - \vec{x'})}] \frac{d^3 p}{(2 \pi)^3} d^{3} x d^{3} x'
+        \end{aligned}
+    \end{equation}
+
+    Remembering the transversality of the polarization:
+
+    \begin{equation}
+        [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \int e^{i (k  \cdot x -k'  \cdot x')} 2 \omega \vec{\epsilon} \cdot \vec{\epsilon'} e^{i (p-p') \cdot x} \frac{d^3 p}{(2 \pi)^3} d^{3} x d^{3} x'
+    \end{equation}
+
+    Now, if we recall $\vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda} = \delta_{\lambda \lambda'}$
+
+    \begin{equation}
+        [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \int e^{i (k  \cdot x -k'  \cdot x')} 2 \omega \delta_{\lambda \lambda'} e^{i (p-p') \cdot x} \frac{d^3 p}{(2 \pi)^3} d^{3} x d^{3} x'
+    \end{equation}
+
+    \begin{equation}
+        [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \int e^{i (k  \cdot x -k'  \cdot x')} 2 \omega \delta_{\lambda \lambda'} \delta^{3} (\vec{x} - \vec{x'}) d^{3} x d^{3} x'
+    \end{equation}
+    
+    \begin{equation}
+        [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = \int e^{i (k-k') \cdot x} 2 \omega \delta_{\lambda \lambda'} d^{3} x d^{3} x'
+    \end{equation}
+
+    All the other Fourier coefficient commutators vanish trivially. So, the complete set are as folllows:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned} []
+                [a_{\lambda} (\vec{k}), a_{\lambda'} (\vec{k'})] = [a_{\lambda}^{\dagger} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = 0 \\
+                [a_{\lambda} (\vec{k}), a_{\lambda'}^{\dagger} (\vec{k'})] = (2 \pi)^{3} 2 \omega \delta_{\lambda \lambda'} \delta^{3} (\vec{k} - \vec{k'})
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    The Hamiltonian is:
+
+    \begin{equation}
+        H = \int d^{3} x (\pi^{i} \dot{A}_{i} - \mathcal{L}) = \frac{1}{2} \int (\vec{E} \cdot \vec{E} + \vec{B} \cdot \vec{B})
+    \end{equation}
+
+    We have the following values for the fields:
+
+    \begin{equation}
+        E^{j} = \sum_{\lambda} \int - i \omega (\vec{\epsilon}_{\lambda}^{j} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - \vec{\epsilon}_{\lambda}^{j} a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        B^{j} = \sum_{\lambda} \int - i (\vec{k} \times \vec{\epsilon}_{\lambda})^{j} (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Inserting these gives:
+
+    \begin{equation}
+        \begin{aligned}
+            H = - \frac{1}{2} \sum_{\lambda \lambda'} \int (\vec{\epsilon}_{\lambda}^{j} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - \vec{\epsilon}_{\lambda}^{j} a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \\
+            + (\vec{\epsilon}_{\lambda}^{j} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - \vec{\epsilon}_{\lambda}^{j} a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \\
+            + (\vec{k} \times \vec{\epsilon}_{\lambda})^{j} (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \\
+            + (\vec{k} \times \vec{\epsilon}_{\lambda})^{j} (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) 
+            \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \frac{d^3 k'}{(2 \pi)^3}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = - \frac{1}{2} \sum_{\lambda \lambda'} \int (\vec{\epsilon}_{\lambda}^{j} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - \vec{\epsilon}_{\lambda}^{j} a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \\
+            + (\vec{\epsilon}_{\lambda}^{j} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - \vec{\epsilon}_{\lambda}^{j} a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \\
+            + (\vec{k} \times \vec{\epsilon}_{\lambda})^{j} (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \\
+            + (\vec{k} \times \vec{\epsilon}_{\lambda})^{j} (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) 
+            \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \frac{d^3 k'}{(2 \pi)^3}
+        \end{aligned}
+    \end{equation}
+
+    Now the integration over $x$ can be done:
+
+    \begin{equation}
+        \begin{aligned}
+            H = -\frac{1}{2} \sum_{\lambda \lambda'} \int \Big( \omega \omega' \vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda'} \big(a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{- i (\omega + \omega')} (2 \pi)^3 \delta^{3} (\vec{k} + \vec{k'}) \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) e^{i (\omega - \omega')} \delta^{3} (\vec{k} - \vec{k'}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k}) e^{- i (\omega - \omega')} (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'}) \\
+            + a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{-k}) e^{i (\omega + \omega')} (2 \pi)^3 \delta^{3} (\vec{k} + \vec{k'}) \big) \\
+            + (\vec{k} \times \vec{\epsilon}_{\lambda}) \cdot (\vec{k} \times \vec{\epsilon}_{\lambda'}) \big(a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{- i (\omega + \omega')} (2 \pi)^3 \delta^{3} (\vec{k} + \vec{k'}) \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) e^{i (\omega - \omega')} (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'}) \\
+            - a_{\lambda} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) e^{- i (\omega - \omega')} (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'}) \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) e^{i (\omega + \omega')} (2 \pi)^3 \delta^{3} (\vec{k} + \vec{k'}) \big) \Big) \frac{1}{2 \omega} \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    Now, we can simplify, partly using the properties of the delta function to simplify the remaining phase factors:
+
+    \begin{equation}
+        \begin{aligned}
+            H = -\frac{1}{2} \sum_{\lambda \lambda'} \int \Big( \omega \omega' \vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda'} \big(a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{-2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) \delta^{3} (\vec{k} - \vec{k'}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k}) \delta^{3} (\vec{k} - \vec{k'}) \\
+            + a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{-k}) e^{2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) \big) + (\vec{k} \times \vec{\epsilon}_{\lambda}) \cdot (\vec{k} \times \vec{\epsilon}_{\lambda'}) \big(a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{-2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) \delta^{3} (\vec{k} - \vec{k'}) - a_{\lambda} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) \delta^{3} (\vec{k} - \vec{k'}) - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) e^{-2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) \big) \Big) \frac{1}{2 \omega} \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    Now, the $k'$ integration can be done using all of the delta functions:
+
+    \begin{equation}
+        \begin{aligned}
+            H = -\frac{1}{2} \sum_{\lambda \lambda'} \int \Big( \omega^2 \vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda'} \big(a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{-2 i \omega t} - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k})  \\
+            + a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{-k}) e^{2 i \omega t} \big) + (\vec{k} \times \vec{\epsilon}_{\lambda}) \cdot (\vec{k} \times \vec{\epsilon}_{\lambda'}) \big(a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{-2 i \omega t} \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) \delta^{3} (\vec{k} - \vec{k'}) - a_{\lambda} (\vec{k}) a_{\lambda'}^{\dagger} - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) e^{-2 i \omega t} \big) \Big) \frac{1}{2 \omega} \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    Now let's consider the $(\vec{k} \times \vec{\epsilon}_{\lambda}) \cdot (\vec{k} \times \vec{\epsilon}_{\lambda'})$ factor. We can evaluate it using the following identity:
+
+    \begin{equation}
+        (\vec{a} \times \vec{b}) \cdot (\vec{c} \times \vec{d}) = (\vec{a} \cdot \vec{c}) (\vec{b} \cdot \vec{d}) - (\vec{a} \cdot \vec{d}) (\vec{b} \cdot \vec{c})
+    \end{equation}
+
+    If we apply this identity to the quantity in question, we get (remembering that $\vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda} = \delta_{\lambda \lambda'}$)
+
+    \begin{equation}
+        (\vec{k} \times \vec{\epsilon}_{\lambda}) \cdot (\vec{k} \times \vec{\epsilon}_{\lambda'}) = (\vec{k} \cdot \vec{k}) (\vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda'}) - (\vec{k} \cdot \vec{\epsilon}_{\lambda'}) (\vec{\epsilon}_{\lambda} \cdot \vec{k}) = \vec{k}^{2} \delta_{\lambda \lambda'} = \omega^{2} \delta_{\lambda \lambda'}
+    \end{equation}
+
+    Inserting this into the Hamiltonian simplifies it a lot. Also we can apply the relation:
+
+    \begin{equation}
+        \begin{aligned}
+            H = -\frac{1}{2} \sum_{\lambda \lambda'} \int \omega (a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{-2 i \omega t} - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k})  \\
+            + a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) e^{-2 i \omega t} - a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{-2 i \omega t} - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k}) \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'}^{\dagger} (\vec{k}) e^{-2 i \omega t}) \\
+            \frac{1}{2 \omega} \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = -\frac{1}{2} \sum_{\lambda \lambda'} \int \omega (- a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k})  \\
+            - a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) - a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger}  (\vec{k}) ) \\
+            \frac{1}{2 \omega} \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{aligned}
+    \end{equation}
+
+        \begin{equation}
+            H = \sum_{\lambda} \int \omega (a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) + a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger} (\vec{k})) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{equation}
+
+    We can now do the $\lambda'$ sum:
+
+        \begin{equation}
+            H = \sum_{\lambda} \int \omega \omega_{\lambda \lambda'} (a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) + a_{\lambda} (\vec{k}) a_{\lambda}^{\dagger} (\vec{k})) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{equation}
+
+    The usual normal ordering then gives the final answer:
+
+    \begin{framed}
+        \begin{equation}
+            H = \sum_{\lambda} \int \omega a_{\lambda} (\vec{k})a_{\lambda}^{\dagger} (\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{equation}
+    \end{framed}
+
+    Now for the momentum:
+
+    \begin{equation}
+        \vec{P} = \int \vec{E} \times \vec{B} \quad d^{3} x
+    \end{equation}
+
+    The field are as follows:
+
+    \begin{equation}
+        E^{j} = \sum_{\lambda} \int - i \omega (\vec{\epsilon}_{\lambda}^{j} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - \vec{\epsilon}_{\lambda}^{j} a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        B^{j} = \sum_{\lambda} \int - i (\vec{k} \times \vec{\epsilon}_{\lambda})^{j} (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Inserting these:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = \sum_{\lambda \lambda'} \int \omega \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) \\
+            \big( a_{\lambda} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} - a_{\lambda}^{\dagger} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \big) \\
+            \big( a_{\lambda'} (\vec{k}) e^{- i (\omega t - \vec{k} \cdot \vec{x})} - a_{\lambda'}^{\dagger} (\vec{k}) e^{i (\omega t - \vec{k} \cdot \vec{x})} \big) \\
+            \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} d^{3} x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = \sum_{\lambda \lambda'} \int \omega \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) \\
+            \big( a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{i (\omega + \omega')} e^{(\vec{k} + \vec{k'})} \\
+            a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{i (\omega - \omega')} e^{(\vec{k} - \vec{k'})} + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{i (\omega - \omega')} e^{(\vec{k} - \vec{k'})} \\
+            a^{\dagger}_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{i (\omega + \omega')} e^{(\vec{k} + \vec{k'})} \big)\\
+            \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} d^{3} x
+        \end{aligned}
+    \end{equation}
+
+    Now the x integration can be done:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = \sum_{\lambda \lambda'} \int \omega \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) \\
+            \big( a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{i (\omega + \omega')} (2\pi)^{3} \delta^{3} (\vec{k} + \vec{k'}) \\
+            - a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{i (\omega - \omega')} (2\pi)^{3} \delta^{3} (\vec{k} - \vec{k'}) \\
+            - a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{i (\omega - \omega')} (2\pi)^{3} \delta^{3} (\vec{k} - \vec{k'}) \\
+            + a^{\dagger}_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{i (\omega + \omega')} (2\pi)^{3} \delta^{3} (\vec{k} + \vec{k'}) \big) \\
+            \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'}
+        \end{aligned}
+    \end{equation}
+
+    Now, we can simplify, partly using the properties of the delta function to simplify the remaining phase factors:
+    
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = \sum_{\lambda \lambda'} \int \frac{1}{2} & \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) \\
+            (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) - (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} \delta^{3} (\vec{k} - \vec{k'}) \\
+            - (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} \delta^{3} (\vec{k} - \vec{k'}) + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \delta^{3} (\vec{k} + \vec{k'}) \\
+            \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    Now the $k'$ integration  can be done using all of the delta functions:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = \sum_{\lambda \lambda'} \int \frac{1}{2} \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) (a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} - a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) - a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) + a^{\dagger}_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \\
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = \sum_{\lambda \lambda'} \int \frac{1}{2} \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) (a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) e^{2 i \omega t} + a^{\dagger}_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) e^{- 2 i \omega t}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \\
+            + \sum_{\lambda \lambda'} \int \frac{1}{2} \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) (- a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) - a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} \\
+        \end{aligned}
+    \end{equation}
+
+    The first integral has an integrand that is odd in $\vec{k}$, so it vanishes, therefore:
+
+    \begin{equation}
+        \vec{P} = \sum_{\lambda \lambda'} \int \frac{1}{2} \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) (a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) + a_{\lambda} (\vec{k}) a^{\dagger}_{\lambda'} (\vec{k})) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Normal ordering then gives:
+
+    \begin{equation}
+        \vec{P} = \sum_{\lambda \lambda'} \int \vec{\epsilon}_{\lambda} \times (\vec{k} \times \vec{\epsilon}_{\lambda}) a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \vec{e}_{\lambda} \times (\vec{k} \times \vec{e}_{\lambda'}) = \vec{k} \vec{\epsilon}_{\lambda} \cdot \vec{\epsilon}_{\lambda'} - \vec{\epsilon}_{\lambda'} \vec{\epsilon}_{\lambda} \cdot \vec{k} = \vec{k} \delta_{\lambda \lambda'}
+    \end{equation}
+
+    \begin{equation}
+        \vec{P} = \sum_{\lambda \lambda'} \int \vec{k} \delta_{\lambda \lambda'} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Now, doing the $\lambda'$ sum gives the final answer:
+
+    \begin{framed}
+        \begin{equation}
+            \vec{P} = \sum_{\lambda} \int \vec{k} a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda} (\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{equation}
+    \end{framed}
+
+    Now, we can easily verify that $a^{\dagger}_{\lambda} (\vec{k})$ and $a_{\lambda} (\vec{k})$ do behave like creation and annihilation operators.
+    Let's start with $a_{\lambda} (\vec{k})$:
+
+    \begin{equation}
+        H_{n} | E \rangle = | E \rangle
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_{n} & = \sum_{\lambda'} \int \omega' a_{\lambda'}^{\dagger} (\vec{k'}) a_{\lambda'} (\vec{k'}) a_{\lambda} (\vec{k}) | E \rangle \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' a_{\lambda'}^{\dagger} (\vec{k'}) a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k'}) \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' [a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k'})^{\dagger} - [a_{\lambda} (\vec{k}), a_{\lambda'} (\vec{k'})^{\dagger}]] \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' [a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k'})^{\dagger} - (2 \pi)^{3} 2 \omega \delta^{3} (\vec{k} - \vec{k'})] \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = a_{\lambda} (\vec{k}) \sum_{\lambda'} \int \omega' a_{\lambda'}^{\dagger} (\vec{k'}) a_{\lambda'} (\vec{k'}) | E \rangle - \omega a_{\lambda} (\vec{k}) | E \rangle \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = a_{\lambda} (\vec{k}) H_{n} | E \rangle - \omega a_{\lambda} (\vec{k}) | E \rangle = a_{\lambda}^{\dagger} (\vec{k}) E | E \rangle - \omega a_{\lambda} (\vec{k}) | E \rangle = (E - \omega) a_{\lambda} (\vec{k}) | E \rangle
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            H_{n} a_{\lambda} (\vec{k}) | E \rangle = (E - \omega) a_{\lambda} (\vec{k}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    Now, we can do the same for $a^{\dagger}_{\lambda} (\vec{k})$:
+
+    \begin{equation}
+        \begin{aligned}
+            H_{n} & = \sum_{\lambda'} \int \omega' a_{\lambda'}^{\dagger} (\vec{k}) a_{\lambda'} (\vec{k}') a_{\lambda}^{\dagger} (\vec{k}) | E \rangle \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' [a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'} (\vec{k'}) - [a_{\lambda} (\vec{k}), a_{\lambda'} (\vec{k'})^{\dagger}]] \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' [a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda'} (\vec{k'}) + [a_{\lambda}^{\dagger} (\vec{k}), a_{\lambda'} (\vec{k'})]] \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' [a_{\lambda} (\vec{k}) a_{\lambda'} (\vec{k'})^{\dagger} + (2 \pi)^{3} 2 \omega \delta^{3} (\vec{k} - \vec{k'})] \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = \sum_{\lambda'} \int \omega' a_{\lambda'}^{\dagger} (\vec{k}) a_{\lambda}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) - \omega a_{\lambda} (\vec{k}) | E \rangle \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = a_{\lambda} (\vec{k}) \sum_{\lambda'} \int \omega' a_{\lambda'}^{\dagger} (\vec{k}) a_{\lambda} (\vec{k}) | E \rangle + \omega a_{\lambda}^{\dagger} (\vec{k}) | E \rangle \frac{d^3 k'}{(2 \pi^{3} 2 \omega')} \\
+            & = a_{\lambda}^{\dagger} (\vec{k}) H_{n} | E \rangle + \omega a_{\lambda}^{\dagger} (\vec{k}) | E \rangle = a_{\lambda}^{\dagger} (\vec{k}) E | E \rangle + \omega a_{\lambda}^{\dagger} (\vec{k}) | E \rangle = (E + \omega) a_{\lambda} (\vec{k}) | E \rangle
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            H_{n} a_{\lambda} (\vec{k}) | E \rangle = (E + \omega) a_{\lambda} (\vec{k}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    Now, as usual, because the Hamiltonian is an integral over the product $a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda} (\vec{k})$. It's expectation
+    values are non-negative:
+
+    \begin{equation}
+        \langle \psi | H | \psi \rangle \geq 0
+    \end{equation}
+
+    Therefore, we can make the normal argument that there must be a lower state annihilated by $a_{\lambda} (\vec{k})$:
+
+    \begin{equation}
+        a_{\lambda} (\vec{k}) | 0 \rangle = 0
+    \end{equation}
+
+    And therefore, that one can construct ll of the states by applying creation operators to the vacuum state. One particle states can be written as follows:
+
+    \begin{equation}
+        a^{\dagger}_{\lambda} (\vec{k}) | \vec{k}, \lambda \rangle 
+    \end{equation}
+
+    An arbitrary multi particle state is therefore given by:
+
+    \begin{equation}
+        \prod_{i = 1}^{K} \frac{[a^{\dagger}_{\lambda} (\vec{k})]}{\sqrt{n (\vec{k}_i)!}} | 0 \rangle = n (\vec{k}_{1}, \lambda_{1}) | n (\vec{k}_{1}, \lambda_{1}) ... n (\vec{k}_{K}, \lambda_{K}) \rangle
+    \end{equation}
+
+    Additionally, one can construct number operators that behaves in the usual way:
+
+    \begin{equation}
+        N_{\lambda} (\vec{k}) = a^{\dagger}_{\lambda} (\vec{k}) a_{\lambda} (\vec{k})
+    \end{equation}
+
+    \begin{equation}
+        N_{\lambda_{1}} (\vec{k}_{1}) | n (\vec{k}_{1}, \lambda_{1}) ... n (\vec{k}_{K}, \lambda_{K}) \rangle = n (\vec{k}_{1}, \lambda_{1}) | n (\vec{k}_{1}, \lambda_{1}) ... n (\vec{k}_{K}, \lambda_{K}) \rangle
+    \end{equation}
+
+    The zero point on the energy scale is set such that the energy of the vacuum has the value zero. As a consequence:
+
+    \begin{equation}
+        H | \vec{k}, \lambda \rangle = \omega | \vec{k}, \lambda \rangle
+    \end{equation}
+
+    We also have:
+
+    \begin{equation}
+        \vec{P} | \vec{k}, \lambda \rangle = \vec{k} | \vec{k}, \lambda \rangle
+    \end{equation}
+
+    This completes the quantization of the Electromagnetic Field.
+
+\end{document}

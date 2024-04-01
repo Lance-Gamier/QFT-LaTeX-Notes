@@ -1,0 +1,149 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{Deriving The Quantum Electrodynamics Lagrangian Density}
+    \maketitle
+
+    In a previous video I explained how to derive the Dirac Lagrangian from group theory (and therefore the Dirac Equation).
+    In that video, I worked in natural units. In this video, I will be working in MKS units. The Lagrangian derived in that
+    video, expressed in MKS units is:
+
+    \begin{equation}
+        \mathcal{L}_{Dirac} = i \hbar c \bar{\psi} \gamma^{\mu} \partial_{\mu} \psi - m c^{2} \bar{\psi} \psi
+    \end{equation}
+
+    One may notice that this action isn't just Lorentz invariant. It also has the following global symmetry:
+
+    \begin{equation}
+        \psi \rightarrow e^{\frac{i e \Lambda}{h c}} \psi
+    \end{equation}
+
+    This relation of course implies:
+
+    \begin{equation}
+        \bar{\psi} \rightarrow e^{- \frac{i e \Lambda}{h c}} \bar{\psi}
+    \end{equation}
+
+    This is a manifestly valid symmetry of the Dirac Lagrangian for constant $\Lambda$. Because the exponents of successive
+    transformations add, this constitutes a global $U(1)$ invariance. One might then ask the following question. What would
+    happen if this was upgraded to a local $U(1)$ transformation, meaniong that $\Lambda$ now depends on the spacetime location:
+    $\Lambda \rightarrow \Lambda (x)$. The answer is that the Dirac Lagrangian is not locally invariant because
+    $e^{\frac{i e \Lambda (x)}{\hbar c}}$ is a function of spacetime, and can not be commuted with the partial derivative. This
+    question is to introduce a new four-vector field that transforms under this $U(1)$ gauge symmetry in whatever manner is
+    required to cancel the term that destroys $U(1)$ gauge invariance in the original Dirac Lagrangian. Such a field is called
+    a gauge field. Specifically, if one replaces the partial derivative with what is called a gauge covariant derivative:
+
+    \begin{equation}
+        \partial_{\mu} \psi \rightarrow D_{\mu} \psi = \Bigg[ \partial_{\mu} + \frac{i e}{\hbar c} A_{\mu} \Bigg] \psi
+    \end{equation}
+
+    where $A_{\mu}$ is the new vector field that was mentioned, and is taken to transform under $U(1)$ gauge transformation as
+    follows:
+
+    \begin{equation}
+        A_{\mu} \rightarrow A_{\mu} - \partial_{\mu} \Lambda (x)
+    \end{equation}
+
+    Where this transformation law is consistent with U(1) because transformations simply add to each other. Then one finds that
+    the kinetic term is now locally $U(1)$. Specifically, one finds the following Lagrangian Density:
+
+    \begin{equation}
+        \mathcal{L} = i \hbar c \bar{\psi} \gamma^{\mu} D_{\mu} \psi - m c ^{2} \bar{\psi} \psi
+    \end{equation}
+
+    One can see that it is invariant in the following way:
+
+    \begin{equation}
+        \psi \rightarrow e^{\frac{i e \Lambda (x)}{\hbar c}} \psi
+    \end{equation}
+
+    \begin{equation}
+        \bar{\psi} \rightarrow \bar{\psi} e^{- \frac{i e \Lambda (x)}{\hbar c}}
+    \end{equation}
+
+    \begin{equation}
+        A_{\mu} \rightarrow A_{\mu} - \partial_{\mu} \Lambda (x)
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            D_{\mu} \psi = \Big[ \partial_{\mu} + \frac{i e}{\hbar c} \Big] \psi \rightarrow \Big[ \partial_{\mu} + \frac{i e}{\hbar c} - \frac{i e}{\hbar c} \partial_{\mu} \Lambda (x) \Big] e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi \\
+            = \Big[ \frac{i e}{\hbar c} \psi \Big] + \frac{i e}{\hbar c} e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi A_{\mu} - \frac{i e}{\hbar c} \psi \partial_{\mu} \Lambda (x) \\
+            = e^{- \frac{i e \Lambda (x)}{\hbar c}} \partial_{\mu} \psi + \psi \partial_{\mu} e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi A_{\mu} + \frac{i e}{\hbar c} e^{- \frac{i e \Lambda (x)}{\hbar c}} -  \frac{i e}{\hbar c} e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi \partial_{\mu} \Lambda (x) \\
+            = e^{- \frac{i e \Lambda (x)}{\hbar c}} \partial_{\mu} \psi + e^{- \frac{i e \Lambda (x)}{\hbar c}} \partial_{\mu} \Lambda (x) + e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi A_{\mu} - \partial_{\mu} \psi e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi \partial_{\mu} \Lambda (x) \\
+            = e^{- \frac{i e \Lambda (x)}{\hbar c}} \partial_{\mu} \psi + e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi \partial_{\mu} \Lambda (x) + e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi A_{\mu} - \partial_{\mu} \psi e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi \partial_{\mu} \Lambda (x) \\
+            = e^{- \frac{i e \Lambda (x)}{\hbar c}} \partial_{\mu} \psi + e^{- \frac{i e \Lambda (x)}{\hbar c}} \psi A_{\mu} = e^{- \frac{i e \Lambda (x)}{\hbar c}} \Big[ \partial_{\mu} + \frac{i e}{\hbar c} \Big] \psi = e^{- \frac{i e \Lambda (x)}{\hbar c}} D_{\mu} \psi
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            D_{\mu} \psi \rightarrow e^{- \frac{i e \Lambda (x)}{\hbar c}} D_{\mu} \psi
+        \end{equation}
+    \end{framed}
+
+    \begin{framed}
+        \begin{equation}
+            \bar{\psi} \gamma^{\mu} D_{\mu} \psi \rightarrow \bar{\psi} \gamma^{\mu} D_{\mu} \psi
+        \end{equation}
+    \end{framed}
+
+    With this new $U(1)$ gauge invariant Dirac Lagrangian Density established, it is hard not
+    to notice that the four-vector field $A_{\mu}$ required to make local invariance possible must have
+    exactly the same gauge transformation property that the four-vector potential in Electrodynamics
+    has, under its local $U(1)$ invariance. It is therefore natural to take the gauge field to be the
+    elecromagnetic field. In a previous video, I showed you how to derive the Maxwell Lagrangian Density
+    and its value came out to be:
+
+    \begin{equation}
+        \mathcal{L}_{Maxwell} = - \frac{1}{4 \mu_{0}} F_{\mu \nu} F^{\mu \nu} - A_{\mu} J^{\mu}
+    \end{equation}
+
+    Where $F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}$. The first term is the kinetic
+    term and the second is the interaction term.
+
+    If one then takes the couplin between $\psi$ and $A_{\mu}$ to be the interaction term, and thn just adds
+    the Maxwell kinetic term for the photon field, then one arrives at the following $U(1)$ gauge invariant
+    Lagrangian Density:
+
+    \begin{equation}
+        \mathcal{L}_{QED} = i \hbar c \bar{\psi} \gamma^{\mu} D_{\mu} \psi - m c^{2} \bar{\psi} \psi - \frac{1}{4 \mu_{0}} F_{\mu \nu} F^{\mu \nu}
+    \end{equation}
+
+    This Lagrangian Density, used as a quantum field theory for electromagnetism, holds the distinction of having
+    passed every experimental test yet performed. It is therefore taken as the correct Lagrangian Density for
+    Quantum Electrodynamics. It is by this proccess of upgrading te global $U(1)$ invariance of the Dirac Lagrangian
+    Density to a local one with a gauge field that it is then taken to be the elecromagnetic field (as a result of its
+    identical gauge transformations), that $\mathcal{L}_{QED}$ is usually derived. Then, of course, its verification
+    is a proper action of QED is empirical, as is always ultimately the case in physics. The Lagrangian can also be
+    written as:
+
+    \begin{equation}
+        \mathcal{L}_{QED} = i \hbar c \bar{\psi} \gamma^{\mu} D_{\mu} \psi - m c^{2} \bar{\psi} \psi - \frac{1}{4 \mu_{0}} F_{\mu \nu} F^{\mu \nu}
+    \end{equation}
+
+    This reveals that this prescription gives the following results:
+
+    \begin{equation}
+        \mathcal{L}_{Maxwell} = - \frac{1}{4 \mu_{0}} F_{\mu \nu} F^{\mu \nu} - e \bar{\psi} \gamma^{\mu \psi} A_{\mu}
+    \end{equation}
+
+    \begin{equation}
+        \mathcal{L}_{Interaction} = - e \bar{\psi} \gamma^{\mu \psi} A_{\mu}
+    \end{equation}
+
+    Which means that electric charge and current densities are:
+
+    \begin{equation}
+        J^{\mu} = e \bar{\psi} \gamma^{\mu \psi}
+    \end{equation}
+
+\end{document}

@@ -1,0 +1,248 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{Deriving Yang-Mills Theory And Quantum Chromodynamics}
+    \maketitle
+
+    Before moving on to Yang-Mills Theory, there is one more aspect of Electrodynamics that must be noted.
+    Remember from the last video that the Quantum Electrodynamics Lagrangian Density in natural units is:
+
+    \begin{equation}
+        \mathcal{L}_{QED} = i \hbar c \bar{\psi} \gamma^{\mu} D_{\mu} \psi - m c^{2} \bar{\psi} \psi - \frac{1}{4 \mu_{0}} F_{\mu \nu} F^{\mu \nu}
+    \end{equation}
+
+    Where $F_{\mu \nu}$ is the Faraday tensor given by the following Formula:
+
+    \begin{equation}
+        F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}
+    \end{equation}
+
+    The Faraday tensor is also called the elecromagnetic field strength tesor because its components are
+    electric and magnetic field, and terefore, this tensor does exactly what it says on the tin, it just 
+    gives the electric field strength. Also, the gauge covariant derivative is:
+
+    \begin{equation}
+        D_{\mu} \psi = [\partial_{\mu} - i e A_{\mu}] \psi
+    \end{equation}
+
+    where e is the charge assiciated with $\psi$, and I am using the opposite sign convention for the gauge
+    term compared to my last video. Doing this changes nothing very meaningful. In fact, the convention used
+    here seems to be the more common one. The key new piece of insight that I mentioned above as being
+    prerequisite for deriving Yang-Mills theory, comes when one evaluates the commutator of covariant derivatives
+    applied to $\psi$
+
+    \begin{equation}
+        [D_{\mu}, D_{\nu}] \psi = D_{\mu} D_{\nu} \psi - D_{\nu} D_{\mu} \psi = i e (\partial_{\mu} A_{\nu} \partial_{\nu} A_{\mu}) \psi = - i e F_{\mu \nu} \psi
+    \end{equation}
+
+    One can see that vghis commutator yields the field strength. This idea of commuting covariant derivatives to get
+    the field strength tensor of the theory is very analogous to gravity. Remember that in gravity physics commutes
+    spacetime covariant derivativesaplied to a vector to get the Riemannian curvature tensor, which is just the
+    gravitational field strength tensor. It is possible to take this analogy quite far. One can define an abstract
+    space (usually called a gauge space) who's parametrizations correspond to gauges. One can then call the field
+    strength tensor "curvature of gauge space". One can consider the general covariance of GR (invariance under
+    arbitrary coordinate transformations) to be its gauge symmetry with gauge group GL(4) (the group of
+    4-dimensional arbitrary coordinate transformations). Coordinate sytems are then the gauges, and spacetime
+    the gauge space. 
+
+    The key fact from above, however, is that commuting gauge covariant derivatives gives the field strength tensor,
+    where the gauge covariant derivative is defined as the derivative operator that lwhen applied to a field, yields
+    a derivative that transorms like the original field (of course there is a nuace in the case of gravity physics
+    where the covariant derivative adds another vector index, and therefore transforms as a tensor of one higher rank,
+    instead of identically, but it is still the same in that the covariant derivative still transforms like a tensor,
+    and that is the important thing).
+
+    Yang-Mills theory is very similar to Maxwell's Electromagnetism in that it is a gauge theory based off of a unitary
+    isospin group (gauge group), but it differs in one important way. The gauge group is taken to be $SU(N)$ instead of
+    $U(1)$. The goal is to construct the simplest free space vector Lagrangian Density, that has a gauge symmetry
+    consistent with vhe multiplication table of $SU(N)$ instead of $U(1)$, and has no higher than second order field
+    equations so as to yield a unitary quantum field theory. In short, the goal is to try and see what happens if one
+    enlarges the gauge group of free-pace electrodynamics, $\mathcal{L} = - \frac{1}{4} F^(\mu \nu) F_{\mu \nu}$, from
+    $U(1)$ to $SU(N)$.
+
+    The approach to answering this question that is taken in this video makes use of what was learned from constructing
+    the Lagrangian density of quantum electrodynamics. This includes the relationship between the covariant derivatives
+    and the field strength tensor introduced at the beginning of this video. Our need to make use of this relationship
+    in constructing Yang-Mills theory and QCD was the reason for introducing the QED version of this relationship at the
+    beginning. Let's review the process used to construct QED.
+
+    \begin{enumerate}
+        \item A global U(1) invariance in the Dirac Lagrangian was noticed
+        \item The global invariance was upgraded to a local invariance using a gauge covariant derivative that achieved
+        covariance through the introduction of a new four-vector field (called a gauge field) which was taken to transform
+        in the manner required to yield invariance of the Lagrangian.
+        \item Given the Identical $U(1)$ gauge trasformation properties, the gauge field was taken to be the elecromagnetic
+        four-vector potential, and its dynamical Lagrangian was taken to be the free space Maxwell Lagrangian $\mathcal{L}
+        = - \frac{1}{4} F_{\mu \nu} F^{\mu \nu}$. This Lagrangian represented the required unique $U(1)$ gauge invariant,
+        Lorentz invariant, and unitary (in the qft sense, no higher than second order field equations) gauge field dynamical
+        Lagrangian
+        \item It was noted that $F_{\mu \nu}$ is given by the commutator of gauge covariant derivatives. This means that the
+        gauge field dynamical Lagrangian could have been derived by squaring the field strength yielded by a commutator of
+        gauge covariant derivatives.
+    \end{enumerate}
+
+    This process gives us a plan of attack for our first attempt at constructing QCD/Yang-Mills theory, the SU(N) generalization
+    of QED/Electromagnetism. This approach will turn out to work, so it is also our last attempt. Specifically, the plan is to:
+
+    \begin{enumerate}
+        \item Modify the Dirac Lagrangian slightly to have a global $SU(N)$ symmetry. Specifically, the goal is to construct isospin
+        multiplets of Dirac spinors that transform globally under fundamental representation of $SU(N)$.
+        \item Upgrade this global invriance to a local one by introducing a covariant derivative. One that includes new gauge fields,
+        which transform in the manner required to yield gauge covariance. 
+        \item Evaluate the commutator of these gauge covariant derivatives to obtain the field strength.
+        \item Then square the field strength to get the gauge field dynamical Lagrangian. It turns out that the trace of the square
+        must be taken to yield a gauge invariant scalar. You will see what I'm talking about.
+    \end{enumerate}
+
+    The gauge field dynamical Lagrangian will turn out to be the unique gauge invariant, Lorentz invariant, and unitary (no higher
+    than second order field equations) $SU(N)$ gauge field dynamical Lagrangian, It is the Lagrangian of Yang-Mills theory, and the
+    direct $SU(N)$ generalization of Electromagnetism. The $SU(N)$ gauge invariant Dirac Lagrangian added to te Yang-Mills Lagrangian
+    is the Lagrangian of QCD. Let us now perform this process.
+
+    First, remember that generators of the fundamental representation of $SU(N)$ satisfy the following Lie Algebra:
+
+    \begin{equation}
+        [\tau^{\alpha}, \tau^{\beta}] = i f^{\alpha \beta}_{c} \tau^{c} \qquad \tau^{\alpha} = \frac{\lambda^{\alpha}}{2}
+    \end{equation}
+
+    where $\lambda^{\alpha}$ are the Gell-Mann matrices in the case of $SU(3)$, but are a larger or smaller set of matrices for other
+    $SU(N)$. Now, one can define an Isospin multiplet in the fundamental representation as follows: 
+
+    \begin{equation}
+        \psi_{i} \rightarrow \overline{\psi}_{j} \Omega_{-1 j}^{i} 
+    \end{equation}
+
+    where obviously this is a unitary matrix, so:
+
+    \begin{equation}
+        \Omega_{i}^{j} = [exp(-i \Theta^{\alpha} \tau_{\alpha})]_{i}^{j}
+    \end{equation}
+
+    If one takes this isospin multiplet to be a multiplet of Dirac spinors, then their Lagrangian is as follows:
+
+    \begin{eqnarray}
+        \mathcal{L} = \bar{\psi}_{i} (i \delta^{ij} \gamma^{\mu} \partial_{\mu} - m \delta^{ij}) \psi_{i}
+    \end{eqnarray}
+
+    This Lagrangian is like the original Dirac Lagrangian, but with global $SU(N)$ symmetry, with the Dirac field transforming in the
+    fundamental representation. Next on our list of step is to upgrade this to a local symmetry using covariant derivatives and gauge
+    fields. This can be done with the following gauge covariant derivative:
+
+    \begin{equation}
+        D^{ij}_{\mu} = (\delta^{i j} \partial_{\mu} - i g \tau_{a} A_{\mu}^{a}) \psi_{j}
+    \end{equation}
+
+    \begin{equation}
+        \Omega_{i}^{j} (x) = [exp (-i \theta^{a} (x) \tau_{a})]_{i}^{j}
+    \end{equation}
+
+    Where
+
+    \begin{equation}
+        (\tau_{a}^{ij}) = - i \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x) + \Omega (x) \tau_{b} (x) \Omega^{-1} (x)
+    \end{equation}
+
+    \begin{equation}
+        A^{a}_{\mu} \rightarrow A'^{a}_{\mu} = 2 Tr [- i \tau^{a} \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x)] + 2 Tr [\tau^{a} \Omega (x) \tau_{b} (x) \Omega^{-1} (x)] A_{\mu}^{b}
+    \end{equation}
+
+    One can show that these transformation relations are consistent with each other by finding the second one through algebraic manipulations
+    of the first one:
+
+    \begin{equation}
+        \tau_{b} A'^{b}_{\mu} = - i \tau^{a} \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x) + \Omega (x) \tau_{b} (x) \Omega^{-1} (x)
+    \end{equation}
+
+    \begin{equation}
+        \tau^{a} \tau_{b} A'^{b}_{\mu} (x) = - i \tau^{a} \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x) + \tau^{a} \Omega (x) \tau_{b} (x) \Omega^{-1} (x)
+    \end{equation}
+
+    \begin{equation}
+        Tr[\tau^{a} \tau_{b}] A'^{b}_{\mu} (x) = Tr [- i \tau^{a} \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x) + \tau^{a} \Omega (x) \tau_{b} (x) \Omega^{-1} (x)]
+    \end{equation}
+
+    Remember the identity:
+
+    \begin{equation}
+        Tr[\tau^{a} \tau_{b}] = \frac{1}{2} \delta^{a}_{b}
+    \end{equation}
+
+    Applying this:
+
+    \begin{equation}
+        \frac{1}{2} \delta_{b}^{a} A'^{b}_{\mu} (x) = Tr [- i \tau^{a} \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x)] + Tr [\tau^{a} \Omega (x) \tau_{b} (x) \Omega^{-1} (x)] A_{\mu}^{b}
+    \end{equation}
+
+    \begin{equation}
+        A'^{b}_{\mu} (x) = 2 Tr [- i \tau^{a} \frac{i}{g} [\partial_{\mu} \Omega (x)] \Omega^{-1} (x)] + 2 Tr [\tau^{a} \Omega (x) \tau_{b} (x) \Omega^{-1} (x)] A_{\mu}^{b}
+    \end{equation}
+
+    So, they are consistent. If one considers an infinitesimal gauge transformation, then one finds that gauge field transformations are
+    generated by the structure constants $f^{ab}_c$. This means that the gauge fields transforms in the adjoint representation. Now
+    looking back at the covariant derivative, with these gauge field transformations, the covariant derivative transforms covariantly:
+
+    \begin{equation}
+        \begin{aligned}
+            D_{\mu} \psi \rightarrow (D_{\mu} \psi)' = \partial_{\mu} - i g A'_{\mu} \psi' \\
+            = \partial_{\mu} (\Omega (x) \psi) + i g [\partial_{\mu} \Omega (x)] \Omega ^{-1} (x) \Omega (x) \psi - i g \Omega (x) A_{\mu} (x) \Omega^{-1} (x) \Omega (x) \psi \\
+            = \Omega (x) \partial_{\mu} \psi - i g \Omega (x) A_{\mu} (x) \psi = \Omega (x) D_{\mu} \psi
+        \end{aligned}
+    \end{equation}
+
+    The gauge invariant Dirac Lagrangian then is:
+
+    \begin{equation}
+        \mathcal{L} = \overline{\psi}_{i} (i \gamma^{\mu} D_{\mu}^{ij} - m \delta^{ij}) \psi_{j}
+    \end{equation}
+
+    Step three from the above list consists of commuting the covariant derivative to get the field strength tensor:
+
+    \begin{equation}
+        [D_{\mu}, D_{\nu}]^{ij} \psi_{j} = D_{k \mu}^{i} D^{k j}_{\nu} \psi_{j} - D_{k \nu}^{i} D^{k j}_{\mu} \psi_{j} = - i g G_{\mu \nu}^{ij} \psi_{j}
+    \end{equation}
+
+    \begin{equation}
+        G_{\mu \nu}^{ij} = \tau^{ij}_{a} G_{\mu \nu}^{a}
+    \end{equation}
+
+    \begin{equation}
+        G_{\mu \nu}^{a} = \partial_{\mu} A^{a}_{\nu} - \partial_{\nu} A^{a}_{\mu} + g f^{a}_{bc} A^{b}_{\mu} A^{c}_{\nu}
+    \end{equation}
+
+    \begin{equation}
+        G_{\mu \nu}^{ij} \rightarrow \Omega^{i}_{k} (x) G_{\mu \nu}^{k l} \Omega^{-1 j}_l (x)
+    \end{equation}
+
+    The final step then consists of squaring the field strength tensor to obtain the gauge field dynamical Lagrangian density:
+
+    \begin{equation}
+        \mathcal{L}_{Yang-Mills} = - \frac{1}{2} Tr[G_{\mu \nu} G^{\mu \nu}] = - \frac{1}{4} G_{\mu \nu}^{a} G^{\mu \nu}_{a}
+    \end{equation}
+
+    The factor of $- \frac{1}{2}$ is a convention. This Lagrangian is gauge invariant because:
+
+    \begin{equation}
+        Tr [G_{\mu \nu} G^{\mu \nu}] \rightarrow Tr [\Omega (x) G_{\mu \nu}^{k l} (x) \Omega^{-1} (x) \Omega (x) G_{\mu \nu}^{k l} \Omega^{-1} (x)] = Tr [G_{\mu \nu} G^{\mu \nu}]
+    \end{equation}
+
+    because $G_{\mu \nu} G^{\mu \nu}$ is a matrix, and because one must use the cyclic property of the trace to show gauge invariance,
+    the trace to show gauge invariance, the trace of the square of the field strength must be taken as the Lagrangian density. This is
+    the Lagrangian of Yang-Mills theory, and it is the unique gauge invariant, Lorentz invariant, and unitary (no higher than second
+    field equations) $SU(N)$ gauge field dynamical Lagrangian.
+
+    If one takes the special case of $SU(3)$, and then adds it to the locally $SU(3)$ invariant Dirac Lagrangian, one obtains the QCD 
+    Lagrangian Density, which is the experimentally correct theory of the strong nuclear interactions:
+
+    \begin{equation}
+        \mathcal{L}_{QCD} = \mathcal{L} = \overline{\psi}_{i} (i \gamma^{\mu} D_{\mu}^{ij} - m \delta^{ij}) \psi_{j} - \frac{1}{4} G_{\mu \nu}^{a} G^{\mu \nu}_{a}
+    \end{equation}
+    
+\end{document}

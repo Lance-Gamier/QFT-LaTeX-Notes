@@ -1,0 +1,488 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{How to Quantize a Real Scalar Field (Free)}
+    \maketitle
+
+    The Lagrangian Density should be:
+
+    \begin{equation}
+        \mathcal{L} = \frac{1}{2} \eta^{\mu \nu} \partial_{\mu} \phi \partial_{\nu} \phi - \frac{1}{2} m^{2} \phi^{2}
+    \end{equation}
+
+    The equation of motion is:
+
+    \begin{equation}
+        \frac{\partial \mathcal{L}}{\partial \phi} - \partial{\mu} \Big( \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \phi)} \Big) = 0
+    \end{equation}
+
+    \begin{equation}
+        \partial^{\mu} \partial_{\mu} \phi + m^{2} \phi = 0
+    \end{equation}
+
+    This equation has the following general solution in terms of plane-waves:
+
+    \begin{equation}
+        k \cdot x = k_{\mu} x^{\mu}
+    \end{equation}
+
+    \begin{equation}
+        \omega = k_{0} = \sqrt{\vec{k} \cdot \vec{k} + m^{2}}
+    \end{equation}
+
+    \begin{equation}
+        \phi (\vec{x}, t) = \frac{1}{(2 \pi)^3} \int \Big[ a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    Where making the second Fourier coefficient the Hermitian Conjugate of $a(\vec{k})$ ensures that the scalar field is invariant under
+    complex conjugation, and is therefore real. Also the integration measure, $\frac{d^3 k}{2 \omega}$, is Lorentz Invariant. The 
+    conjugate field has the following value:
+
+    \begin{equation}
+        \pi (\vec{x}, t) = \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \phi)} = \dot{\phi}
+    \end{equation}
+
+    \begin{equation}
+        \pi (\vec{x}, t) = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    Now let's quantize. Generalizing from Quantum Mechanics:
+
+    \begin{equation}
+        \begin{aligned}[]
+            [\phi (\vec{x}, t),\pi (\vec{y}, t)] & = i \delta^{3}(\vec{x} - \vec{y}) \\
+            [\phi (\vec{x}, t), \phi (\vec{y}, t)] & = 0 \\
+            [\pi (\vec{x}, t), \pi (\vec{y}, t)] & = 0
+        \end{aligned}
+    \end{equation}
+
+    In order to satisfy the commutation relation, $\phi (\vec{x}, t)$ and $\pi (\vec{x}, t)$ must be taken to be operators instead of numbers.
+    This can only be the case if the Fourier coefficients, $a(\vec{k})$ and $a^{\dag}(\vec{k})$, in the expression above for $\phi (\vec{x}, t)$
+    and $\pi (\vec{x}, t)$ are taken to be operators that satisfy particular commutation relations. The above commutation relations and expressions
+    for $\phi (\vec{x}, t)$ and $\pi (\vec{x}, t)$ can be used to deduce commutation relations for $a(\vec{k})$ and $a^{\dag}(\vec{k})$ that are
+    consistent with the commutation relations of $\phi (\vec{x}, t)$ and $\pi (\vec{x}, t)$. This proceeds as follows:
+
+    \begin{equation}
+        \begin{aligned}
+            \int e^{i k' \cdot x} \phi (\vec{x}, t) d^{3}k  = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i (k' - k) \cdot x} - a^{\dag}(\vec{k}) e^{i (k' + k) \cdot x} \Big] \frac{d^3k}{2 \omega} \\
+            = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i (\omega' + \omega) \cdot x} e^{-i (k' + k) \cdot x} - a^{\dag}(\vec{k}) e^{i (\omega' - \omega) \cdot x} e^{i (k' - k) \cdot x} \Big] \frac{d^3k}{2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \frac{1}{(2 \pi)^3} \int e^{-i (k' - k) \cdot x} d^{3}x = \delta^{3} (\vec{k'} - \vec{k}) \\
+            \frac{1}{(2 \pi)^3} \int e^{-i (k' + k) \cdot x} d^{3}x = \delta^{3} (\vec{k'} + \vec{k})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation} 
+        \begin{aligned}
+            \int e^{i k' \cdot x} \phi (\vec{x}, t) d^{3}k & = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i (\omega' + \omega) \cdot x} e^{-i (k' + k) \cdot x} - a^{\dag}(\vec{k}) e^{i (\omega' - \omega) \cdot x} e^{i (k' - k) \cdot x} \Big] \frac{d^3k}{2 \omega} \\
+            & = \frac{1}{2 \omega'} \big[ a(\vec{k'}) + a(-\vec{k'}) e^{i 2 \omega' t} \big]
+        \end{aligned}
+    \end{equation}
+
+    Now that the integration over $\vec{k}$ is done, there is no reason to keep the prime marker on the other
+    momentum variable, so the final answer is:
+
+    \begin{equation}
+        \int e^{i k' \cdot x} \phi (\vec{x}, t) d^{3}k = \frac{1}{2 \omega'} \big[ a(\vec{k'}) + a(-\vec{k'}) e^{i 2 \omega' t} \big]
+    \end{equation}
+
+    Now the same calculation can be done for $\pi (\vec{x}, t)$:
+
+    \begin{equation}
+        \begin{aligned}
+            \int e^{i k' \cdot x} \pi (\vec{x}, t) d^{3}k  = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i (k' - k) \cdot x} - a^{\dag}(\vec{k}) e^{i (k' + k) \cdot x} \Big] \frac{d^3k}{2 \omega} \\
+            = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i (\omega' + \omega) \cdot x} e^{-i (k' + k) \cdot x} - a^{\dag}(\vec{k}) e^{i (\omega' - \omega) \cdot x} e^{i (k' - k) \cdot x} \Big] \frac{d^3k}{2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \frac{1}{(2 \pi)^3} \int e^{-i (k' - k) \cdot x} d^{3}x = \delta^{3} (\vec{k'} - \vec{k}) \\
+            \frac{1}{(2 \pi)^3} \int e^{-i (k' + k) \cdot x} d^{3}x = \delta^{3} (\vec{k'} + \vec{k})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation} 
+        \begin{aligned}
+            \int e^{i k' \cdot x} \pi (\vec{x}, t) d^{3}k & = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i (\omega' + \omega) \cdot x} e^{-i (k' + k) \cdot x} - a^{\dag}(\vec{k}) e^{i (\omega' - \omega) \cdot x} e^{i (k' - k) \cdot x} \Big] \frac{d^3k}{2 \omega} \\
+            & = \frac{i}{2} \big[ a(\vec{k'}) + a(-\vec{k'}) e^{i 2 \omega' t} \big]
+        \end{aligned}
+    \end{equation}
+
+    Again, now that the integration over $\vec{k}$ is done, there is no reason to keep the prime marker on the other momentum variable, so the final answer is:
+
+    \begin{equation}
+        \int e^{i k' \cdot x} \pi (\vec{x}, t) d^{3}k = \frac{i}{2} \big[ a(\vec{k'}) + a(-\vec{k'}) e^{i 2 \omega' t} \big]
+    \end{equation}
+
+    With these two relations, it is now easy to write $a(\vec{k})$ and $a^{\dag}(\vec{k})$ in terms of $\phi (\vec{x}, t)$ and $\pi (\vec{x}, t)$. One can immediately see that:
+
+    \begin{framed}
+        \begin{equation}
+            a(\vec{k}) = \int e^{i k x} [i \pi (\vec{x}, t) + \omega \phi(\vec{x}, t)] d^{3} x
+        \end{equation}
+    \end{framed}
+
+    \begin{framed}
+        \begin{equation}
+            a^{\dag}(\vec{k}) = \int e^{- i k x} [- i \pi (\vec{x}, t)+ \omega \phi(\vec{x}, t)] d^{3} x
+        \end{equation}
+    \end{framed}
+
+    The $a(\vec{k})$ and $a^{\dag}(\vec{k})$ operators are called the harmonic oscillator raising and lowering operators because of their similar properties to
+    those in the famous harmonic oscillator Schrodinger Equation problem. Now, we can commute these to figure out their commutation relations. Let's start with:
+
+    \begin{equation}
+        \begin{aligned}[]
+        [a(\vec{k}), a^{\dag}(\vec{k})] = \int e^{i k \cdot x - i k' \cdot x'} [(i \pi (\vec{x}, t) + \omega \phi(\vec{x}, t))(- i \pi (\vec{x}, t)+ \omega \phi(\vec{x}, t)) \\ 
+        - (- i \pi (\vec{x}, t)+ \omega \phi(\vec{x}, t))(i \pi (\vec{x}, t) + \omega \phi(\vec{x}, t))] d^{3} x d^{3} x'
+        \end{aligned}
+    \end{equation}
+
+    Now applying $[\phi(\vec{x}, t), \phi(\vec{y}, t)] = 0$ and $[\pi(\vec{x}, t), \pi(\vec{y}, t)] = 0$
+
+    \begin{equation}
+        [a(\vec{k}), a^{\dag}(\vec{k})] = \int e^{i k \cdot x - i k' \cdot x'} [i \omega [\pi(\vec{x}, t), \phi(\vec{y}, t)] - i \omega [\phi(\vec{x}, t), \pi(\vec{y}, t)]] d^{3} x d^{3} x'
+    \end{equation}
+
+    Now applying $[\phi(\vec{x}, t), \pi(\vec{y}, t)] = \delta^{3} (\vec{x} - \vec{y})$
+
+    \begin{equation}
+        \begin{aligned}[]
+            [a(\vec{k}), a^{\dag}(\vec{k})] = \int e^{i k \cdot x - i k' \cdot x'} \delta^{3} (\vec{x} - \vec{y}) d^{3} x d^{3} x' = 2 \omega \int e^{i (k - k') \cdot x} d^{3} x \\
+            = 2 \omega \int e^{i (\omega - \omega') \cdot x} e^{i (k - k') \cdot x} d^{3} x = (2 \pi)^{3} 2 \omega e^{i (\omega - \omega') \cdot x} \delta^{3} (\vec{k} - \vec{k'}) \\
+            = (2 \pi)^{3} 2 \omega \delta^{3} (\vec{x} - \vec{y})
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            [a(\vec{k}), a^{\dag}(\vec{k})] = (2 \pi)^{3} 2 \omega \delta^{3} (\vec{x} - \vec{y})
+        \end{equation}
+    \end{framed}
+
+    One can also show that $a(\vec{k})$ and $a^{\dag}(\vec{k})$ commute with themselves:
+
+    \begin{equation}
+        \begin{aligned}[]
+            [a(\vec{k}), a(\vec{k})] = \int e^{i k \cdot x - i k' \cdot x'} [i \omega [\pi(\vec{x}, t), \phi(\vec{y}, t)] - i \omega [\phi(\vec{x}, t), \pi(\vec{y}, t)]] d^{3} x d^{3} x' \\
+            = \int e^{i k \cdot x - i k' \cdot x'} [- i \omega \delta^{3} (\vec{x} - \vec{x'}) + i \omega \delta^{3} (\vec{x} - \vec{x'})] d^{3} x d^{3} x' = 0
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            [a^{\dag}(\vec{k}), a^{\dag}(\vec{k})] = \int e^{i k \cdot x - i k' \cdot x'} [i \omega [\pi(\vec{x}, t), \phi(\vec{y}, t)] - i \omega [\phi(\vec{x}, t), \pi(\vec{y}, t)]] d^{3} x d^{3} x' \\
+            = \int e^{i k \cdot x - i k' \cdot x'} [- i \omega \delta^{3} (\vec{x} - \vec{x'}) + i \omega \delta^{3} (\vec{x} - \vec{x'})] d^{3} x d^{3} x' = 0
+        \end{aligned}
+    \end{equation}
+
+    With these commutation relations, the energy states of a system can be worked out. First, the Hamiltonian must be computed, then the above established commutation relations for $a(\vec{k})$ and $a^{\dag}(\vec{k})$ can 
+    be used to work out what the energy eigenstates are. From Noether's theorem, we have that the stress energy momentum tensor is:
+    
+    \begin{equation}
+        T^{\mu \nu} = \frac{\partial \mathcal{L}}{\partial (\partial_{0} \phi)} \partial_{0} \phi - \mathcal{L} = \frac{1}{2} (\pi^{2} + \nabla \phi \cdot \nabla \phi + m^{2} \phi^{2})
+    \end{equation}
+
+    \begin{equation}
+        H = \int \mathcal{H} d^{3} x = \frac{1}{2} \int (\pi^{2} + \nabla \phi \cdot \nabla \phi + m^{2} \phi^{2}) d^{3} x
+    \end{equation}
+    
+    Where
+
+    \begin{equation}
+        \phi (\vec{x}, t) = \frac{1}{(2 \pi)^3} \int \Big[ a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \pi (\vec{x}, t) = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \nabla \phi (\vec{x}, t) = \frac{1}{(2 \pi)^3} (i \vec{k}) \int \Big[ a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    Therefore:
+
+    \begin{equation}
+        \begin{aligned}[]
+            H = \frac{1}{2 (2 \pi)^3 (2 \pi)^3} \int \frac{1}{2} \{ - \omega \omega' [a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x}][a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x}] \\
+            - \vec{k} \cdot \vec{k'} [a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x}][a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x}] \\
+            + m^{2} [a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x}][a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x}] \}  d^{3} k d^{3} k' d^{3} x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            H = \frac{1}{2 (2 \pi)^3 (2 \pi)^3} \int \{ (- \omega \omega' - \vec{k} \cdot \vec{k'}) [a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x}][a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x}] \\
+            + m^{2} [a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x}][a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x}] \} d^{3} k d^{3} k' d^{3} x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \int e^{i (k - k') \cdot x} d^{3} x = 2 \omega \int e^{i (\omega - \omega') \cdot x} e^{i (k - k') \cdot x} d^{3} x =  \\
+            = (2 \pi)^{3} 2 \omega e^{i (\omega - \omega') \cdot x} \delta^{3} (\vec{k} - \vec{k'}) \\
+            = (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \int e^{i (k + k') \cdot x} d^{3} x = 2 \omega \int e^{i (\omega - \omega') \cdot x} e^{i (k - k') \cdot x} d^{3} x =  \\
+            = (2 \pi)^{3} 2 \omega e^{i (\omega + \omega') \cdot x} \delta^{3} (\vec{k} + \vec{k'}) \\
+            = e^{2 i \omega t} (2 \pi)^3 \delta^{3} (\vec{k} + \vec{k'})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            H = \frac{1}{2 (2 \pi)^3 (2 \pi)^3} \int \{ (- \omega \omega' - \vec{k} \cdot \vec{k'}) [a(\vec{k}) a(\vec{k'}) (2 \pi)^{3} e^{-2 i \omega t} \delta^{3}(\vec{k} + \vec{k'}) \\
+            - a(\vec{k}) a^{\dag}(\vec{k'}) (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'}) - a^{\dag}(\vec{k}) a(\vec{k'}) (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'}) \\
+            + a^{\dag}(\vec{k}) a^{\dag}(\vec{k'}) e^{- 2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) ]\\
+            + m^2 [ a(\vec{k}) a(\vec{k'}) e^{- 2 i \omega t} \delta^{3} (\vec{k} + \vec{k'}) + a(\vec{k}) a^{\dag}(\vec{k'}) \delta^{3} (\vec{k} - \vec{k'}) \\
+            + a^{\dag}(\vec{k}) a(\vec{k'}) \delta^{3} (\vec{k} - \vec{k'}) ] \} d^{3} k d^{3} k' d^{3} x
+        \end{aligned}
+    \end{equation}
+
+    Remembering the properties of the delta function, and that $\omega = k_{0} = \sqrt{\vec{k} \cdot \vec{k} + m^{2}}$, one finds that:
+
+    \begin{equation}
+        H = \frac{1}{2 (2 \pi)^3 (2 \pi)^3} \int \delta^{3} (\vec{k} - \vec{k'}) \{ (- \omega \omega' - \vec{k} \cdot \vec{k'}) [a(\vec{k}) a^{\dag}(\vec{k'}) + a^{\dag}(\vec{k}) a(\vec{k'})] \}  d^{3} k d^{3} k' d^{3} x
+    \end{equation}
+
+    Now doing the k' Integration:
+
+    \begin{equation}
+        \begin{aligned}[]
+            H = \frac{(2 \pi)^3}{2 (2 \pi)^3 (2 \pi)^3} \int \{ (- \omega^{2} - \vec{k} \cdot \vec{k'}) [a(\vec{k}) a^{\dag}(\vec{k'}) + a^{\dag}(\vec{k}) a(\vec{k'})] \}  d^{3} k d^{3} x \\
+            = \frac{(2 \pi)^3}{2 (2 \pi)^3 (2 \pi)^3} \int \{ 2 \omega^{2} [a(\vec{k}) a^{\dag}(\vec{k'}) + a^{\dag}(\vec{k}) a(\vec{k'})] \}  d^{3} k d^{3} x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        H = \frac{1}{2} \int \omega [a(\vec{k}) a^{\dag}(\vec{k}) + a^{\dag}(\vec{k}) a(\vec{k})] \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Next Applying the $[a(\vec{k}), a^{\dag}(\vec{k})] = 2 \omega \delta^{3} (\vec{k'} - \vec{k})$:
+
+    \begin{equation}
+        H = \frac{1}{2} \int \omega [2 a(\vec{k}) a^{\dag}(\vec{k}) + 2 \omega \delta^{3} (0)] \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    Infinite (and finite) shifts at the zero point of energy scale cannot be detected,
+    so the last term cannot be ignored. Doing this gives the normal ordered Hamiltonian:
+    
+    \begin{framed}
+        \begin{equation}
+            H_{n} = \int \omega a(\vec{k}) a^{\dag}(\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{equation}
+    \end{framed}
+
+    Normal ordering is formally defined as positioning all $a^{\dag}(\vec{k})$ operators (later we will see that these are creation operators)
+    to the left and all $a(\vec{k})$ (these will turn out to be annihilation operators) to the right. Doing this yields more sensible quantum
+    physical expressions. Given that the ordering of classical fields is arbitrary, and the original Hamiltonian was computed by inserting 
+    quantized fields (field operators) into classical formulas, one can see that the ordering of quantum fields is Ambiguous. Taking the normal
+    ordered Hamiltonian as the correct one can be viewed as simply taking the only available ordering that doesn't yield nonsense. Also notice
+    that $H_{n}$ is Hermitian. With the normal ordered Hamiltonian, the spectrum of energy states of the theory can be computed.
+    
+    \begin{equation}
+        H_{n} | E \rangle = E | E \rangle
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_{n} a(\vec{k}) | E \rangle = (E - \omega) a(\vec{k}) | E \rangle = \int \omega' a^{\dag} (\vec{k'}) a (\vec{k'}) a (\vec{k}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = \int \omega' a^{\dag} (\vec{k'}) a (\vec{k}) a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = \int \omega' a^{\dag} (\vec{k'}) \big[a (\vec{k}) a^{\dag} (\vec{k'}) - [a (\vec{k}), a^{\dag} (\vec{k})] \big] a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = \int \omega' a^{\dag} (\vec{k'}) \big[a (\vec{k}) a^{\dag} (\vec{k'}) - (2 \pi)^3 2 \omega \delta^{3} (\vec{k} - \vec{k'}) \big] a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = a (\vec{k}) \int \omega' a^{\dag} (\vec{k}) a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} - \omega a (\vec{k}) = a (\vec{k}) H_{n} | E \rangle - \omega a (\vec{k}) | E \rangle \\
+            = a (\vec{k}) E | E \rangle - \omega a (\vec{k}) | E \rangle = H_{n} a(\vec{k}) | E \rangle = (E - \omega) a(\vec{k}) | E \rangle
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            H_{n} a(\vec{k}) | E \rangle = (E - \omega) a(\vec{k}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    Therefor, we see that $a(\vec{k})$ is a lowering or annihilation operator (as mentioned above). It removes a quantum of energy that it acts on.
+    Now, we can perform a similar calculation to find the meaning of $a^{\dag}(\vec{k})$
+
+    \begin{equation}
+        \begin{aligned}
+            H_{n} a^{\dag}(\vec{k}) | E \rangle = \int \omega' a^{\dag} (\vec{k'}) a (\vec{k'}) a (\vec{k}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = \int \omega' a^{\dag} (\vec{k'}) \big[a (\vec{k}) a^{\dag} (\vec{k'}) - [a (\vec{k}), a^{\dag} (\vec{k'})] \big] a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = \int \omega' a^{\dag} (\vec{k'}) \big[a (\vec{k}) a^{\dag} (\vec{k'}) + [a^{\dag} (\vec{k'}), a (\vec{k})] \big] a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = \int \omega' a^{\dag} (\vec{k'}) \big[a (\vec{k}) a^{\dag} (\vec{k'}) + (2 \pi)^3 2 \omega \delta^{3} (\vec{k} - \vec{k'}) \big] a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} \\
+            = a (\vec{k}) \int \omega' a^{\dag} (\vec{k}) a (\vec{k'}) | E \rangle \frac{d^{3} k'}{(2 \pi)^{3} 2 \omega'} + \omega a (\vec{k}) \\
+            = a (\vec{k}) H_{n} | E \rangle + \omega a (\vec{k}) | E \rangle \\
+            = (E + \omega) a^{\dag}(\vec{k}) | E \rangle
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            H_{n} a^{\dag}(\vec{k}) | E \rangle = (E + \omega) a^{\dag}(\vec{k}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    Therefor, we see that $a^{\dag}(\vec{k})$ is a raising or creation operator (as mentioned above). It adds to the quantum of energy to the state
+    it acts on. From here, a few important realizations can be made. First, because $H_{n}$ is an integral over $a(\vec{k}) a^{\dag}(\vec{k})$ its
+    expectation values are non-negative:
+
+    \begin{equation}
+        \langle \psi | H_{n} | \rangle \geq 0
+    \end{equation}
+
+    With this in mind, because $a(\vec{k})$ lowers the value of the eigenvalue by one quantum, there must be a lowest state that gets zeroed by 
+    $a^{\dag}(\vec{k})$:
+
+    \begin{equation}
+        a(\vec{k}) | 0 \rangle = 0
+    \end{equation}
+
+    This ground state will be taken as the definition of the vacuum, because it has no quanta of energy left to be annihilated. One can then interpret
+    these energy quanta to be particles (in this case, spin zero massive particles because we are quantizing a massive scalar field theory). With these
+    interpretation, one can see that field quantization has had the following effect. At a given frequency, only discrete energy levels can be allowed,
+    and they can correspond to different integer numbers of particles (field quanta) being present at a particular frequency. Basically, the states of
+    the theory simply correspond to a vacuum containing some number of massive spin zero particles with various frequencies.
+
+    One can act on the vacuum state with the creation operator to populate it with particles. A one particle state can be written the following way:
+
+    \begin{equation}
+        a^{\dag}(\vec{k}) | 0 \rangle = | \vec{k} \rangle
+    \end{equation}
+
+    The complete spectrum of energy eigenstates can be written as follows:
+
+    \begin{equation}
+        \prod_{i = 1}^{K} \frac{[a^{\dag}(\vec{k}_{i})]^{n (\vec{k}_{i})}}{\sqrt{n (\vec{k}_{i})!}} | 0 \rangle = | n(\vec{k}_{1})...n(\vec{k}_{K}) \rangle
+    \end{equation}
+
+    Because creation operators commute with each other, these field quanta obey Bose-Einstein statistics, and are bosons. The zero point on the energy scale is
+    set to such that the energy of such vacuum has a value of zero. As a consequence:
+
+    \begin{equation}
+        H | \vec{k} \rangle = \omega | \vec{k} \rangle
+    \end{equation}
+
+    Also, it is instructive to compute the momentum:
+
+    \begin{equation}
+        \mathcal{P}^{i} = T^{0 i} = \frac{\partial \mathcal{L}}{\partial (\partial_0 \phi)} \partial^{i} \phi = - \pi \nabla \phi
+    \end{equation}
+
+    \begin{equation}
+        \mathcal{P}^{i} = \int \mathcal{P}^{i} d^{3} x = - \int \pi \nabla \phi d^{3} x
+    \end{equation}
+
+    \begin{equation}
+        \pi (\vec{x}, t) = \frac{1}{(2 \pi)^3} \int (- i \omega) \Big[ a(\vec{k}) e^{-i k \cdot x} - a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \nabla \phi (\vec{x}, t) = \frac{1}{(2 \pi)^3} (i \vec{k}) \int \Big[ a(\vec{k}) e^{-i k \cdot x} + a^{\dag}(\vec{k}) e^{i k \cdot x} \Big] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \int e^{i (k - k') \cdot x} d^{3} = 2 \omega \int e^{i (\omega - \omega') \cdot x} e^{i (k - k') \cdot x} d^{3} x  \\
+            = (2 \pi)^{3} 2 \omega e^{i (\omega - \omega') \cdot x} \delta^{3} (\vec{k} - \vec{k'}) \\
+            = (2 \pi)^3 \delta^{3} (\vec{k} - \vec{k'})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \int e^{i (k + k') \cdot x} d^{3} = 2 \omega \int e^{i (\omega - \omega') \cdot x} e^{i (k - k') \cdot x} d^{3} x  \\
+            = (2 \pi)^{3} 2 \omega e^{i (\omega + \omega') \cdot x} \delta^{3} (\vec{k} + \vec{k'}) \\
+            = e^{2 i \omega t} (2 \pi)^3 \delta^{3} (\vec{k} + \vec{k'})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \vec{P} = \int \omega' \vec{k} [ a (\vec{k'}) a (\vec{k}) e^{- 2 i \omega t} (2 \pi)^{3} \delta^{3} (\vec{k} + \vec{k'}) \\
+            - a (\vec{k}) a^{\dag} (\vec{k}) (2 \pi)^{3} \delta(\vec{k} - \vec{k'}) - a^{\dag} (\vec{k}) a (\vec{k}) (2 \pi)^{3} \delta(\vec{k} - \vec{k'}) \\
+            + a^{\dag} (\vec{k}) a^{\dag} (\vec{k}) (2 \pi)^{3} \delta(\vec{k} + \vec{k'})] \frac{d^3k}{2 \omega} \frac{d^3k'}{2 \omega'}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \vec{P} = - \frac{1}{2} \int \vec{k} [a (-\vec{k}) a (\vec{k}) e^{-2 i \omega t} - a (\vec{k}) a^{\dag} (\vec{k}) a^{\dag} (\vec{k}) a (\vec{k}) a^{\dag} (-\vec{k}) a^{\dag} (\vec{k}) e^{2 i \omega t}] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \vec{P} = \frac{1}{2} \int \vec{k} [a (\vec{k}) a (-\vec{k}) e^{- 2 i \omega t} + a^{\dag} (\vec{k}) a^{\dag} (-\vec{k}) e^{- 2 i \omega t}] \frac{d^3k}{2 \omega} \\
+            + \frac{1}{2} \int \vec{k} [a (\vec{k}) a^{\dag} (\vec{k}) + a^{\dag} (\vec{k}) a (\vec{k})] \frac{d^3k}{2 \omega}
+        \end{aligned}
+    \end{equation}
+
+    The first integral has an integrand that is odd in $k^i$, so it vanishes, therefor:
+
+    \begin{equation}
+        \vec{P} = \frac{1}{2} \int [a (\vec{k}) a^{\dag} (\vec{k}) + a^{\dag} (\vec{k}) a (\vec{k})] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \vec{P} = \int \vec{k} a^{\dag} (\vec{k}) a (\vec{k}) \frac{d^3k}{2 \omega} + \frac{1}{2} \int \vec{k} [a (\vec{k}), a^{\dag} (\vec{k})] \frac{d^3k}{2 \omega}
+    \end{equation}
+
+    The second integral has an integrand that is odd in $k^i$, so it vanishes, therefor:
+
+    \begin{framed}
+        \begin{equation}
+                \vec{P} = = \int k a^{\dag}(\vec{k}) a(\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+        \end{equation}
+    \end{framed}
+
+    With this formula for the momentum operator, one finds:
+
+    \begin{equation}
+        \vec{P} | \vec{k} \rangle = \vec{k} | \vec{k} \rangle
+    \end{equation}
+
+    The momentum operator therefor just gives the momentum when applied to an energy eigenstate of the system.
+    With this done, there is only one thing left to do, and that is to introduce the number operator:
+
+    \begin{equation}
+        N (\vec{k}) = a^{\dag} (\vec{k}) a (\vec{k})
+    \end{equation}
+
+    This operator has a following interesting property:
+
+    \begin{equation}
+        N (k_i) | N (k_1)...N (k_i)...N (k_K) \rangle = n (k_i) | N (k_1)...N (k_i)...N (k_K) \rangle
+    \end{equation}
+
+    This is easy to show by commuting $a (\vec{k})$ to the right until it annihilates into a vacuum. The operator
+    has eigenvalues equal to the nubmer of quanta of momentum $\vec{k}$ present in the energy eigenstate to which
+    it is applied. Its eigenvalues are called occupation numbers. It turns out that the energy and momentum 
+    operators appear a lot more intuitive if thought about in terms of this number operator. Specifically, we have:
+
+    \begin{equation}
+        H_{n} = \int \omega a(\vec{k}) a^{\dag}(\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} = \int \omega N(\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    \begin{equation}
+        \vec{P} = \int k a^{\dag}(\vec{k}) a(\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega} = \int \vec{k} N(\vec{k}) \frac{d^{3} k}{(2 \pi)^{3} 2 \omega}
+    \end{equation}
+
+    From this, one can see very intuitively, that the Hamiltonian, and the momentum operators really do just add up
+    the energy and momentum respectively of all of the quanta present in a given state.
+
+\end{document}

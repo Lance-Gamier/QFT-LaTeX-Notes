@@ -1,0 +1,874 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{mathrsfs}
+\usepackage{esint}
+\usepackage[compat = 1.1.0]{tikz-feynman}
+\usepackage{slashed}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{Tree Level Compton Scattering Cross Section in QED}
+    \maketitle
+
+    \section*{Introduction}
+
+    In the treatment of quantum electrodynamics in introductory quantum field theory courses, once the general scattering cross section formula has been derived, and the QED Feynman rules have been derived,
+    one usually moves on to tree level QED scattering cross section calculations. This usually represents the students first time applying the Feynman rules of any theory, and is intended to be a reasonably
+    handleable matheematical endeavor (of course it's still QFT, so it's inevitably going to be a little crazy). One of the first in this set of cross sections that students usually calculate is the differential
+    scattering cross section for tree level pair annihilation. For those who don't remember, this is the process where an electron and a positiron annihilate to yield a pair of photons. This is the scattering 
+    cross section (first calculated by Dirac) that we will be deriving in this video.
+
+    Of course, one could always expand on the tree level with loop diagrams, but that is significantly more complicated. It isn't usually done until long after students have computed the tree level result.
+    The tree level result, in calculations like this, just reproduces the classical answer, despite the fact that we are using quantum field theory machinery to compute it. One only gets quantum corrections from
+    perturbative quantum field theory if loops are included. The expansion in the number of loops is also an expansion in powers of planks' constant, and therefore represents an expansion of the quantum corrections.
+    Ignoring them would therefore naturally leave us with the classical result.
+
+    In the case of pair annihilation, this division between classical and quantum is a subtle point because one usually hears of antimatter as a consequence of applying relativity to quantum mechanics. The
+    resolution to this confusion is the following. In mechanics, this is how antimatter works. Antimatter is a consequence of applying relativity to quantum mechanics, but in field theory things are slightly
+    different. In field theory the Dirac Equation, Klein-Gordon equation, Rarita-Schwinger Equation, etc. (which play the role of relativistic quantum wave equations in mechanics), are reinterpreted as classical
+    field actions, and then one incorporates quantum field theory by quantizing the classical field, and using the quantized field theory to calcuate the effects of quantum fluctuations in the field. In field
+    theory therefore, antimatter is a relevant concept even at the classical level. Specifically, the relativistic quantum wave equations that give rise to it are taken as the classical field equations of various
+    relativistic particles.
+
+    With the preamble done, let's now get to the actual calculation. At the tree level, we have the following Feynman diagrams for pair annihilation in QED:
+
+    As usual, solid lines are fermion lines, and wavy lines are photon lines. More specifically, the solid lines are electron (moving forward time arrow), or positron lines if external, and there is no distinction
+    between the two for internal lines. A fermion propagator is assigned to all internal lines. Ignoring the ones that pertain to quantum loop corrections, the QED FEynman rules are:
+
+    \begin{center}
+        \begin{tabular}[center]{|c|c|}
+            \hline
+            Incoming electron & $U_{e}$ \\
+            \hline
+            Outgoing electron & $\overline{U}_{e}$ \\
+            \hline
+            Incoming positron & $V_{e}$ \\
+            \hline
+            Outgoing positron & $\overline{V}_{e}$ \\
+            \hline
+            Incoming photon & $\epsilon_{1 \mu} (first polarization)$ \\
+            \hline
+            Outgoing photon & $\epsilon_{2 \mu} (second polarization)$ \\
+            \hline
+            Vertex & $-i e \gamma^{\mu}$ \\
+            \hline
+            Internal fermion & $i S_{F} (p) = \frac{i}{\slashed{p} - m + i (\epsilon = 0)} = \frac{\slashed{p} + m}{p^2 - m^2}$ \\
+            \hline
+            Internal photon & $i D^{F}_{\mu \nu} (p) = - \frac{i g_{\mu \nu}}{q^2 + i(\epsilon = 0)}$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    Where the dot product of the polarization vectors with themselves is equal to $-1$. There is a link in the description for a video where I show how to derive the Feynman rules for QED.
+
+    Expressed in terms of the Feynman amplitude, the general formula for the differential scattering cross section of two fermions producing some number of bosons is:
+
+    \begin{center}
+        \boxed{d \sigma = m_1 m_2 \frac{(2 \pi)^4 |M_{fi}|^2 \delta^4 (P_f - P_i)}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]^{1/2}} \prod_{n = 1}^{N_b} \frac{d^3 \vec{p}_n}{(2 \pi)^3 2 E_n}}
+    \end{center}
+
+    There is a link in the description for a video where I show how to derive this general formula.
+
+    This calculation will have a few distinct stages. First, we will simplify the general differential scattering cross section formula as much as we can without knowing the Feynman amplitude. Second, we will use the
+    Feynman rules to write out the Feynman amplitude, and then we will simplify it some. Third, we will take the absolute square of the Feynman amplitude and then spend the largest single portion of this document
+    simplifying it some. Third, we will take the absolute square of the Feynman amplitude and then spend the largest single portion of this document simplifying is. At the very end, we will insert the simplified,
+    squared Feynman amplitude into the pre-simplified differential scattering cross section formula. With a little bit more simplification, we  will obtain the final answer.
+
+    \section*{Preparation of the Scattering Cross Section Formula}
+
+    The first thing we will do in this section is insert the momentum variables written in the Feynman diagrams into the differential scattering cross section. This will begin simplifying it because we can see from the
+    diagrams that we only have two outgoing particles, and the incoming particles have equal mass. Beyond this, the standard result also includes averaging over the incoming electron spins, so we will need to insert 
+    that average on the on the absolute squared Feynman amplitude into the differential scattering cross section. Doing all of this to the formula given in the introduction easily gives us this:
+
+    \begin{equation}
+        d^6 \sigma = \frac{m^2 (2 \pi)^4 \delta^4 (p_1 + p_2 - k_1 - k_2)}{[(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{(2 \pi)^3 E_{k_1}} \frac{d^3 \vec{k}_2}{(2 \pi)^3 E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
+    \end{equation}
+
+    You may notice that I added a 6 superscript to the differential on $\sigma$. This is to indicate how many differential are on the other side of the equation. This number will drop as we complete phase space integrations
+    over some of the momentum and energy variables.
+
+    The scattering cross section that Dirac originally derived (and the one that is most useful) is with respect to the solid angle of one of the outgoing photons. Therefore one of the things we will need to do in preparing
+    the differential scattering cross section formula is integrate over the other momentum variables. It turns out that this can be done before we have worked out the Feynman amplitude because of the delta functions that show
+    up in the cross section formula. They are there to impose energy and momentum conservation. Therefore, we can do the necessary phase space integration without knowing the Feynman amplitude, which depends on them. It turns
+    out that these relations are extremely useful in simplifying the absolute square of the Feynman amplitude.
+
+    I chose to integrate over $\vec{k}_2$ to begin with. This is the first step in getting the differential cross section with respect to the solud angle of the $\vec{k}_1$ photon (they are the same, so it doesn't matter which
+    we choose). Because of the momentum conservation delta functions, integration simply yields the following:
+
+    \begin{equation}
+        d^3 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)
+    \end{equation}
+
+    Where the delta function has enforced momentum conservation:
+
+    \begin{eqnarray}
+        \vec{p}_1 + \vec{p}_2 = \vec{k}_1 + \vec{k}_2
+    \end{eqnarray}
+
+    To find the differential cross section with respect to the solid angle, we must now put the remaining differential in spherical coordinates to reveal the solid angle differential (remember, $d \Omega$ contains two differentials):
+
+    \begin{equation}
+        d^3 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{|\vec{k}_1|^2 d^3 |\vec{k}_1| d \Omega}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)
+    \end{equation}
+
+    Now to get the scattering cross section purely with respect to the solid angle, we must now integrate over $|\vec{k}_1|$. The remaining delta function allows this to be done easily, but there is a little complication, we must reexpress
+    the delta function to get it into a form that is easy to integrate. Specifically, the integral we need to perform is:
+
+    \begin{equation}
+        d^2 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \int \frac{|\vec{k}_1|^2 d^3 |\vec{k}_1|}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)
+    \end{equation}
+    
+    Using normal identities, we can rewrite the delta funciton in the following way that makes the integral easy to do:
+
+    \begin{equation}
+        \delta (E_{p_1} + E_{p_2} - E_{k_1} - E_{k_2}) = \delta (E_{p_1} + E_{p_2} - |\vec{k}_1| - E (|\vec{k}_2|) ) = \delta [f (|\vec{k}_1|)] = \frac{\delta [|\vec{k}_1| - |\vec{k}_1|_0]}{f' (|\vec{k}_1|s)}
+    \end{equation}
+
+    Where $f'(|\vec{k}_1|)$ is the derivative of the f-function, and $|\vec{k}_1|$ is the root of the f-function, or the actual value of $|\vec{k}_1|$. Because of the delta function, the integration simply forces:
+
+    \[
+        |\vec{k}_1| = |\vec{k}_1|_0
+    \]
+
+    Relabeling the actual momentum $|\vec{k}_1|_0$ with the symbol previously used for the integration variable to make things simpler, and continuing the calculation. The integration over the magnitude of the momentum gives:
+
+    \begin{equation}
+        d^2 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{|\vec{k}_1|^2 d^3 |\vec{k}_1|}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+    \end{equation}
+
+    Where:
+
+    \begin{equation}
+        f' (|\vec{k}_1|) = \frac{\vec{k}_1 \cdot \vec{k}_2}{E_{k_1} E_{k_2s}}
+    \end{equation}
+
+    It is worth pointing out that the superscript on the differential is usually dropped. It was useful to keep track of things while we were doing the integration, but it is no longer needed, so we will drop it. We therefore will write:
+    
+    \begin{equation}
+        d \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+    \end{equation}
+
+    Keep in mind that because of the integrations that we did, $d \sigma$ doesn't quite mean what it did in the general formula in the introduction before any integration had been done. From here, the only way to simplify anyting further 
+    is to select a specific parameterization for the momentum variables, that respects conservation laws and the energy-momentum relation. The usual thing to do for this problem is to take the rest frame of the initial electron, and use
+    the following parameterization based on that:
+
+    \begin{equation}
+        \begin{aligned}
+            p_{i \mu}  = (m \: 0 \: 0 \: 0)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            k_{i \mu}  = k_0 (1 \: 0 \: 0 \: 1)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            k_{f \mu}  = k'_0 (1 \: 0 \: \sin (\theta) \: \cos (\theta) )
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            p_{f \mu}  = (1 \: 0 \: -k'_0 \sin (\theta) \: k_0 - k'_0 \cos (\theta) )
+        \end{aligned}
+    \end{equation}
+
+    So:
+
+    \begin{equation}
+        k_1 \cdot k_2 = |\vec{k}_1|^2 (m + E - |p| \cos \theta)
+    \end{equation}
+
+    Therefore
+
+    \begin{equation}
+        f' (|\vec{k}_1|) = \frac{|\vec{k}_1|^2 (m + E - |p| \cos \theta)}{E_{k_1} E_{k_2}}
+    \end{equation}
+
+    So then the differential cross section becomes:
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{E_{k_1} E_{k_2}}{|\vec{k}_1|^2 (m + E - |p| \cos \theta)}
+    \end{equation}
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|}{|\vec{k}_1|^2 (m + E - |p| \cos \theta)}
+    \end{equation}
+
+    \begin{equation}
+        |\vec{k}_1| = \frac{m (m + E)}{m + E - |p| \cos \theta}
+    \end{equation}
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{m (m + E)}{|\vec{k}_1|^2 (m + E - |p| \cos \theta)}
+    \end{equation}
+
+    \[
+        p_1 \cdot p_2 = m_Es
+    \]
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{(2 \pi)^2 [(m E) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{m (m + E)}{|\vec{k}_1|^2 (m + E - |p| \cos \theta)}
+    \end{equation}
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{(2 \pi)^2 [E - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{(m + E)}{|\vec{k}_1|^2 (m + E - |p| \cos \theta)}
+    \end{equation}
+
+    \begin{equation}
+        d \sigma = \frac{m^2 (m + E) d \Omega}{(2 \pi)^2 |\vec{k}_1|^2 (m + E - |p| \cos \theta) [E - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
+    \end{equation}
+
+    \begin{center}
+        \boxed{\frac{m^2 (m + E)}{4 (2 \pi)^2 |p| (m + E - |p| \cos \theta)^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)}
+    \end{center}
+
+    \section*{The Feynman Amplitude}
+
+    The first step is to use the Feynman diagrams and rules from the introduction to write out the Feynman amplitude:
+
+    \begin{equation}
+        M_{fi} = M_{if}^1 + M_{if}^2
+    \end{equation}
+
+    Now simplifying the denominators. Let's start with the first one:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1)^2 - m^2 = + \gamma^\mu \gamma^\nu (p_{1 \mu} p_{1 \nu} + k_{1 \mu} k_{1 \nu} - p_{1 \mu} k_{1 \nu} - p_{1 \nu} k_{1 \mu})
+    \end{equation}
+
+    Next, we apply the following identity:
+
+    \begin{equation}
+        \gamma^\mu \gamma^\nu a_\mu a_\nu = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) a_\mu a_\nu = g^{\mu \nu} a_{\mu} a_{\nu} I = a \cdot a I
+    \end{equation}
+
+    Inserting this into the denominator gives the following:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1)^2 - m^2 = + p_1 \cdot p_1 + k_1 \cdot k_1 + \gamma^\mu \gamma^\nu (- p_{1 \mu} k_{1 \nu} - p_{1 \nu} k_{1 \mu})
+    \end{equation}
+
+    However, we know that $p_1 \cdot p_1$ and $k_1 \cdot k_2$, so the denominator simplifies down to:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1)^2 - m^2 = + \gamma^\mu \gamma^\nu (- p_{1 \mu} k_{1 \nu} - p_{1 \nu} k_{1 \mu})
+    \end{equation}
+
+    We can now rewrite this in the following way:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1)^2 - m^2 = + (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) - p_{1 \mu} k_{1 \nu}
+    \end{equation}
+
+    We can now apply the Clifford algebra to get:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1)^2 - m^2 = - 2 g^{\mu \nu} p_{1 \mu} k_{1 \nu} = - 2 p_1 \cdot k_1
+    \end{equation}
+
+    A similar analysis gives the following result for the second denominator:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1)^2 - m^2 = - 2 p_1 \cdot k_2
+    \end{equation}
+
+    Inserting these simplified denominators gives the following value for the Feynman amplitude:
+
+    \begin{equation}
+        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \slashed{\epsilon}_2 \frac{\slashed{p}_1 - \slashed{k}_1 + m}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \slashed{\epsilon}_1 \frac{\slashed{p}_1 - \slashed{k}_2 + m}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+    \end{equation}
+
+    We can now start simplifying the numerator:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1 + m) \slashed{\epsilon}_1 = \slashed{p}_1 \slashed{\epsilon}_1 - \slashed{k}_1 \slashed{\epsilon}_1 + m \slashed{\epsilon}_1
+    \end{equation}
+
+    Now looking at the first two terms:
+
+    \begin{equation}
+        \slashed{p}_1 \slashed{\epsilon}_1 = \gamma^\mu \gamma^nu p_{1 \mu} \epsilon_{1 \nu} = 2 p_1 \cdot \epsilon_1 - \slashed{\epsilon} \slashed{p}_1
+    \end{equation}
+
+    \begin{equation}
+        \slashed{k}_1 \slashed{\epsilon}_1 = (2 g^{\mu \nu} - \gamma^\nu \gamma^\mu) k_{i \mu} \epsilon_\nu = 2 k_1 \cdot \epsilon_1 - \slashed{\epsilon}_1 \slashed{k}_1
+    \end{equation}
+
+    Now, plugging that in:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1 + m) \slashed{\epsilon}_1 = 2 (p_1 - k_1) \cdot \epsilon_1 - \slashed{\epsilon} \slashed{p}_1 - \slashed{\epsilon}_1 \slashed{k}_1 + m \slashed{\epsilon}_1
+    \end{equation}
+
+    Epsilon is the polarization vector of the photon it is dotted with, so it is transeverse to this photon momentum vector, therefore their dot product is zero. Also the goal is to write the cross section in the rest frame of the electron, so the electron momentum only
+    has a time component. Thusm its dot product with the polarization vector is also zero:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1 + m) \slashed{\epsilon}_1 = - \slashed{\epsilon} \slashed{p}_1 - \slashed{\epsilon}_1 \slashed{k}_1 + m \slashed{\epsilon}_1
+    \end{equation}
+
+    Then, one can use the fact that the spinors satisfy the Dirac equation. The whole above term acts on a spinor in the complete expression:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1 + m) \slashed{\epsilon}_1 U_e (p_1 s_1) = \slashed{\epsilon}_1 (\slashed{p}_1 - \slashed{k}_1 + m) U_e (p_1 s_1)
+    \end{equation}
+
+    However, the last two terms vanish when applied to the spinor, because it satisfies the dirac equation:
+
+    \begin{equation}
+        - \slashed{\epsilon}_1 (\slashed{p}_1 - m) U_e (p_1 s_1) = - \slashed{\epsilon}_1 (m - m) U_e (p_1 s_1) = 0
+    \end{equation}
+
+    So, we have the following result:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_1 + m) \slashed{\epsilon}_1 U_e (p_1 s_1) = \slashed{\epsilon}_1 \slashed{k}_1 U_e (p_1 s_1)
+    \end{equation}
+
+    The second term in the Feynman amplitude simplifies in the same way down to:
+
+    \begin{equation}
+        (\slashed{p}_1 - \slashed{k}_2 + m) \slashed{\epsilon}_2 U_e (p_1 s_1) = \slashed{\epsilon}_2 \slashed{k}_2 U_e (p_1 s_1)
+    \end{equation}
+
+    Substituting this into the Feynman amplitude:
+
+    \begin{equation}
+        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \slashed{\epsilon}_2 \frac{\slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} + \slashed{\epsilon}_1 \frac{\slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \bigg) U_e (p_1, s_1)
+    \end{equation}
+
+    \begin{equation}
+        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+    \end{equation}
+
+    We have now simplified the Feynman amplitude down about as much as can be usefully done at this point
+
+    \section*{Squaring the Feynman Amplitude}
+
+    Naturally, taking the absolute square of a quantity entails multiplying it by it's complex conjugate. This raises a slight complication here,  because that means we must complex conjugate a complicated product of matrices. Luckily there is an easy
+    identity for that. First. we must reverse the sign on the factor of $i$ at the beginning of the amplitude, and then we must reverse the order of the matrix factors. One can see what I mean by comparing the Feynman amplitude with its complex conjugate:
+
+    \begin{equation}
+        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+    \end{equation}
+
+    \begin{equation}
+        M_{fi}^* = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+    \end{equation}
+
+    From these two expressions, we can finally start writing out the desires spin averaged modulus squared amplitude:
+
+    \begin{equation}
+        \Big( \frac{1}{2} \Big)^2 \sum_{S_i S_f} |M_{fi}|^2 = \Big( \frac{1}{2} \Big)^2 e^4 \sum_{S_i S_f} \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+    \end{equation}
+
+    \begin{equation}
+        \Big( \frac{1}{2} \Big)^2 \sum_{S_i S_f} |M_{fi}|^2 = \Big( \frac{1}{2} \Big)^2 e^4 \sum_{S_i S_f} \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1) \overline{U}_e (p_1, s_1) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) V_e (p_2, s_2)
+    \end{equation}
+
+    Because the quantity under the sum is scalar,  we can take its trace without changing anything:
+
+    \begin{equation}
+        \Big( \frac{1}{2} \Big)^2 \sum_{S_i S_f} |M_{fi}|^2 = \Big( \frac{1}{2} \Big)^2 e^4 \sum_{S_i S_f} Tr \Bigg[ \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1) \overline{U}_e (p_1, s_1) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) V_e (p_2, s_2) \Bigg]
+    \end{equation}
+
+    This allows us to take advantage of the cyclic property of the trace to get the squared amplitude into a more ideal form:
+
+    \begin{equation}
+        \Big( \frac{1}{2} \Big)^2 \sum_{S_i S_f} |M_{fi}|^2 = \Big( \frac{1}{2} \Big)^2 e^4 \sum_{S_i S_f} Tr \Bigg[ \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1) \overline{U}_e (p_1, s_1) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) V_e (p_2, s_2) \overline{V}_e (p_2, s_2) \Bigg]
+    \end{equation}
+
+    The reason why this version of the squared amplitude is favorable is because with this factor ordering, we can easily simplify the products of spinors using the following two identities:
+
+    \begin{equation}
+        \sum_{\pm s} U_e (p_1, s_1) \overline{U}_e (p_1, s_1) = \Big( \frac{\slashed{p} + m}{2m} \Big) \qquad \sum_{\pm s} V_e (p_2, s_2) \overline{V}_e (p_2, s_2) = \Big( \frac{\slashed{p} - m}{2m} \Big)
+    \end{equation}
+
+    Applying these gives us the following:
+
+    \begin{equation}
+        \Big( \frac{1}{2} \Big)^2 \sum_{S_i S_f} |M_{fi}|^2 = \Big( \frac{1}{2} \Big)^2 e^4 \sum_{S_i S_f} Tr \Bigg[ \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) \frac{\slashed{p} + m}{2m} \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) \frac{\slashed{p} - m}{2m} \Bigg]
+    \end{equation}
+
+    \begin{equation}
+        \Big( \frac{1}{2} \Big)^2 \sum_{S_i S_f} |M_{fi}|^2 = \Big( \frac{1}{2} \Big)^2 e^4 \sum_{S_i S_f} Tr \Bigg[ \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) (\slashed{p} + m) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) (\slashed{p} - m) \Bigg]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    Where: 
+
+    \begin{eqnarray}
+        T_1 = [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] \\
+        T_2 = [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] \\
+        T_3 = [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 (\slashed{p} + m) \slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 (\slashed{p} - m)] \\
+        T_4 = [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 (\slashed{p} - m)] \\
+    \end{eqnarray}
+
+    \textbf{Evaluating The Traces}
+
+    Let's start by evaluating $T_1$:
+
+    \begin{eqnarray}
+        T_1 = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p} + \slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 m \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 \slashed{p} - \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 m] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] + Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1] m Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 \slashed{p}] - Tr[\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 m]
+    \end{eqnarray}
+
+    Traces of products of odd numbers of gamma matrices are zero:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] + Tr[\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 m]
+    \end{equation}
+
+    The last term is zero because of the middle two factors:
+
+    \begin{equation}
+        \slashed{k}_1 \slashed{k}_1 = \gamma^\mu \gamma^\nu k_{1 \mu} k_{1 \nu} = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) k_{1 \mu} k_{1 \nu} = g^{\mu \nu} k_{1 \mu} k_{1 \nu} = k_1 \cdot k_1 = 0
+    \end{equation}
+
+    Inserting this intro the trace being considered:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{equation}
+
+    Now again considering the middle two factors:
+
+    \begin{equation}
+        \slashed{p}_1 \slashed{k}_1 = (g^{\mu \nu} - \gamma^\mu \gamma^\nu) p_{1 \mu} k_{1 \nu} = p_1 \cdot k_1
+    \end{equation}
+
+    Inserting this:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] + 2 p_1 \cdot k_1 Tr[\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{p}_2]
+    \end{equation}
+
+    We can then apply $\slashed{k}_1 \slashed{k}_1 = 0$ again:
+
+    \begin{equation}
+        T_1 = 2 p_1 \cdot k_1 Tr[\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{p}_2]
+    \end{equation}
+
+    Now looking at the following two factors:
+
+    \begin{equation}
+        \slashed{\epsilon}_1 \slashed{k}_1 = \gamma^\mu \gamma^\nu \epsilon_\mu k_{i \mu} = (g^{\mu \nu} - \gamma^\mu \gamma^\nu) \epsilon_{\mu} k_{1 \nu} = 2 \epsilon_1 \cdot k_1 - \slashed{k}_1 \slashed{\epsilon}_1
+    \end{equation}
+
+    The initial polarization vector is transverse relative to the initial momentum, so their dot product is zero:
+
+    \[
+        \slashed{\epsilon}_1 \slashed{k}_1 = - \slashed{k}_1 \slashed{\epsilon}_1
+    \]
+
+    Applying this to $T_1$ gives:
+
+    \begin{equation}
+        T_1 = 2 p_1 \cdot k_1 Tr[\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{p}_2]
+    \end{equation}
+
+    Now, the factors of the polarization vectors like this can be simplified in the following way:
+
+    \begin{equation}
+        \slashed{\epsilon}_1 \slashed{\epsilon}_1 = \gamma^\mu \gamma^\nu \epsilon_{1 \mu} \epsilon_{1 \nu} = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) \epsilon_{1 \mu} \epsilon_{1 \nu} = g^{\mu \nu} \epsilon_{1 \mu} \epsilon_{1 \nu} = \epsilon_1 \cdot \epsilon_1 = - 1
+    \end{equation}
+
+    Inserting this:
+
+    \begin{equation}
+        T_1 = 2 p_1 \cdot k_1 Tr[\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{p}_2]
+    \end{equation}
+
+    Now considering the first two factors in the trace:
+
+    \begin{equation}
+        \slashed{\epsilon}_2 \slashed{k}_1 = \gamma^\mu \gamma^\nu \epsilon_\mu k_{i \mu} = (g^{\mu \nu} - \gamma^\mu \gamma^\nu) \epsilon_{2 \mu} k_{1 \nu} = 2 \epsilon_1 \cdot k_1 - \slashed{k}_2 \slashed{\epsilon}_1
+    \end{equation}
+
+    Inserting this:
+
+    \begin{equation}
+        T_1 = 2 p_1 \cdot k_1 Tr[\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{p}_2]
+    \end{equation}
+
+    Then:
+
+    \begin{equation}
+        \slashed{\epsilon}_2 \slashed{\epsilon}_2 = \gamma^\mu \gamma^\nu \epsilon_{2 \mu} \epsilon_{2 \nu} = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) \epsilon_{2 \mu} \epsilon_{2 \nu} = g^{\mu \nu} \epsilon_{2 \mu} \epsilon_{2 \nu} = \epsilon_2 \cdot \epsilon_2 = - 1
+    \end{equation}
+
+    This gives:
+
+    \begin{equation}
+        T_1 = 2 p_1 \cdot k_1 Tr[\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{p}_2]
+    \end{equation}
+
+    Now, the trace of two gamma matrices works as folows:
+
+    \begin{equation}
+        Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1] = \epsilon_{2 \mu} p_{2 \nu} Tr [\gamma^\mu \gamma^\nu] = \epsilon_{2 \mu} p_{2 \nu} \frac{1}{2} Tr [\gamma^\mu \gamma^\nu + \gamma^\mu \gamma^\mu] = \epsilon_{2 \mu} p_{2 \nu} g^{\mu \nu} Tr[I] = 4 \epsilon_2 \cdot p_2
+    \end{equation}
+
+    Inserting this:
+
+    \begin{equation}
+        T_1 = 16 p_1 \cdot k_1 \epsilon_2 \cdot k_1 \epsilon_2 \cdot p_2 + 8 p_1 \cdot k_1 k_1 \cdot p_2 = 8 p_1 \cdot k_1 (2 \epsilon_2 \cdot k_1 \epsilon_2 \cdot p_2 + k_1 \cdot p_2)
+    \end{equation}
+
+    Now, energy/momentum conservation gives:
+
+    \begin{eqnarray}
+        p_1 + p_2 = k_1 + k_2 \\
+        k_1 = p_1 + p_2 - k_2 \\
+        \epsilon_2 \cdot k_1 = \epsilon_2 \cdot p_1 + \epsilon_2 \cdot p_2 - \epsilon_2 \cdot k_2
+    \end{eqnarray}
+
+    However, given that this calculation is for the rest frame of the electron, and the transverse nature of the photon, the folowing dot products are zero:
+
+    \begin{equation}
+        \epsilon_1 \cdot p_1 = 0 \qquad \epsilon_2 \cdot k_2 = 0
+    \end{equation}
+
+    Therefore:
+
+    \begin{equation}
+        \epsilon_2 \cdot k_1 = \epsilon \cdot p_1 + \epsilon_2 \cdot p_2 - \epsilon_2 \cdot k_2 = \epsilon_2 \cdot p_2
+    \end{equation}
+
+    Inserting this:
+
+    \begin{equation}
+        T_1 = 8 p_1 \cdot k_1 (2 (\epsilon_2 \cdot p_2)^2 + k_1 \cdot p_2)
+    \end{equation}
+
+    Squaring this gives:
+
+    \begin{equation}
+        p_1 \cdot k_2 = k_1 \cdot p_2
+    \end{equation}
+
+    Inserting this gives the final result:
+
+    Now for another identity. Energy/Momentum conservation gives:
+
+    \begin{equation}
+        p_1 - k_2 = k_1 - p_2
+    \end{equation}
+
+    Inserting this gives the final result:
+
+    \begin{center}
+        \boxed{T_1 = 8 p_1 \cdot k_1 (2 (\epsilon_2 \cdot p_2)^2 + k_1 \cdot p_2)}
+    \end{center}
+
+    Then, one can deduce the fourth trace from the above through interchange of momentum and polarization vectors Specifically:
+
+    \[
+        \epsilon_1 \leftrightarrow \epsilon_2 \qquad k_1 \leftrightarrow k_2
+    \]
+
+    Now, the second trace needs to be calculated (the second and third trace are related by the momentum interchanges):
+
+    \begin{equation}
+        T_2 = [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Energy-momentum conservation gives:
+
+    \begin{eqnarray}
+        T_2 = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p} + \slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 m \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 \slashed{p} - \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 m] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] + Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1] m Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 \slashed{p}] - Tr[\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 m]
+    \end{eqnarray}
+
+    Considering the first term:
+
+    \begin{eqnarray}
+        First Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    Traces of products of odd numbers of gamma matrices are zero:
+
+    \begin{eqnarray}
+        First Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    Given the transverse nature of the photon, and the fact that this calculation is in t he rest frame of the electron one can show:
+
+    \[
+        \slashed{\epsilon}_2 \slashed{p}_1 = - \slashed{p}_1 \slashed{\epsilon}_2 \quad \slashed{\epsilon}_1 \slashed{p}_1 = - \slashed{p}_1 \slashed{\epsilon}_1
+    \]
+
+    These give:
+
+    \begin{eqnarray}
+        First Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    Looking at the first three factors in the first term (with more identities proved above):
+
+    \begin{equation}
+        \slashed{p}_1 \slashed{k}_2 \slashed{p}_1 = (2 p_1 \cdot k_2 - \slashed{k}_2 \slashed{p}_2) = 2 p_1 \cdot k_2 \slashed{p}_1 - \slashed{k}_2 \slashed{p}_1 \slashed{p}_1 = 2 p_1 \cdot k_2 \slashed{p}_1 - m^2 \slashed{k}_2
+    \end{equation}
+
+    Inserting this into the first term:
+
+    \begin{eqnarray}
+        First Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    \[
+        \slashed{\epsilon}_2 \slashed{p}_1 = - \slashed{p}_1 \slashed{\epsilon}_2 \quad \slashed{\epsilon}_1 \slashed{p}_1 = - \slashed{p}_1 \slashed{\epsilon}_1
+    \]
+
+    \begin{equation}
+        First Term = -2 p_1 \cdot k_2 Tr [\slashed{k}_1 \slashed{p}_1 \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{\epsilon}_2]
+    \end{equation}
+
+    Thus, the trace is equal to half the sum of this term and the term as it was before the last few manipulations (the average of the two highlighted expressions):
+
+    \begin{eqnarray}
+        First Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    Now one makes use of a well-known gamma matrix trace identity:
+
+    \begin{equation}
+        Tr [\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma] = 4 (g^{\mu \nu} g^{\rho \sigma})
+    \end{equation}
+
+    Inserting this gives the result:
+
+    \begin{eqnarray}
+        First Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    We can then apply that $\epsilon_1 \cdot \epsilon_1 = \epsilon_2 \cdot \epsilon_2 = -1$ to get:
+
+    \begin{equation}
+        First Term = - 8 p_1 \cdot k_2 p_1 \cdot k_1 (2 (\epsilon_1 \cdot \epsilon_2)^2 - 1)
+    \end{equation}
+
+    Inserting this into the second trace in the square of the Feynman Amplitude:
+
+    \begin{equation}
+        T_2 = - 8 p_1 \cdot k_2 p_1 \cdot k_1 (2 (\epsilon_1 \cdot \epsilon_2)^2 - 1) + Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Now, evaluating the second term in the second trace:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    The terms linear in $m$ have an aodd number of gamma matrices just like with the first term. They can therefore be ignored because they vanish:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Focusing on the last three factors, we can apply $\slashed{k}_1 \slashed{\epsilon}_1 = - \slashed{\epsilon}_1 \slashed{k}_1$, and the gamma matrix anti communication relation to get:
+
+    \begin{equation}
+        (\slashed{k}_2 + \slashed{k}_1) \slashed{\epsilon}_1 \slashed{\epsilon}_2 = (2 k_2 \cdot \epsilon_1 - \slashed{\epsilon}_1 \slashed{k}_2 - \slashed{\epsilon}_1 \slashed{k}_1) \slashed{\epsilon}_2
+    \end{equation}
+
+    Inserting this:
+
+    \begin{eqnarray}
+        Second Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    Then, with the following identities proved above: $\slashed{k}_1 \slashed{\epsilon}_1 = - \slashed{\epsilon}_1 \slashed{k}_1$ and $\slashed{k}_2 \slashed{k}_2 = 0$ to get:
+
+    \begin{eqnarray}
+        Second Term = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}] \\
+        = Tr [\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1 \slashed{p}]
+    \end{eqnarray}
+
+    Then we can use $\slashed{\epsilon}_2 \slashed{\epsilon}_2 = - 1$ to reduce this to:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Now applying $\slashed{\epsilon}_1 \slashed{k}_1 = - \slashed{\epsilon}_1 \slashed{k}_1$ again:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Now, we can use of $\slashed{\epsilon}_2 \slashed{k}_1 + 2 k_1 \cdot \epsilon_2$ to get:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Then, reapplying this $\slashed{\epsilon}_1 \slashed{k}_1 = - \slashed{\epsilon}_1 \slashed{k}_1$ gets us to:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    Finally, we can make use of $\vec{k}_1 \vec{k}_1 = 0$ again:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)]
+    \end{equation}
+
+    We can then use $\slashed{\epsilon}_1 \slashed{\epsilon}_1 = - 1$ in the last term and write everything in index notation to produce:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] - 2 k_1 \cdot \epsilon_2 Tr [\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma]
+    \end{equation}
+
+    Taking the remaining traces can then be accomplished by making use of the following gamma matrix identity:
+
+    \begin{equation}
+        Tr [\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma] = 4 (g^{\mu \nu} g^{\rho \sigma} - g^{\mu \rho} g^{\nu \sigma} + g^{\mu \sigma} g^{\nu \sigma})
+    \end{equation}
+
+    This produces the following result
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] - 2 k_1 \cdot \epsilon_2 4 (g^{\mu \nu} g^{\rho \sigma} - g^{\mu \rho} g^{\nu \sigma} + g^{\mu \sigma} g^{\nu \sigma})
+    \end{equation}
+
+    Rewriting in dot product notation produces:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} + m) \slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2 (\slashed{p} - m)] - 2 k_1 \cdot \epsilon_2 4 (g^{\mu \nu} g^{\rho \sigma} - g^{\mu \rho} g^{\nu \sigma} + g^{\mu \sigma} g^{\nu \sigma})
+    \end{equation}
+
+    This then simplifies down significantly because many of the dot products it contains are zero because of the transversely of photons and the fact that we are taking the rest frame of the initial electron. These are all identities that we have used before. Namely, the following are zero:
+
+    \begin{equation}
+        k_1 \cdot \epsilon_1 = 0 \qquad k_2 \cdot \epsilon_2 = 0 \qquad p_1 \cdot \epsilon_1 = 0 \qquad p_1 \cdot \epsilon_0
+    \end{equation}
+
+    Applying all of these gives:
+
+    \begin{equation}
+        Second Term = - 8 (k_2 \cdot \epsilon_1)^2 p_1 \cdot k_1 - 8 (k_1 \cdot \epsilon_2)^2 k_2 \cdot p_1
+    \end{equation}
+
+    Inserting this into the second trace in the square of the Feynman amplitudes the final answer for that trace
+
+    \begin{center}
+        \boxed{T_2 = - 8 p_1 \cdot k_2 p_1 \cdot k_1 (2 (\epsilon_1 \cdot \epsilon_2)^2 - 1) - 8 (k_2 \cdot \epsilon_1)^2 p_1 \cdot k_1 - 8 (k_1 \cdot \epsilon_2)^2 k_2 \cdot p_1}
+    \end{center}
+
+    Then, one can deduce the third trace form the above through interchange of monentum and polarization vectors. Specifically:
+
+    \begin{equation}
+        \begin{aligned}
+            \epsilon_1 \leftrightarrow \epsilon_2 \\
+            k_1 \leftrightarrow k_2
+        \end{aligned}
+    \end{equation}
+    
+        It happens that $T_2$ is invariant under this pair of transformations. So the second and third traces are equal. This gives:
+
+    \begin{center}
+        \boxed{T_2 = - 8 p_1 \cdot k_2 p_1 \cdot k_1 (2 (\epsilon_1 \cdot \epsilon_2)^2 - 1) - 8 (k_2 \cdot \epsilon_1)^2 p_1 \cdot k_1 - 8 (k_1 \cdot \epsilon_2)^2 k_2 \cdot p_1}
+    \end{center}
+
+    \section*{Final Simplification}
+
+    The last expression that we had for the spin averaged, squared Feynman amplitude is the following:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    We just did all of the traces. Inserting them gives:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    We can then simplify this down in a few steps:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    Considering the rest frame of the electron, the transverse polarization of the photon and energy/momentum conservation, one can find two important identities:
+
+    \begin{eqnarray}
+        p_1 + p_2 = k_1 + k_2 \qquad & \qquad p_1 + p_2 = k_1 + k_2 \\
+        \downarrow \qquad & \qquad \downarrow \\
+        p_1 \cdot \epsilon_2 + p_2 \cdot \epsilon_2 = k_1 \cdot \epsilon_2 + k_2 \cdot \epsilon_2 \qquad & \qquad p_1 \cdot \epsilon_1 + p_2 \cdot \epsilon_1 = k_1 \cdot \epsilon_1 + k_2 \cdot \epsilon_1 \\
+        \downarrow \qquad & \qquad \downarrow \\
+        p_2 \cdot \epsilon_2 = k_1 \cdot \epsilon_2 \qquad & \qquad p_2 \cdot \epsilon_1 = k_2 \cdot \epsilon_1
+    \end{eqnarray}
+
+    Inserting this:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{4 p_1 \cdot k_1 p_1 \cdot k_1} + \frac{T_2}{p_1 \cdot k_2 p_1 \cdot k_2} + \frac{T_3}{4 p_1 \cdot k_1 p_1 \cdot k_2} + \frac{T_4}{4 p_1 \cdot k_2 p_1 \cdot k_2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{p_1 \cdot k_2}{p_1 \cdot k_1} + \frac{p_1 \cdot k_1}{p_1 \cdot k_2} - 4 (\epsilon_1 \cdot \epsilon_2)^2 + 2 \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{k_2}{k_1} + \frac{k_1}{k_2} - 4 (\epsilon_1 \cdot \epsilon_2)^2 + 2 \Bigg]^2
+    \end{equation}
+
+    We are now ready to insert this into the differential scattering cross section formula that we prepared at the beginning. The expression that we had was:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{m^2 (m + E)}{4 (2 \pi)^2 |p| (m + E - |p| \cos \theta)^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
+    \end{equation}
+
+    Inserting our simplified result for $(\frac{1}{2})^2 \Sigma_{S_i, S_f} |M_{fi}|^2$ gives us the following:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{m^2 (m + E)}{4 (2 \pi)^2 |p| (m + E - |p| \cos \theta)^2} (\frac{1}{2})^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{k_2}{k_1} + \frac{k_1}{k_2} - 4 (\epsilon_1 \cdot \epsilon_2)^2 + 2 \Bigg]^2
+    \end{equation}
+
+    We can then simplify some of the pre-factors:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{k_2}{k_1} + \frac{k_1}{k_2} - 4 (\epsilon_1 \cdot \epsilon_2)^2 + 2 \Bigg]^2
+    \end{equation}
+
+    Then writing this in terms of the fine st ructure constant gives us the final answer:
+
+    \begin{center}
+        \boxed{\frac{d \sigma}{d \Omega} = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{k_2}{k_1} + \frac{k_1}{k_2} - 4 (\epsilon_1 \cdot \epsilon_2)^2 + 2 \Bigg]^2}
+    \end{center}
+
+    We are now finished.
+
+\end{document}

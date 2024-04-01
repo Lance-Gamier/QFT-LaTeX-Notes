@@ -1,0 +1,337 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{mathrsfs}
+\usepackage{esint}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{Deriving The Maxwell Lagrangian}
+    \maketitle
+
+    The approach to deriving the Maxwell Lagrangian taken here starts with the Integral Maxwell Equations shown below, and consists of re-expressing them in a few different ways in sequence,
+    until they are in a form that easily allows an action to be deduced. So, basically the goal is to reverse engineer the action from the equations of motion, which are taken to be Maxwell's
+    Equations.
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                \oiint_{\partial \omega} [ \vec{E} \cdot \vec{n}] dA = \frac{1}{\epsilon_0} \iiint_{\Omega} \rho dV \\
+                \oiint_{\partial \omega} [ \vec{B} \cdot \vec{n}] dA = 0 \\
+                \oint_{\partial \Gamma} \vec{E} \cdot d\vec{s} = - \frac{\partial}{\partial t} \iint_{\Gamma} [\vec{B} \cdot \vec{n}] dA \\
+                c^2 \oint_{\partial \Gamma} \vec{B} \cdot d\vec{s} = \frac{1}{\epsilon_0} \iint_{\Gamma} [\vec{j} \cdot \vec{n}] dA + \frac{\partial}{\partial t} \iint_{\Gamma} [\vec{E} \cdot \vec{n}] dA \\
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    The first change of formulation arises from the application of Stokes' theorem and the divergence theorem (written below for an arbitrary vector $\vec{F}$) to the integral Maxwell Equations,
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                \overbrace{\oint_{\partial \Gamma} \vec{F} \cdot d\vec{s} = \iint_{\Gamma} [(\nabla \times \vec{F}) \cdot \vec{n}]dA}^{Stokes' Theorem} \\
+                \overbrace{\oiint_{\partial \omega} [\vec{F} \cdot \vec{n}] dA = \iiint_{\Omega} \nabla \cdot \vec{F} dV}^{Divergence Theorem}
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    and simply converts the equations from integral to differential form.
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                \oiint_{\partial \omega} [\vec{E} \cdot \vec{n}] dA = \iiint_{\Omega} \nabla \cdot \vec{E} dV = \frac{1}{\epsilon_0} \iiint_{\Omega} \rho dV \rightarrow \boxed{\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0}} \\
+                \oiint_{\partial \omega} [\vec{B} \cdot \vec{n}] dA = \iiint_{\Omega} \nabla \cdot \vec{B} dV = 0 \rightarrow \boxed{\nabla \cdot \vec{B} = 0} \\
+                \oint_{\partial \Gamma} \vec{E} \cdot d\vec{s} = \iint_{\Gamma} [(\nabla \times \vec{E}) \cdot \vec{n}]dA = - \frac{\partial}{\partial t} \iint_{\Gamma} [\vec{B} \cdot \vec{n}] dA \rightarrow \boxed{\nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t}} \\
+                c^2 \oint_{\partial \Gamma} \vec{B} \cdot d\vec{s} = c^2 \iint_{\Gamma} [(\nabla \times \vec{B}) \cdot \vec{n}]dA = \frac{1}{\epsilon_0} \iint_{\Gamma} [\vec{j} \cdot \vec{n}] dA + \frac{\partial}{\partial t} \iint_{\Gamma} [\vec{E} \cdot \vec{n}] dA \rightarrow \boxed{c^2 \nabla \times \vec{B} = \frac{\vec{J}}{\epsilon_0} + \frac{\partial \vec{E}}{\partial t}} \\
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    With the differential form established, hte next step towards the ultimate goal of discovering a Lagrangian density for Maxwell's Equations is to introduce potentials for the electric and magnetic
+    fields, and then write Maxwell's Equations in terms of them. This is done by constructing general soutions to two homogenous equations in the set and then substituting those solutions in terms of 
+    potentials into the inhomogenous equations. The general solutions of the homogenous equations are based on the following two facts, which are true for an arbitrary vector field and scalar field
+    respectively
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                \nabla \cdot (\nabla \cdot \vec{F}) = 0 \\ 
+                \nabla \times \nabla \psi = 0
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    Given these identities, one can phrase the General solutions to the homogeneous Maxwell Equations as follows:
+
+    \begin{framed}
+        \begin{equation}
+            \left. \begin{aligned}[]
+                \nabla \cdot \vec{B} = 0 \\
+                \nabla \cdot (\nabla \times \vec{F}) = 0  \\
+            \end{aligned}
+            \right\} \rightarrow \vec{B} = \nabla \times \vec{A}
+        \end{equation}
+        \begin{equation}
+            \\
+            \left. \begin{aligned}[]
+                \nabla \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \\
+                \nabla \times \nabla \psi = 0
+            \end{aligned} 
+            \right\} \rightarrow \vec{E} = -\nabla \phi - \frac{\partial \vec{A}}{\partial t}
+        \end{equation}
+    \end{framed}
+
+    One can then insert these into the inhomogeneous equations to get second order partial differential differential equations for them:
+
+    \begin{framed}
+        \begin{equation}
+            \left. \begin{aligned}[]
+                \nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \\
+                \vec{E} = - \nabla \phi - \frac{\partial \vec{A}}{\partial t}  \\
+            \end{aligned}
+            \right\} \rightarrow - \nabla^2 \phi - \frac{\partial}{\partial t} \nabla \cdot \vec{A} = \frac{\rho}{\epsilon_0}
+        \end{equation}
+        \begin{equation}
+            \\
+            \left. \begin{aligned}[]
+                c^2 \nabla \times \vec{B} = \frac{\vec{J}}{\epsilon_0} + \frac{\partial \vec{E}}{\partial t} \\
+                B = \nabla \times \vec{A} \\
+                \vec{E} = - \nabla \phi - \frac{\partial \vec{A}}{\partial t}
+            \end{aligned} 
+            \right\} \rightarrow c^2 \nabla \times \nabla \times \nabla \times \vec{A} = c^2 [\nabla (\nabla \cdot \vec{A}) - \nabla^2 \vec{A}] = \frac{\vec{J}}{\epsilon_0} - \nabla \frac{\partial \phi}{\partial t} - \frac{\partial^2 \vec{A}}{\partial t^2}
+        \end{equation}
+    \end{framed}
+
+    It also turns out to be useful to rewrite everything in terms of $\mu_0$ instead of $\epsilon_0$. This can be accomplished by remembering that: $c^2 = \frac{1}{\mu_0 \epsilon_0}$, which means that
+    $\mu_0 = \frac{1}{c^2 \epsilon_0}$. Therefore, the potential equations become: 
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                - \nabla^2 \frac{\phi}{c} - \frac{1}{c} \frac{\partial}{\partial t} \nabla \cdot \vec{A} = \mu_0 c \rho \\
+                \nabla (\nabla \cdot \vec{A})  - \nabla^2 \vec{A} + \nabla \frac{1}{c} \frac{\partial}{\partial t} \frac{\phi}{c} + \frac{1}{c^2} \frac{\partial^2 \vec{A}}{\partial t^2} = \mu_0 \vec{J}
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    From herem there is one step left towards the end of writing Maxwell's Equations in a form ripe for reverse engineering a Lagrangian Density. This step is to write Maxwell's equations in relativistic notation. Doing this is made easier by temporarily
+    transitioning to cartesian coordinates. The following box contains the relevant equations from above expressed in cartesian coordinates (and rearranged a little):
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                (\frac{1}{c^2} \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2}) \frac{\phi}{c} - \frac{1}{c} \frac{\partial}{\partial t} (\frac{1}{c^2} \frac{\partial}{\partial t} \frac{\phi}{c} - \frac{\partial A^x}{\partial x} - \frac{\partial A^y}{\partial y} - \frac{\partial A^z}{\partial z}) = \mu_0 c \rho \\
+                (\frac{1}{c^2} \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2}) A^x - \frac{\partial}{\partial x} (\frac{1}{c^2} \frac{\partial}{\partial t} \frac{\phi}{c} - \frac{\partial A^x}{\partial x} - \frac{\partial A^y}{\partial y} - \frac{\partial A^z}{\partial z}) = \mu_0 J^x \\
+                (\frac{1}{c^2} \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2}) A^y - \frac{\partial}{\partial y} (\frac{1}{c^2} \frac{\partial}{\partial t} \frac{\phi}{c} - \frac{\partial A^x}{\partial x} - \frac{\partial A^y}{\partial y} - \frac{\partial A^z}{\partial z}) = \mu_0 J^y \\
+                (\frac{1}{c^2} \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2}) A^z - \frac{\partial}{\partial z} (\frac{1}{c^2} \frac{\partial}{\partial t} \frac{\phi}{c} - \frac{\partial A^x}{\partial x} - \frac{\partial A^y}{\partial y} - \frac{\partial A^z}{\partial z}) = \mu_0 J^z \\
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    Lorentz invariance was first discovered in Maxwell's equations. Hendrik Lorentz discovered that the following so-caled Lorentz transformations represented an invariance of the theory.
+
+
+    \begin{framed}
+        \noindent
+        \textbf{Lorentz Transformations in the x-Direction:}
+        \begin{equation}
+            \begin{aligned}[]
+                \boxed{
+                    \begin{aligned}[]
+                    t' = \frac{t - \frac{vx}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & y' = y \\
+                    x' = \frac{x - vt}{\sqrt{1 - \frac{v^2}{c^2}}} & z' = z
+                    \end{aligned}
+                } \quad & \quad
+                \begin{aligned}[]
+                    E'^{x} = E^{x} & B'^{x} = B^{x} \\
+                    E'^{y} = \frac{E^{y} - v B^{z}}{\sqrt{1 - \frac{v^2}{c^2}}} & B'^{y} = \frac{B^{y} + \frac{E^z}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                    E'^{z} = \frac{E^{z} + v B^{y}}{\sqrt{1 - \frac{v^2}{c^2}}} & B'^{z} = \frac{B^{z} - \frac{E^y}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                \end{aligned} \\
+                \begin{aligned}[]
+                    \frac{\phi'}{c} = \frac{\frac{\phi}{c} - v \frac{A^x}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & A'^{y} = A^{y} \\
+                    A'^{x} = \frac{A^x - v \frac{\phi}{c}}{\sqrt{1 - \frac{v^2}{c^2}}} & A'^{z} = A^{z}
+                \end{aligned} \quad & \quad
+                \begin{aligned}[]
+                    c\rho' = \frac{c \rho - v \frac{J^x}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & J'^{y} = J^{y} \\
+                    J'^{x} = \frac{J^x - v c \rho}{\sqrt{1 - \frac{v^2}{c^2}}} & J'^{z} = J^{z}
+                \end{aligned} \\
+            \end{aligned}
+        \end{equation}
+        \textbf{Lorentz Transformation in the y-Direction:}
+        \begin{equation}
+            \begin{aligned}[]
+                \boxed{
+                    \begin{aligned}[]
+                        t' = \frac{t - \frac{vx}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & y' = \frac{y - vt}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                        x' = x & z' = z
+                        \end{aligned}
+                } \quad & \quad
+                \begin{aligned}[]
+                    E'^{x} = \frac{E^{x} - v B^{z}}{\sqrt{1 - \frac{v^2}{c^2}}} & B'^{x} = \frac{B^{x} + \frac{E^z}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                    E'^{y} = E^{y} & B'^{y} = B^{y} \\
+                    E'^{z} = \frac{E^{z} + v B^{x}}{\sqrt{1 - \frac{v^2}{c^2}}} & B'^{z} = \frac{B^{z} - \frac{E^x}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                \end{aligned} \\
+                \begin{aligned}[]
+                    \frac{\phi'}{c} = \frac{\frac{\phi}{c} - v \frac{A^x}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & A'^{y} = \frac{A^y - v \frac{\phi}{c}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                    A'^{x} = A^{x} & A'^{z} = A^{z}s
+                \end{aligned} \quad & \quad
+                \begin{aligned}[]
+                    c\rho' = \frac{c \rho - v \frac{J^y}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & J'^{y} = \frac{J^y - v c \rho}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                    J'^{x} = J^{x} & J'^{z} = J^{z}
+                \end{aligned} \\
+            \end{aligned}
+        \end{equation}
+        \pagebreak
+        \textbf{Lorentz Transformation in the z-Direction:}
+        \begin{equation}
+            \begin{aligned}[]
+                \boxed{
+                    \begin{aligned}[]
+                        t' = \frac{t - \frac{vx}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & y' = y \\
+                        x' = xs & z' = \frac{z - vt}{\sqrt{1 - \frac{v^2}{c^2}}}
+                        \end{aligned}
+                } \quad & \quad
+                \begin{aligned}[]
+                    E'^{x} = \frac{E^{x} + v B^{y}}{\sqrt{1 - \frac{v^2}{c^2}}} & B'^{x} = \frac{B^{z} + \frac{E^y}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                    E'^{y} = \frac{E^{y} - v B^{x}}{\sqrt{1 - \frac{v^2}{c^2}}} & B'^{y} = \frac{B^{y} + \frac{E^z}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} \\
+                    E'^{z} = E^{z} & B'^{z} = B^{z} \\
+                \end{aligned} \\
+                \begin{aligned}[]
+                    \frac{\phi'}{c} = \frac{\frac{\phi}{c} - v \frac{A^x}{c^2}}{\sqrt{1 - \frac{v^2}{c^2}}} & A'^{y} s= A^{y} \\
+                    A'^{x} = A^{x} & A'^{z} = \frac{A^z - v \frac{\phi}{c}}{\sqrt{1 - \frac{v^2}{c^2}}}
+                \end{aligned} \quad & \quad
+                \begin{aligned}[]
+                    c\rho' = s\frac{J^y - v c \rho}{\sqrt{1 - \frac{v^2}{c^2}}} & J'^{y} = J^{y} \\
+                    J'^{x} = J^{x} & J'^{z} = \frac{A^z - v \frac{\phi}{c}}{\sqrt{1 - \frac{v^2}{c^2}}}
+                \end{aligned} \\
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    From the form of the transformations of the various fields, the set of all x, y, and z-direction Lorentz transformations simply correspond to a set of four dimensional coordinate transfomarions (specifically, the Lorentz transformations of the coordinates given above
+    by the boxed formulas) if one takes the electric and magnetic fields to be part of a four dimensional, rank-2 contravariant tensor, the charge and current densities to transform like the components of a four dimensional contravariant vector, the scalar and vector
+    potential to form a contravariant four-vector (of course, various factors of c are required to maintain dimensional consistency). Additionally, one can obtain covariant versions of these four-dimensional objects by raising and lowering indices with the metric listed below.
+    This is immediately important because a four-vector of partial derivatives that transform like a covariant four-vector under Lorentz transformations appears in Maxwell's equations, in addition to its contravariant version. Specifically, the complete set of Lorentz
+    transformations represent four-dimensional coordinate transformations if one takes the various fields and derivatives of classical electrodynamics to transform as components of the following four dimensional vectors and tensors:
+
+    \begin{framed}
+        \noindent
+        \begin{equation}
+            x^{\mu} = (ct, x, y, z) \quad
+            \partial^{\mu} = (\frac{1}{c} \frac{\partial}{\partial t}) \quad
+            J^{\mu} = (c \rho, \vec{J}) \quad
+            A^{\mu} = (\frac{\phi}{c}, \vec{A})
+        \end{equation}
+        \begin{equation}
+            F^{\mu \nu} = 
+            \begin{pmatrix}
+                0 & -\frac{E^x}{c} & -\frac{E^y}{c} & -\frac{E^z}{c} \\
+                \frac{E^x}{c} & 0 & - B^z & B^y \\
+                \frac{E^y}{c} & B^z & 0 & - B^x \\
+                \frac{E^z}{c} & - B^y & B^x & 0s
+            \end{pmatrix} \quad
+            \left. \begin{aligned}[]
+                \vec{B} = \nabla \times \vec{A} \\
+                \vec{E} = - \nabla \phi - \frac{\partial \vec{A}}{\partial t}
+            \end{aligned} 
+            \right\} \rightarrow F^{\mu \nu} = \partial^{\mu} A^{\nu} - \partial^{\nu} A^{\mu}
+        \end{equation}
+        \textbf{Where the covariant versions are:}
+        \begin{equation}
+            x_{\mu} = \eta_{\mu \nu} x^{\nu} \quad
+            \partial_{\mu} = \eta_{\mu \nu} \partial^{\nu} \quad
+            J_{\mu} = \eta_{\mu \nu} J^{\nu} \quad
+            A_{\mu} = \eta_{\mu \nu} A^{\nu} \quad
+            F_{\mu \nu} = \eta_{\mu \rho} \eta_{\nu \sigma} F^{\rho \sigma}
+        \end{equation}
+        \begin{equation}
+            \eta^{\mu \nu} = \eta_{\mu \nu} = \begin{pmatrix}
+                1 & 0 & 0 & 0 \\
+                0 & -1 & 0 & 0 \\
+                0 & 0 & -1 & 0 \\
+                0 & 0 & 0 & -1 s
+            \end{pmatrix}
+        \end{equation}
+    \end{framed}
+
+    In short, Lorentz invariance demands that space and time be treated on equal footing. If one rewrites the potential equations in terms of these four-dimensional vectors and tensors, then they appear as follows:
+
+    \begin{framed}
+        \begin{equation}
+            \partial_{\mu} F_{\mu \nu} = \mu_{0} J^{\nu}
+        \end{equation}
+    \end{framed}
+
+    In arbitrary coordinates, this becomes the following, where one always selects the metric to equal to the Minkowski metric in the desired coordinate system to ensure that they correctly represent the Lorentz invariant Maxwell equations in flat space (or some other Lorentzian
+    manifold if one is studying Maxwell's equations in curved spacetime, however it must still be Lorentzian sos that special relativity is properly accounted for).
+
+    \begin{framed}
+        \begin{equation}
+            \nabla_{\mu} (\sqrt{-g} F_{\mu \nu}) = \mu_{0} J^{\nu}
+        \end{equation}
+    \end{framed}
+
+    Where $F_{\mu \nu}$ doesn't require covariant derivatives because the Christoffel terms just cancel out:
+
+    \begin{framed}
+        \begin{equation}
+            F_{\mu \nu} = \nabla_{\mu} A_{\nu} - \nabla_{\nu} A_{\mu} = \partial_{\mu} A_{\nu} - \Gamma^{\rho}_{\mu \nu} A_{\rho} - \partial_{\nu} A_{\mu} + \Gamma^{\rho}_{\nu \mu} A_{\rho} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}
+        \end{equation}
+    \end{framed}
+
+    It is important to note one more thing about $F_{\mu \nu}$ and Maxwell's equations before the action is introduced. And this is the fact that both $F_{\mu \nu}$ and Maxwell's equations are $U(1)$ gauge invariant.
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                A_{\mu} \rightarrow A_{\mu} + \partial_{\mu} \Lambda(x) \\
+                F_{\mu \nu} = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu} \rightarrow F_{\mu \nu} = \partial_{\mu} A_{\nu} + \partial_{\mu} \partial_{\nu} \Lambda(x) - \partial_{\nu} A_{\mu} - \partial_{\nu} \partial_{\mu} \Lambda(x) = \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu} \\
+                \partial_{\mu} F_{\mu \nu} = \mu_{0} J^{\nu} \rightarrow \partial_{\mu} F_{\mu \nu} = \mu_{0} J^{\nu} \\
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    In order to be able to study the effects of gauge invariance with the Lagrangian formalism, one must ensure that the accepted Lagriangian not only has Maxwell's Equations as its equations of motion, but also $U(1)$ gauge invariant in addition to being Lorentz invariant. Given
+    that the Euler-Lagrange equations for a theory with such field content will take the following form:
+
+    \begin{framed}
+        \begin{equation}
+            \partial_{\mu} \frac{\partial \mathscr{L}}{\partial \partial_{\mu} A_{\nu}} = \frac{\partial \mathscr{L}}{\partial A_{\nu}}
+        \end{equation}
+    \end{framed}
+
+    The only action that is both Lorentz invariant and $U(1)$ gauge invariant that reproduces Maxwell's equations as its equations of motion, is the following:
+
+    \begin{framed}
+        \begin{equation}
+            \int d^4 x (- \frac{1}{4 \mu_0} F_{\mu \nu} F^{\mu \nu} - A_{\mu} J^{\mu})
+        \end{equation}
+    \end{framed}
+
+    Where the coupling term is gauge invariant if the vector potential and the four-current density vanish at infinity. In that case, the gauge variation of that term integrates to zero because the variation term is a total derivative as a result of the continuity equation:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                \overbrace{\partial_{\mu} J^{\mu} = 0}^{Continuity Equation} \\
+                \delta A_{\mu} J^{\mu} = J^{\mu} \partial_{\mu} \Lambda = J^{\mu} \partial_{\mu} \Lambda + \Lambda \partial_{\mu} J^{\mu} = \partial_{\mu} (\Lambda J^{\mu})
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    The desired Lagrangian density is simply the integrand of the action:
+
+    \begin{framed}
+        \begin{equation}
+            \mathscr{L} = - \frac{1}{4 \mu_0} F_{\mu \nu} F^{\mu \nu} - A_{\mu} J^{\mu}
+        \end{equation}
+    \end{framed}
+
+    This finally completes the derivation of the Maxwell Lagrangian.
+
+\end{document}

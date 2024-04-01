@@ -1,0 +1,1074 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{framed}
+\usepackage{mathrsfs}
+\usepackage{esint}
+\usepackage[compat = 1.1.0]{tikz-feynman}
+\usepackage{slashed}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{Tree Level Compton Scattering Cross Section in QED}
+    \maketitle
+
+    \section*{Introduction}
+
+    In the treatment of quantum electrodynamics usually presented in introductory quantum field theory courses, one usually
+    encounters a familiar progression. First, the general scattering cross section formula is derived (link in the description to my video on
+    that), then the QED Feynman rules are derived (link in the description for this too). With these two things in hand, one usually moves
+    on to tree level QED scattering cross section calculations. This usually represents the students first time applying the Feynman rules
+    of any theory, and is intended to be a reasonably handleable mathematical endeavor (of course it's still QFT, so it's inevitably going
+    to be a little crazy). The first in this set of cross sections that the students usually calculate,, is the differential scattering cross section for
+    tree level Compton scattering (Called the Klein-Nishina formula).
+
+    Of course, one could always expand on the tree level with loop diagrams, but that is significantly more complicated (partly because 
+    it involves renormalization theory). It isn't usually done until long after students have computed the tree level result. The tree level
+    result, in calculations like this, just reproduces the classical answer, despite the fact that we are using quantum field theory 
+    machinery to compute it. One only gets quantum corrections from perturbative quantum field theory if loops are included. The
+    expansion in the number of loops is also an expansion in powers of planck's constant, and therefore represents an expansion of the
+    quantum corrections. Ignoring them would therefore naturally leave us with the classical result. 
+
+    As usual, solid lines are fermion lines (all electrons in this case, as indicated by the forward-in-time arrows), and wavy lines are
+    photon lines. Ignoring the ones that pertain to quantum loop corrections, the QED Feynman rules are:
+
+    \begin{center}
+        \begin{tabular}[center]{|c|c|}
+            \hline
+            Incoming electron & $U_{e}$ \\
+            \hline
+            Outgoing electron & $\overline{U}_{e}$ \\
+            \hline
+            Incoming positron & $V_{e}$ \\
+            \hline
+            Outgoing positron & $\overline{V}_{e}$ \\
+            \hline
+            Incoming photon & $\epsilon_{1 \mu} (first polarization)$ \\
+            \hline
+            Outgoing photon & $\epsilon_{2 \mu} (second polarization)$ \\
+            \hline
+            Vertex & $-i e \gamma^{\mu}$ \\
+            \hline
+            Internal fermion & $i S_{F} (p) = \frac{i}{\slashed{p} - m + i (\epsilon = 0)} = \frac{\slashed{p} + m}{p^2 - m^2}$ \\
+            \hline
+            Internal photon & $i D^{F}_{\mu \nu} (p) = - \frac{i g_{\mu \nu}}{q^2 + i(\epsilon = 0)}$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    Where the dot product of the polarization vectors with themselves is equal to $-1$. The second link tht I mentioned in the preamble
+    is to my video on deriving these rules.
+
+    Expressed in terms of the Feynman amplitude, the general formula for the differential cross section of the one boson and one 
+    fermion producing some number of bosons and fermions is:
+
+    \begin{center}
+        \begin{framed}
+            \begin{equation}
+                \frac{m_1}{2} \frac{(2 \pi)^4 |\mathscr{M}_{fi}|^2}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]} \prod_{n = 1}^{N_f} \frac{m_n d^3 \vec{p}_n}{(2 \pi)^3 E_n} \prod_{n = 1}^{N_b} \frac{d^3 \vec{p}_n}{(2 \pi)^3 E_n}
+            \end{equation}
+        \end{framed}
+    \end{center}
+
+    The first link that I mentioned in the preambe is to a video on deriving this formula.
+
+    This calculation will have a few distinct stages. First, we will simplify the general differential scattering cross section formua as much
+    as we can without knowing the Feynman amplitude. second, we wil use the Feynman rules to write out the Feynman amplitude,
+    and then we will simplify it some. Third, we will take the absolute square of the Feynman amplitude and then spend the largest
+    single portion of this document simplfying it. At the very end, we will insert the simplified, squared Feynman amplitude into the
+    pre-simplified differential scattering cross section formula. With a little bit more simplification, we will obtain the Klein-Nishina
+    formula. This entire calculation will be done in the rest frame of the initial electron. We will use this fact to simplify expressions
+    along the way.
+
+    \section*{Preparation of the Scattering Cross Section Formula}
+
+    The first thing we will do in this seciton is insert the momentum variables written in the Feynman diagrams into the differential
+    cross section. This will begin simplifying it because we can see from the diagrams that we only have two outgoing
+    particles. Beyond this, the standard result also includes averaging over the incoming electron spin, and summing over the final
+    electron spin, so we will need to insert that average and sum on the absolute squared Feynman amplitude into the differential
+    scattering cross section. Doing this to the formula given in the introduction easily gives us the following:
+
+    \begin{equation}
+        d^6 \sigma = \frac{m (2 \pi)^4 \delta^4 (k_i + p_i - k_f - p_f)}{4 k_i \cdot p_i} \frac{m d^3 \vec{p}_f}{(2 \pi)^3 E_{p_f}} \frac{d^3 \vec{k}_f}{(2 \pi)^3 E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2
+    \end{equation}
+
+    You may notice that I added a 6 superscript to the differential on $\sigma$. This is to indicate how many differentials there are on the other
+    side of the equation. This number will drop as we complete phase space integrations over some momentum and energy
+    variables.
+    The standard Klein-Nishina scattering cross section is with respect to the solid angle of the outgoing photon. Therefore one of the
+    things we will need to do in preparing the differential scattering cross section formula is integrate over the other momentum
+    variables. It turns out that this can be done before we have worked out the Feynman amplitude, because of the delta functions that
+    show up in the cross section formula. They are there to impose energy and momentum conservation. Therefore, we can do the 
+    necessary phase space integration without knowing the Feynman amplitude, as long as we take the energy and momentum
+    conservation relations to be true for the Feynman amplitude, which depends on those variables. It turns out that these relations are
+    conservation delta functions, integration simply yields the following
+
+    \begin{equation}
+        d^3 \sigma = \frac{m}{4 k_i \cdot p_i} \frac{d^3 \vec{k}_f}{(2 \pi)^3 E_{p_f} E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (k_i + p_i - k_f - p_f)
+    \end{equation}
+
+    Where the delta function has enforced momentum conservation:
+
+    \begin{equation}
+        \vec{k}_{i} + \vec{p}_{i} = \vec{k}_{f} + \vec{p}_{f}
+    \end{equation}
+
+    To find the differential cross section with respect to the solid angle, we must now put the remaining differential in spherical coordinates to
+    reveal the solid angle differential (remember, $d\sigma$ contains two differentials):
+
+    \begin{equation}
+        d^3 \sigma = \frac{m}{4 k_i \cdot p_i} \frac{|\vec{k}_f|^2 d|\vec{k}_f| d \Omega}{(2 \pi)^3 E_{p_f} E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (k_i + p_i - k_f - p_f)
+    \end{equation}
+
+    Now, to get the scattering cross section purely with respect to the solid angle, we must integrate over $|\vec{k}_1|$. The remaining delta function
+    allows this to be done easily, but there is a little complication, we must reexpress the delta function to get it into a form that is easy to integrate.
+    Specifically, the integral we need to perform is:
+
+    \begin{equation}
+        d^3 \sigma = \frac{m d\Omega}{4 k_i \cdot p_i} \int \frac{|\vec{k}_f|^2 d|\vec{k}_f|}{(2 \pi)^3 E_{p_f} E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (k_i + p_i - k_f - p_f)
+    \end{equation}
+
+    using normal identities, we can rewrite the delta function in the following way that makes the integral easy to do:
+
+    \begin{equation}
+        \delta^4 (k_i + p_i - k_f - p_f) = \delta (E_{k_i} + E_{p_i} - |\vec{k}| - \sqrt{|\vec{k}_f|^2 + m^2}) = \delta[f(|\vec{k}_f|)] = \frac{\delta[|\vec{k}_f| - |\vec{k}_f|_0]}{|\vec{k}_f|}
+    \end{equation}
+
+    Where $f'(|\vec{k}_f|)$ is the derivative of the f-function, and $|\vec{k}_f|_0$ is the root of the f-function, or the actual value of $|k_f|$ (the value
+    satifsfies energy conservation). Because of the delta function, the integration simply forces:
+
+    \begin{equation}
+        |\vec{k}_f| = |\vec{k}_f|_0
+    \end{equation}
+
+    We can then Relabel the actual momentum $|\vec{k}_f|_0$ with the symbol previously just used for the integration variable to make the 
+
+    %%% Missing File Compton_Scattering_5.png
+
+    The integration over the magnitude of momentum gives:
+
+    \begin{equation}
+        d^2 \sigma = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_f|^2}{E_{k_f} E_{p_f}} \frac{1}{|f'(|\vec{k}_f|)|}
+    \end{equation}
+
+    Where:
+
+    \begin{equation}
+        |f'(|\vec{k}_f|)| = \frac{p_f \cdot k_f}{E_{k_f} E_{p_f}}
+    \end{equation}
+
+    It is worth pointing out that the superscript on the differential is usually dropped. It was useful to keep track of things while we were doing this integration,
+    but it is no longer needed, so we will drop it. We therefore will write:
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_f|^2}{E_{k_f} E_{p_f}} \frac{1}{|f'(|\vec{k}_f|)|}
+    \end{equation}
+
+    Keep in mind that because of the integrations that we did, $d \sigma$ doesn't quite mean what it did in the general formula in the introduction before any
+    integration had been done. Inserting $|f'(|\vec{k}_f|)$, and simplifying gives:
+
+    \begin{equation}
+        d \sigma = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_f|^2}{E_{k_f} E_{p_f}} \frac{E_{k_f} E_{p_f}}{p_f \cdot k_f}
+    \end{equation}
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \frac{1}{p_f \cdot k_f}
+    \end{equation}
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2
+    \end{equation}
+
+    \section*{The Feynman Amplitude}
+
+    The next step is to use the Feynman rules to calculate the square of the Feynman amplitude. Using the Feynman rules and diagrams from the introduction produces the following result for the Feynman amplitude
+
+    \begin{equation}
+        \begin{aligned}
+            M_{fi} = M_{if}^1 + M_{if}^2 & \\
+            & = \overline{U}_e (p_f, s_f) (- i e \gamma^{\mu}) \epsilon_{\mu}' \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \epsilon_{\nu} (- i e \gamma^{\mu}) \overline{U}_e (p_f, s_f) \\
+            & + \epsilon_{\nu} (- i e \gamma^{\mu}) \overline{U}_e (p_f, s_f) \frac{i}{\slashed{p}_i + \slashed{k}_i - m} (- i e \gamma^{\mu}) \epsilon_{\mu}' \overline{U}_e (p_f, s_f)
+        \end{aligned}
+    \end{equation}
+
+    We can then perform some basic simplification:
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \slashed{\epsilon} \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \slashed{\epsilon} \overline{U}_e (p_i, s_i)
+        - i e^2 \overline{U}_e (p_f, s_f) \slashed{\epsilon} \frac{i}{\slashed{p}_i - \slashed{k}_f - m} \slashed{\epsilon} \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \slashed{\epsilon} + \slashed{\epsilon} \frac{i}{\slashed{p}_i - \slashed{k}_f - m} \slashed{\epsilon} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{i}{(\slashed{p}_i + \slashed{k}_i)^2 - m} \slashed{\epsilon} + \slashed{\epsilon} \frac{i}{(\slashed{p}_i - \slashed{k}_f)^2 - m} \slashed{\epsilon} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    We can now work on simplifying the denomiators. Let's start with the first one. Multiplying everything out and writing it in index notation gives the following:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} p_{i \nu} + k_{i \mu} k _{i \nu} + p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
+    \end{equation}
+
+    Next, one must apply the following identity:
+
+    \begin{equation}
+        \gamma^{\mu} \gamma^{\nu} a_{\mu} a_{\nu} = \frac{1}{2} (\gamma^{\mu} \gamma^{\nu} + \gamma^{\nu} \gamma^{\mu}) a_{\mu} a_{\nu} = g^{\mu \nu} a_{\mu} a_{\nu} I = a \cdot a I
+    \end{equation}
+
+    Inserting this into the denominator gives the following: 
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + p_i \cdot p_i I + k_i \cdot k_i I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
+    \end{equation}
+
+    However, we know that $p_i \cdot p_i = m^2$ and $k_i \cdot k_i = 0$, so the denominator simplifies down to:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
+    \end{equation}
+
+    We can now rewrite this in the following way:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + \gamma^{\mu} \gamma^{\nu} (\gamma^{\mu} \gamma^{\nu} + \gamma^{\nu} \gamma^{\mu}) p_{i \mu} k_{i \nu}
+    \end{equation}
+
+    We can now apply the Clifford algebra to get:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = 2 g^{\mu \nu} p_{i \mu} k_{i \nu} I = 2 p_i \cdot k_i I
+    \end{equation}
+
+    So therefore the Feynman amplitude is:
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{\slashed{p}_i + \slashed{k}_i - m}{2 p_i \cdot k_i} \slashed{\epsilon} + \slashed{\epsilon} \frac{\slashed{p}_i - \slashed{k}_f - m}{- 2 p_i \cdot k_f} \slashed{\epsilon} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    From here, there are a bunch of simplifications that can be performed on the numerators that make use of the Dirac-Clifford algebra tor eorder factors, and the fact that the spinors satisfy
+    the Dirac equation. Let's begin work on the first numerator. The goal is to bring $\slashed{\epsilon}$ to the other side of the $(\slashed{p}_i + \slashed{k}_i - m)$ factor. First, multiplying
+    everything out gives:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} = \slashed{p}_i \slashed{\epsilon} + \slashed{k}_i \slashed{\epsilon} + m \slashed{\epsilon}
+    \end{equation}
+
+    We can reverse the order of the first two terms at the cost of minus signs and extra dot product terms using the Dirac-Clifford algebra:
+
+    \begin{equation}
+        \slashed{p}_i \slashed{\epsilon} = \gamma^{\mu} \gamma^{\nu} p_{i \mu} \epsilon_{\nu} = (2 g^{\mu \nu} - \gamma^\nu \gamma^\nu) p_{i \nu} = 2 p_i \cdot \epsilon - \slashed{\epsilon} \slashed{p}_i
+    \end{equation}
+    
+    \begin{equation}
+        \slashed{k}_i \slashed{\epsilon} = (2 g^{\mu \nu} - \gamma^\nu \gamma^\nu) k_{i \nu} = 2 k_i \cdot \epsilon - \slashed{\epsilon} \slashed{k}_i
+    \end{equation}
+
+    Plugging these resuts in gives:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} = 2 (p_i + k_i) \cdot \epsilon \slashed{p}_i \slashed{\epsilon} + \slashed{k}_i \slashed{\epsilon} + m \slashed{\epsilon}
+    \end{equation}
+
+    Because $\epsilon$ is the initial polarization vector of the photon, it is transverse to the initial photon momentum, so that dot product is zero. Also, the goal is to write the cross section in
+    the rest frame of the initial electron, so the initial electron momentum only has a time component. Thus, its dot product with the initial polarization vector is also zero. Inserting these two
+    facts produces the following result:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} = \slashed{p}_i \slashed{\epsilon} + \slashed{k}_i \slashed{\epsilon} + m \slashed{\epsilon}
+    \end{equation}
+
+    Then, one can use the fact that the spinors satisfy the Dirac equation. The above term acts on a spinor in the complete expression. Writing the last equation with the spinor included gives the
+    following equation:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} U_e (p_i, s_i) = (\slashed{p}_i \slashed{\epsilon} + \slashed{k}_i \slashed{\epsilon} + m \slashed{\epsilon}) U_e (p_i, s_i)
+    \end{equation}
+
+    Because the spinor satisfies the Dirac equation, the last two terms vanish when applied to the spinor: $- \epsilon U_e (p_i, s_i) = 0$. Therefore, the equation becomes:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} U_e (p_i, s_i) = - \slashed{\epsilon} \slashed{k}_i U_e (p_i, s_i)
+    \end{equation}
+
+    The numerator of the second term in the Feynman ampitude simpifies down in the same way to the following:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} U_e (p_i, s_i) = - \slashed{\epsilon} \slashed{k}_i U_e (p_i, s_i)
+    \end{equation}
+
+    Substituting this into the Feynman amplitude gives us the most simpified result that is obtainable before squaring:
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon'} \frac{- \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \slashed{\epsilon} \frac{\slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    The next step is to write down the absolute square of the amplitude, and then simplify A LOT more.
+
+    \section*{Squaring The Feynman Amplitude}
+
+    Of course, taking the absolute square of a quantity entais multiplying it by its complex conjugate. This raises a slight complication here, because that means we must complex conjugate a complicated product of matrices.
+    Luckily there is an eqasy identity for that. The identity consists of complex conjugating the prefactor, flipping the spinors, and reversing the order of the sandwiched matrices. The Feynman amplitude and it's complex
+    conjugate are given below:
+
+    \begin{equation}
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    \begin{equation}
+        M_{fi}^* = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+    \end{equation}
+
+    With these results, we can write down a convenient expression for the needed square of the Feynman amplitude:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg|- i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) \Bigg|^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) i e^2 \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_f, s_f)
+    \end{equation}
+
+    Because the quantity under the sum is scalar, we can take its trace without changing anything:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg[- i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) i e^2 \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_f, s_f) \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg[- i e^2 \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_ss, s_f) \overline{U}_e (p_f, s_f) \Bigg]^2
+    \end{equation}
+
+    The reason why this version of the squared amplitude is favorable is because, with this factor ordering, we can easily simplify the product of spinors using the following two identity:
+
+    \begin{equation}
+        \sum_{s} U (p, s) \overline{U} (p, s) = \frac{\slashed{p} + I m}{2 m}
+    \end{equation}
+
+    So, then the square of the Feynman amplitude is:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg[- i e^2 \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \frac{\slashed{p} + I m}{2 m} \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \frac{\slashed{p} + I m}{2 m} \Bigg]^2
+    \end{equation}
+
+    We can then manipulate this further:
+
+    \begin{equation}
+        = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) (\slashed{p} + I m) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) (\slashed{p} + I m) \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    Where:
+
+    \begin{equation}
+        \begin{aligned}
+            T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)] \\
+            T_2 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m)] \\
+            T_3 = Tr [\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f (\slashed{p}_i + m) \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)] \\
+            T_4 = Tr [\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)] \\
+        \end{aligned}
+    \end{equation}
+
+    \section*{Evaluating The Traces}
+
+    Let's start by evaluating $T_1$:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)]
+    \end{equation}
+
+    \begin{equation}
+        = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i + \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i m + \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f + \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} m]
+    \end{equation}
+
+    \begin{equation}
+        = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i] + m Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i m] + m Tr[\slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f] + m^2 Tr[\slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    Traces of products of odd numbers of gamma matrices are zero. This simplifieds things radically. We end up with half the number of terms:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i] + m^2 Tr[\slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    The last term is zero because of the middle two factors. We can prove that the product yields zero using Dirac-Clifford algebra, and the fact that photons are massless:
+
+    \begin{equation}
+        \slashed{k}_i \slashed{k}_i = \gamma^\mu \gamma^\nu k_{i \mu} k_{i \nu} = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) k_{i \mu} k_{i \nu} = g^{\mu \nu} k_{i \mu} k_{i \nu} = k_i \cdot k-i I = 0
+    \end{equation}
+
+    Inserting this into trace gives:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i]
+    \end{equation}
+
+    Agaub, consider the middle two factors. Specifically, we can reverse the order of the product at the cost of a minus sign, and a dot product term using the Dirac-Clifford algebra
+    (as we did previously):
+
+    \begin{equation}
+        \slashed{p}_i \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} p_{i \mu} k_{i \nu} = 2 p_i \cdot k_i I - \slashed{k}_i \slashed{p}_i
+    \end{equation}
+
+    Inserting this gives two terms:
+
+    \begin{equation}
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i] - 2 p_i \cdot k_i Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i]
+    \end{equation}
+
+    Obviously, the first term vanishes due to the $\slashed{k}_i \slashed{k}_i = 0$ identity that I proved previously. This leaves us with:
+
+    \begin{equation}
+        T_1 = - 2 p_i \cdot k_i Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i]
+    \end{equation}
+
+    Now we can use the Dirac-Clifford algebra to reverse two other factors in the usual way:
+
+    \begin{equation}
+        \slashed{\epsilon} \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} \epsilon k_{i \nu} = 2 \epsilon \cdot k_i I - \slashed{k}_i \slashed{\epsilon}
+    \end{equation}
+
+    However, there is an additional simplification. Because photons are transverse polarized, $\epsilon \cdot k_i = 0$. Therefore, we have:
+
+    \begin{equation}
+        \slashed{\epsilon} \slashed{k}_i = - \slashed{k}_i \slashed{\epsilon}
+    \end{equation}
+
+    Inserting this gives:
+
+    \begin{equation}
+        T_1 = -2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon} \slashed{p}_f]
+    \end{equation}
+
+    We can now use the Dirac-Clifford algebra to simplify the $\slashed{\epsilon} \slashed{\epsilon}$ product in a way similar to the proof of $\slashed{k}_i \slashed{k}_i = 0$.
+    The only difference is that this time, the critical dot product is equal to $-1$ instead of zero. Specifically, we have the following:
+
+    \begin{equation}
+        \slashed{\epsilon} \slashed{\epsilon} = \gamma^{\mu} \gamma^{\nu} \epsilon_\mu \epsilon_\nu = 2 \epsilon \cdot k_i I - \epsilon_\mu \epsilon_\nu = g^{\mu \nu} \epsilon_\mu \epsilon_\nu I = \epsilon \cdot \epsilon I = - I
+    \end{equation}
+
+    We can now reorder the first two factors under the trace using the Dirac-Clifford algebra inthe classic way:
+
+    \begin{equation}
+        \slashed{\epsilon} \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} \epsilon k_{i \nu} = 2 \epsilon \cdot k_i I - \slashed{k}_i \slashed{\epsilon}
+    \end{equation}
+
+    Inserting this result gives:
+
+    \begin{equation}
+        T_1 = 2 p_i \cdot k_i \epsilon' \cdot k_i Tr \big[ \slashed{\epsilon} \slashed{p}_f \big] - 2 p_i \cdot k_i Tr \big[ \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f \big]
+    \end{equation}
+
+    In the second term that we evaluated before, namely, $\slashed{\epsilon'} \slashed{\epsilon'}$. We can evaluate it in the same way that we did with the $\slashed{\epsilon} \slashed{\epsilon}$ product and naturally, it yields
+    the same result:
+
+    \begin{equation}
+        \slashed{\epsilon'} \slashed{\epsilon'} = \gamma^{\mu} \gamma^{\nu} \epsilon'_\mu \epsilon'_\nu = 2 \epsilon' \cdot k_i I - \epsilon'_\mu \epsilon'_\nu = g^{\mu \nu} \epsilon'_\mu \epsilon'_\nu I = \epsilon' \cdot \epsilon' I = - I
+    \end{equation}
+
+    Inserting the result simplifies $T_1$ down to the following:
+
+    \begin{equation}
+        T_1 = 4 p_i \cdot k_i \epsilon' \cdot k_i Tr \big[ \slashed{\epsilon} \slashed{p}_f \big] + 2 p_i \cdot k_i Tr \big[ \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f \big]
+    \end{equation}
+
+    Now, the trace of two gamma matrices is given by the following common identity:
+
+    \begin{equation}
+        Tr [\gamma^\mu \gamma^\nu] = 4 g^{\mu \nu}
+    \end{equation}
+
+    Inserting this gives the following trace free result for $T_1$:
+
+    \begin{equation}
+        T_1 = 16 p_i \cdot k_i \epsilon' \cdot k_i \slashed{\epsilon} \slashed{p}_f + 8 p_i \cdot k_i \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f
+    \end{equation}
+
+    Even though all of the traces are gone, we are not done simplifying $T_1$. The first additional simplification that can be accomplished begins with an identity derived from the
+    four-momentum conservation relation, $p_i + k_i = p_f + k_f$. The first step is to rearrange it in the following way:
+
+    \begin{equation}
+        p_f = p_i + k_i - k_f
+    \end{equation}
+
+    The second step is to take the dot product of both sides with $\epsilon'$:
+
+    \begin{equation}
+        \epsilon' \cdot p_f = \epsilon' \cdot p_i + \epsilon' \cdot k_i - \epsilon' \cdot k_f
+    \end{equation}
+
+    We can then simplify down this equation significantly by remembering the transeverely of of photons $(\epsilon' \cdot k_f = 0)$, and we have taken the rest frame of the initial
+    electron in this calculation $(\epsilon' \cdot k_f = 0)$. We therefore have the following:
+
+    \begin{equation}
+        \epsilon' \cdot p_f = \epsilon' \cdot k_i
+    \end{equation}
+
+    Inserting this into $T_1$ yields the following simplification:
+
+    \begin{equation}
+        T_1 = 16 p_i \cdot k_i \epsilon' \cdot k_i \slashed{\epsilon} \slashed{p}_f + 8 p_i \cdot k_i \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f = 8 p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_f]
+    \end{equation}
+
+    The final simplification of $T_1$ also comes from messing with the four momentum conservation relation. First, we must rearrange it into the following form:
+
+    \begin{equation}
+        p_i - k_f = p_f - k_i
+    \end{equation}
+
+    We can then square both sides and simplify to get the following result:
+
+    \begin{equation}
+        p_i \cdot k_f = p_f \cdot k_i
+    \end{equation}
+
+    Inserting this into $T_1$ gives the final result for it:
+
+    \begin{framed}
+        \begin{equation}
+            T_1 = 8 p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_f]
+        \end{equation}
+    \end{framed}
+
+    one can then deduce the fourth trace from above through interchange of momenta and polarization vectors. Specifically, if one looks back at the original traces, one finds that
+    they are interconverted by the following interchange:
+
+    \begin{equation}
+        \epsilon \leftrightarrow \epsilon' \quad k_i \leftrightarrow - k_f
+    \end{equation}
+
+    This gives us the following result for $T_4$:
+
+    \begin{framed}
+        \begin{equation}
+            T_4 = - 8 p_i \cdot k_f \big[ 2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i \big]
+        \end{equation}
+    \end{framed}
+
+    This leaves us with $T_2$ and $T-3$ left to calculate. Unfortunately, we can't get either of them by performing an interchange on the two we have computed so far. We will need
+    to directly calculate at least one of them. Fortunately, inspection of the original traces reveals that $T_2$ and $T_3$ are related to each other by the interchange that we just
+    used, so we sill only have to directly compute one of them. I chose to directly compute $T_2$:
+
+    \begin{equation}
+        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m) ]
+    \end{equation}
+
+    In evaluating this, the first step is to use the four-momentum conservation relation to replace $\slashed{p}_f$ in the last factor. Doing this gives:
+
+    \begin{equation}
+        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m + \slashed{k}_i + \slashed{k}_f) ]
+    \end{equation}
+
+    The cyclic property of the trace can then be used to move the front two factors to the back:
+
+    \begin{equation}
+        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m + \slashed{k}_i + \slashed{k}_f) ]
+    \end{equation}
+
+    We can then split the trace into two terms:
+
+    \begin{equation}
+        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m)] + Tr [ \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m ) \slashed{\epsilon'} \slashed{\epsilon} ( \slashed{k}_i + \slashed{k}_f) ]
+    \end{equation}
+
+    We will simplify the first and second terms separately:
+
+    \begin{equation}
+        First Term = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m)]
+    \end{equation}
+
+    We can multiply out the first term and split up into four terms:
+
+    \begin{equation}
+        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m Tr[\slashed{\epsilon'} \slashed{\epsilon}] + m Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    Traces of products of odd numbers of gamma matrices are zero. This eliminates the two terms that are linear in the mass:
+
+    \begin{equation}
+        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    This can be simplified by using a couple of identities proved previously in this document (remember, these are valid 
+    because we are performing this calculation in the rest frame of the initial electron):
+
+    \begin{equation}
+        \slashed{p}_i \slashed{\epsilon'} = - \slashed{\epsilon'} \slashed{p}_i \qquad \slashed{p}_i \slashed{\epsilon} = - \slashed{\epsilon} \slashed{p}_i
+    \end{equation}
+
+    Specifically, we can use these identities to reorder some factors in the first part to produce the following:
+
+    \begin{equation}
+        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    We can then use the cyclic property of the trace on the left trace to produce the following:
+
+    \begin{equation}
+        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    We can then use the Dirac-clifford algebra twice in the classic way to simplify the first three factors in the left trace.
+    The first application of the Dirac-Clifford algebra reorders the first two factors at the cost of a minus sign and a dot
+    product term. The second application of the algebra reveals that $\slashed{p}_i \slashed{p}_i = m^2 I$. Putting the two
+    together gives:
+
+    \begin{equation}
+        \slashed{p}_i \slashed{k}_i \slashed{p}_i = (2 p_i \cdot k_i I - \slashed{k}_i \slashed{p}_i) \slashed{p}_i = 2 p_i \cdot k_i \slashed{p}_i - \slashed{k}_i \slashed{p}_i \slashed{p}_i - m^2 \slashed{k}_i
+    \end{equation}
+
+    Inserting this into the first term gives the following result:
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}] - m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    The last two terms cancel each other to give
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    We can then apply the cyclic property of trace to get :
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    We can then apply the following two identities again:
+
+    \begin{equation}
+        \slashed{p}_i \slashed{\epsilon'} = - \slashed{\epsilon'} \slashed{p}_i \qquad \slashed{p}_i \slashed{\epsilon} = - \slashed{\epsilon} \slashed{p}_i
+    \end{equation}
+
+    Doing this gives:
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    Thus, the trace is equal to half the sum of the two yellow highlighted terms:
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i \frac{1}{2} Tr[(\slashed{p}_f \slashed{k}_f + \slashed{p}_i \slashed{k}_i) \slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    We can then apply the Dirac-Clifford algebra:
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i Tr[(\slashed{p}_f \slashed{k}_f + \slashed{p}_i \slashed{k}_i) \slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    Now one can make use of the following well-known gamma matrix trace identity:
+
+    \begin{equation}
+        Tr [\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma] = 4 g^{\mu \nu} g^{\rho \sigma} - 4 g^{\mu \rho} g^{\nu \sigma} + 4 g^{\mu \sigma} g^{\nu \rho}
+    \end{equation}
+
+    Inserting this gives the following result for the First Term:
+
+    \begin{equation}
+        First Term = 2 p_i \cdot k_i Tr[(\slashed{p}_f \slashed{k}_f + \slashed{p}_i \slashed{k}_i) \slashed{\epsilon} \slashed{\epsilon'}]
+    \end{equation}
+
+    Recall now that $\epsilon \cdot \epsilon = \epsilon' \cdot \epsilon' = -1$. Inserting these values and simplifying produces the following final answer for the First Term:
+
+    \begin{framed}
+        \begin{equation}
+            8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1)
+        \end{equation}
+    \end{framed}
+
+    Therefore, at this point, we have the following result for $T_2$:
+
+    \begin{equation}
+        T_2 = 8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) + Tr [\slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    We must now handle the Second Term:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    We already know from handling the \emph{First Term}, and $T_1$ that terms linear in $m$ will vanish because traces of products of odd numbers of gamma matrices are zero.
+    This reduces the Second Term to the following:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon}]
+    \end{equation}
+
+    By now, you are doubtlessly familiar with manipulating things with the Dirac-Clifford algebra. Using it in the usual ways, we can rewrite the last three factors in the
+    following way:
+
+    \begin{equation}
+        (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon} = (2 k_i \cdot \epsilon' I - \slashed{\epsilon} \slashed{k}_i + \slashed{\epsilon'} \slashed{k}_f) \slashed{\epsilon}
+    \end{equation}
+
+    Inserting this gives the following:
+
+    \begin{equation}
+        Second Term = Tr [\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (2 k_i \cdot \epsilon' I - \slashed{\epsilon} \slashed{k}_i + \slashed{\epsilon'} \slashed{k}_f) \slashed{\epsilon}]
+    \end{equation}
+
+    We can then split this trace into the sum of three:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+    \end{equation}
+
+    We can simplify the left trace using the $\slashed{\epsilon} \slashed{\epsilon} = - I$ identity proved above to get:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+    \end{equation}
+
+    Then, with two identities proved above $\slashed{k}_i \slashed{k}_i = 0$ and $\slashed{k}_i \slashed{\epsilon} = \slashed{\epsilon} \slashed{k}_i$, we can rearrange and then eliminate the middle trace. First applying 
+    $\slashed{k}_i \slashed{\epsilon} = \slashed{\epsilon} \slashed{k}_i$ gives:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+    \end{equation}
+
+    Now we can use the cyclic property of the trace on the same term:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+    \end{equation}
+
+    Next, we can see that the middle trace vanishes because $\slashed{k}_i \slashed{k}_i = 0$. So we have:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr []
+    \end{equation}
+
+    We can then apply the familiar relation $\slashed{\epsilon'} \slashed{k} = - \slashed{k}_f \slashed{\epsilon's}$ to the second part:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr []
+    \end{equation}
+
+    We can then reorder two factors in the usual way with the Dirac-Clifford Algebra: $\slashed{\epsilon} \slashed{k}_f = - \slashed{k}_f \slashed{\epsilon} + 2 \epsilon \cdot k-f$, Applying this produces the following:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] - 2 \epsilon \cdot k_f Tr []
+    \end{equation}
+
+    The $\slashed{\epsilon'} \slashed{\epsilon'} = -1$ identity simplifies the last term, giving us:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] - 2 \epsilon \cdot k_f Tr []
+    \end{equation}
+
+    Next, we can apply $\slashed{\epsilon'} \slashed{k}_f = - \slashed{k}_f \slashed{\epsilon'}$ to the middle trace to get:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] - 2 \epsilon \cdot k_f Tr []
+    \end{equation}
+
+    We now see that the middle term is zero because $\slashed{k}_f \slashed{k}_f = 0$:
+
+    \begin{equation}
+        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr []
+    \end{equation}
+
+    Now we can use the $Tr [\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma] = 4 g^{\mu \nu} g^{\rho \sigma} - 4 g^{\mu \rho} g^{\nu \sigma} + 4 g^{\mu \sigma} g^{\nu \rho}$ identity to evaluate the traces. We get:
+
+    \begin{equation}
+        Second Term = -2 k_i \cdot \epsilon' 4 () + 2 \epsilon \cdot k_f 4s
+    \end{equation}
+
+    This looks long and complicated, but this is actually very simple because we know that the following dot products are zero:
+
+    \begin{equation}
+        k_f \cdot \epsilon' = 0 \qquad p_i \cdot \epsilon' = 0 \qquad p_i \cdot \epsilon = 0 \qquad k_i \cdot \epsilon = 0
+    \end{equation}
+
+    Inserting these results gives the following result for the second term:
+
+    \begin{framed}
+        \begin{equation}
+            Second Term = -8 (k_i \cdot \epsilon')^2 p_i \cdot k_f + 8 (\epsilon \cdot k_f)^2 k_i \cdot p_i
+        \end{equation}
+    \end{framed}
+
+    Inserting this into $T_2$ in the square of the Feynman amplitude gives:
+
+    \begin{framed}
+        \begin{equation}
+            T_2 = 8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) - 8 (k_i \cdot \epsilon')^2 p_i \cdot k_f + 8 (\epsilon \cdot k_f)^2 k_i \cdot p_i
+        \end{equation}
+    \end{framed}
+
+    As I explained at the beginning of the $T_2$ calculation, the same vector interchanged used to get $T_4$ from $T_1$ can be used to get $T_3$ from $T_2$. Specifically,
+    the intechange was $\epsilon \leftrightarrow \epsilon'$ and $k_i \leftrightarrow - k_f$. As it happens, $T_2$ is invariant under this interchangem so the second and
+    third traces are equal. this gives:
+    
+    \begin{equation}
+        T_3s = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m) ]
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            T_3 = 8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) + Tr [\slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon}]
+        \end{equation}
+    \end{framed}
+
+    \section*{Final Simplification}
+    
+    The last expression that we had for the electronspin averaged/summed, squared Feynman amplitude is the following:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+    
+    We just did all of the traces, Inserting them gives:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    The rest of the simplification is trivial algebra. I have written out the process below:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+    \end{equation}
+
+    Considering that this reaction is in the initial electron's rest frame, this simplifies to:
+
+    Putting this fully in the rest frame of the initial electron, and rewriting the numertaor slightly, reduces it to:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+    \end{equation}
+
+    We are now ready to insert the result for $\frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2$ in. We get:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+    \end{equation}
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+    \end{equation}
+
+    We therefore have the final answer for tree level Compton scattering:
+
+    \begin{framed}
+        \begin{equation}
+            \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+        \end{equation}
+    \end{framed}
+
+    This result is called the Klein-Nishina formula. We can now compute the unpolarized cross section by averaging over the initial photon polarization, and summing over the final polarization. To do this, we must
+    select a particular parametrization for the photon polarization. We must select them to be transverse to their corresponding photon momentum vectors, and we must make sure that they dot with themselves to yield
+    $-1$. Also, the two transverse polarization possibilities must be orthogonal, meaning that they must dot to zero. The first requirement requires us to slect a specific paremeterization for the momentum vectors.
+    So far, in this calculation, we have been able to simplify everything without selecting a particular parameteriztion for the momentum vectors. Usually in scattering calculations, we need to select a particular
+    parameterization for the momentum vectors in order to finish the simplification. Here, all we needed to know was that we were selecting the rest frame for the initial electron. WE can't escape selecting a
+    particular parametrization any longer, if we want to pin down a satisfactory parametrization for the polarization vectors. The standard momentum vector parametrization for this problem, which is consistent With
+    everything we have already done is the following:
+
+    \begin{equation}
+        \begin{aligned}
+            p_{i \mu}  = (m \: 0 \: 0 \: 0)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            k_{i \mu}  = k_0 (1 \: 0 \: 0 \: 1)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            k_{f \mu}  = k'_0 (1 \: 0 \: \sin (\theta) \: \cos (\theta) )
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            p_{f \mu}  = (1 \: 0 \: -k'_0 \sin (\theta) \: k_0 - k'_0 \cos (\theta) )
+        \end{aligned}
+    \end{equation}
+
+    Where angle $\theta$ has the following physical interpretation
+
+    % Insert Feynman Diagram Scattering here
+
+    The ususal, and simplest, parametrization for the polarization vectors that satisfies all of t he required properties is the following
+
+    \begin{equation}
+        \begin{aligned}
+            \epsilon_{\mu}^{(1)}  = (0 \: 1 \: 0 \: 0)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \epsilon_{\mu}^{(1)}  = (0 \: 0 \: 1 \: 0)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \epsilon_{\mu}^{(2)'}  = (0 \: 1 \: 0 \: 0)
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \epsilon_{\mu}^{(2)'s}  = (0 \: 1 \: 0 \: 0)
+        \end{aligned}
+    \end{equation}
+
+    Given this parametrization we can write out the approximately polarization averaged and summed Feynman amplitude:
+
+    \begin{equation}
+        \frac{1}{4} \sum_{S_i S_f \epsilon \epsilon's} |M_{fi}|^2s = \frac{1}{4} \sum_{\epsilon \epsilon'} \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + 4 (\epsilon \cdot \epsilon') - 2 \Big] = \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + \sin^2 (\theta) \Big]
+    \end{equation}
+
+    Therefore, the unpolarized scattering cross section is:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{4} \sum_{\epsilon \epsilon'} \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + 4 (\epsilon \cdot \epsilon') - 2 \Big] = \frac{e^4}{m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + \sin^2 (\theta) \Big]
+    \end{equation}
+
+    So, we have the final answer for the unpolarized Compoton Scattering Cross Section:
+
+    \begin{framed}
+        \center{Unpolarized Klein Nishina Formula}
+        \begin{equation}
+            \frac{d \sigma}{d \Omega} = \frac{e^4}{m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + \sin^2 (\theta) \Big]
+        \end{equation}
+    \end{framed}
+
+    We can then integrate over the remaining solid angle to obtain the total cross section. To do this, we must remember that there are actually only 2 independent variables in the problem,
+    namely $k_0$ and $\theta$. We can actually write the only other variables that show up anywhere in the problem, namely $k'_0$ and $E_f$, in terms of them. We can use four momentum
+    conservation to obtain relations between them, from which we can solve $k'_0$ and $E_f$. Doing this is straight forward and yields the following:
+
+    \begin{equation}
+        k'_0 = \frac{k_0}{1 + \frac{k_0}{m} (1 - \cos(\theta))}
+    \end{equation}
+
+    \begin{equation}
+        E_f = m + k_0 - k_0 = m + k_0 - \frac{k_0}{1 + \frac{k_0}{m} (1 - \cos(\theta))}
+    \end{equation}
+
+    \textbf{Side Note}:
+
+    We can actually take the low energy limit on the polarized cross section to get the Thompson differential scattering cross section. In the low energy limit, the incident photon energy, $k_0$,
+    goes to zero. The limit therefore works out to be:
+
+    \begin{framed}
+        \center{Polarized Thompson Differential Scattering Cross Section}
+        \begin{equation}
+            \frac{d \sigma}{d \Omega} = \frac{\alpha^2}{m^2} (\epsilon \cdot \epsilon')^2
+        \end{equation}
+    \end{framed}
+
+    In the same limit, the unpolarized Klein-Nishina scattering cross section becomes:
+
+    \begin{framed}
+        \center{Unpolarized Thompson Differential Scattering Cross Section}
+        \begin{equation}
+            \frac{d \sigma}{d \Omega} = \frac{\alpha^2}{2 m^2} [1 + \cos^2 (\theta)]
+        \end{equation}
+    \end{framed}
+
+    \textbf{End of Side Note.}
+
+    Now back to computing the Klein Nishina total scattering cross section. While $E_f$ doesn't show up in the cross section, we can insert this expression for $k_{0}'$ to get the cross section
+    written such that all of its $\theta$ dependence is explicit:
+
+    \begin{framed}
+        \center{Unpolarized Klein Nishina Formula}
+        \begin{equation}
+            \frac{d \sigma}{d \Omega} = \frac{\alpha^2}{2 m^2} \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} \Big[ \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} + \frac{k_0}{m} (1 - \cos (\theta)) + \sin^2 (\theta) \Big]
+        \end{equation}
+    \end{framed}
+
+    Now, we can carry out the integration:
+
+    \begin{equation}
+        \sigma = \int \frac{\alpha^2}{2 m^2} \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} \Big[ \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} + \frac{k_0}{m} (1 - \cos (\theta)) + \sin^2 (\theta) \Big] d \Omega
+    \end{equation}
+
+    \begin{equation}
+        \sigma = \frac{\alpha^2}{2 m^2} \int_{0}^{2 \pi} \int_{0}^{\pi} \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} \Big[ \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} + \frac{k_0}{m} (1 - \cos (\theta)) + \sin^2 (\theta) \Big] \sin (\theta) d \theta d \phi
+    \end{equation}
+
+    \begin{equation}
+        \sigma = \frac{\pi \alpha^2}{m^2} \int_{0}^{\pi} \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} \Big[ \frac{1}{\Big[1 + \frac{k_0}{m} (1 - \cos (\theta)) \Big]^2} + \frac{k_0}{m} (1 - \cos (\theta)) + \sin^2 (\theta) \Big] d \cos (\theta)
+    \end{equation}
+
+    \[
+        x = \cos (\theta) \quad a = \frac{k_0}{m}
+    \]
+
+    \begin{equation}
+        \sigma = \frac{\pi \alpha^2}{m^2} \int_{-1}^{1} \Big[  \frac{1}{[1 + a (1 - x)]^3} + \frac{a (1 - x)}{[1 + a (1 - x)]^2} + \frac{x^2}{[1 + a(1 - x)]^2} \Big] dx
+    \end{equation}
+
+    \begin{equation}
+        \sigma = \frac{\pi \alpha^2}{m^2} \int_{-1}^{1} \Big[  \frac{1}{[1 + a (1 - x)]^3} + \frac{1}{1 + a (1 - x)} + \frac{x^2}{[1 + a(1 - x)]^2} \Big] dx
+    \end{equation}
+
+    Now, the integration can actually be performed to yield the final answer for the Klein-Nishina total scattering cross section:
+
+    \begin{framed}
+        \center{Klein Nishina Total Scattering Cross Section}
+        \begin{equation}
+            \sigma = \frac{2 \pi \alpha^2}{m^2} \Big[ \frac{1 + \alpha}{\alpha^3} \big( \frac{2a (1 + a)}{1 + 2a} - \ln (1 + 2a) \big) + \frac{ln (1 + 2a)}{2a} - \frac{1 + 3a}{(1 + 2a)^2} \Big]
+        \end{equation}
+    \end{framed}
+
+    In the low energy limit, the incident photon energy $k_0$, goes to zero, and therefore $\alpha$ does also. Taking this limit on the Klein-Nishina total cross section reduces it to the THompson total scattering
+    cross section, using l'hopital's rule when necessary, we find the following result:
+
+    \begin{equation}
+        \sigma_{Thompson} = \frac{2 \pi \alpha^2}{m^2} \lim_{a \rightarrow 0} \Big[ \frac{1 + \alpha}{\alpha^3} \big( \frac{2a (1 + a)}{1 + 2a} - \ln (1 + 2a) \big) + \frac{ln (1 + 2a)}{2a} - \frac{1 + 3a}{(1 + 2a)^2} \Big] = \frac{2 \pi \alpha^4}{m^2} \frac{4}{3} = \frac{8 \pi \alpha^2}{3 m^2}
+    \end{equation}
+
+    \begin{framed}
+        \center{Thompson Total Scattering Cross Section}
+        \begin{equation}
+            \sigma = \frac{8 \pi \alpha^2}{3 m^2}
+        \end{equation}
+    \end{framed}
+
+    This completes our analysis of tree level Compton scattering.
+
+\end{document}

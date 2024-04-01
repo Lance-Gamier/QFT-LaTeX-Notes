@@ -1,0 +1,1015 @@
+\documentclass[a4]{article}
+
+\usepackage{amsmath}
+\usepackage{framed}
+\usepackage{mathrsfs}
+
+\usepackage[left = 1cm,right = 1cm, top = 2cm]{geometry}
+
+\begin{document}
+
+    \title{How to Quantize a Dirac Fermion Field}
+    \maketitle
+
+    The Dirac Lagrangian density in Natural Units is:
+
+    \begin{equation}
+        \mathcal{L} = \bar{\psi} i \gamma^{\mu} \partial_{\mu} \psi - m \bar{\psi} \psi
+    \end{equation}
+
+    Where $\psi$ is the complex field, and $\bar{\psi} = \psi^{\dagger} \gamma^{0}$. $\psi$ and $\bar{\psi}$ must be
+    treated as independent fields in the Lagrangian Formalism. The Equations of Motions are:
+    
+    \begin{equation}
+        \begin{aligned}[]
+            \frac{\partial \mathcal{L}}{\partial \bar{\psi}} - \partial_{\mu} \bigg( \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \bar{\psi})} \bigg) = 0 \quad \rightarrow \quad i \gamma^{\mu} \partial_{\mu} \psi - m \psi = 0 \\
+            \frac{\partial \mathcal{L}}{\partial \psi} - \partial_{\mu} \bigg( \frac{\partial \mathcal{L}}{\partial (\partial_{\mu} \psi)} \bigg) = 0 \quad \rightarrow \quad i \gamma^{\mu} \partial_{\mu} \bar{\psi} - m \bar{\psi} = 0
+        \end{aligned}
+    \end{equation}
+
+    The cannonical conjugate are as follows:
+
+    \begin{equation}
+        \pi_\psi = \partial (\partial_{\mu} \bar{\psi}) = i \psi^{\dagger} \hspace*{1.5cm} \pi_{\bar{\psi}} = \partial (\partial_{\mu} \psi) = 0
+    \end{equation}
+
+    For the Hamiltonian density, we have:
+
+    \begin{equation}
+        \mathcal{H} = \sum_{i} \pi_{i} \dot{\psi}_{i} - \mathcal{L} = \bar{\psi} i \gamma^{0} \partial_{0} \psi - \bar{\psi} i \gamma^{\mu} \partial_{\mu} \psi + m \bar{\psi} \psi = - \bar{\psi} i \gamma^{\mu} \partial_{\mu} \psi + m \bar{\psi} \psi
+    \end{equation}
+
+    However, we can simplify this with the Dirac Equation:
+
+    \begin{equation}
+        i \gamma^{\mu} \partial_{\mu} \psi - m \psi \quad \rightarrow \quad i \gamma^{0} \partial_{0} \psi = - \bar{\psi} i \gamma^{\mu} \partial_{\mu} \psi + m \bar{\psi} \psi
+    \end{equation}
+
+    Therefore:
+
+    \begin{equation}
+      \mathcal{H} = - \bar{\psi} i \gamma^{\mu} \partial_{\mu} \psi + m \bar{\psi} \psi = i \gamma^{0} \partial_{0} = i psi^{\dagger} \partial_{0} \psi
+    \end{equation}
+
+    \begin{equation}
+      H = \int \mathcal{H} d^{3} x = \int (i \psi^{\dagger} \partial_{0} \psi) d^{3} x
+    \end{equation}
+
+    The momentum density and momentum are:
+
+    \begin{equation}
+        \mathcal{P}^{i} = - \bar{\psi} i \gamma^{i} \partial_{i} \psi = - \psi^{\dagger} \nabla \psi
+    \end{equation}
+
+    \begin{equation}
+        \vec{P} = \int \vec{\mathcal{P}} d^{3} x = - \int (\psi^{\dagger} \nabla \psi) d^{3} x
+    \end{equation}
+
+    Global U(1) invariance gives the following conserved Noether current:
+
+    \begin{equation}
+        J^{\mu} = \bar{\psi} \gamma^{\mu} \psi \hspace*{1.0cm} \partial_{\mu} J^{\mu} = 0 
+    \end{equation}
+
+    The associated conserved charge is:
+
+    \begin{equation}
+        \mathcal{Q} = \int \bar{\psi} \gamma^{0} \psi d^{3} x = \int \psi^{\dagger} \psi d^{3} x
+    \end{equation}
+
+    The charge can be associated with the electric charge. It's operator will be used to tell the charge of
+    the various quantum states.
+
+    \begin{center}
+        \begin{tabular}{c c c}
+            $\psi^{+} (x, t) = u_{s} e^{- i p \cdot x}$ & $u_{s} (p) = \frac{\gamma^{\mu} p_{\mu} + m}{\sqrt{2m(m + \omega)}} u_{s}$ & $u_{1} = \left(\begin{array}{c} 1 \\ 0 \\ 0 \\ 0 \end{array}\right)$ $u_{2} = \left(\begin{array}{c} 0 \\ 1 \\ 0 \\ 0 \end{array}\right)$ \\
+            $\psi^{-} (x, t) = v_{s} e^{ i p \cdot x}$ & $v_{s} (p) = \frac{- \gamma^{\mu} p_{\mu} + m}{\sqrt{2m(m + \omega)}} v_{s}$ & $v_{1} = \left(\begin{array}{c} 0 \\ 0 \\ 1 \\ 0 \end{array}\right)$ $v_{2} = \left(\begin{array}{c} 0 \\ 0 \\ 0 \\ 1 \end{array}\right)$
+        \end{tabular}
+    \end{center}
+
+    Where we have that:
+
+    \begin{equation}
+        \omega = k_{0} = \sqrt{\vec{k} \cdot \vec{k} + m^{2}} 
+    \end{equation}
+
+    \begin{equation}
+        \left(\begin{array}{cc} I & 0 \\ 0 & I \end{array}\right) \hspace*{1cm} \left(\begin{array}{cc} 0 & \sigma^{i} \\ - \sigma^{i} & 0 \end{array}\right)
+    \end{equation}
+
+    One can construct the general solution to the Dirac Equation by taking an arbitrary linear combination of
+    these plane wave solutions (using standard normalization):
+
+    \begin{equation}
+        \psi (x, t) = \sum_{s} \int \frac{m}{\omega} [e^{- i p \cdot x} + e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \psi^{\dagger} (x, t) = \sum_{s} \int \frac{m}{\omega} [e^{- i p \cdot x} + e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \bar{\psi} (x, t) = \sum_{s} \int \frac{m}{\omega} [e^{- i p \cdot x} + e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    Now that these relations are inverted. To do this, the following relations are also needed:
+
+    \begin{equation}
+        \bar{u}_{r} (p`') u_{s} = \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \bar{v}_{r} v_{s} = - \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \bar{v}_{r} u_{s} = 0
+    \end{equation}
+
+    \begin{equation}
+        \bar{u}_{r} v_{s} = 0
+    \end{equation}
+
+    Also, we need these identities:
+
+    \begin{equation}
+        \overline{u}_{r} (\vec{p}) \gamma^{0} \overline{u}_{s} (\vec{p}) = \overline{u}_{r}^{\dagger} (\vec{p}) \overline{u}_{s} (\vec{p}) = \frac{\omega}{m} \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \overline{v}_{r} (\vec{p}) \gamma^{0} \overline{v}_{s} (\vec{p}) = \overline{v}_{r}^{\dagger} (\vec{p}) \overline{v}_{s} (\vec{p}) = \frac{\omega}{m} \delta_{rs}
+    \end{equation}
+
+    Which can be proved as follows:
+
+    \begin{equation}
+        \overline{u}_{r} (\vec{p}) \gamma^{0} \overline{u}_{s} (\vec{p}) = \overline{u}_{r}^{\dagger} (\vec{p}) \overline{u}_{s} (\vec{p})
+    \end{equation}
+
+    \begin{equation}
+        \overline{u}_{r}^{\dagger} (\vec{p}) \overline{u}_{s} (\vec{p}) = \overline{u}_{r} (\vec{p}) \gamma^{0} \overline{u}_{s} (\vec{p}) 
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned} []
+            (\gamma^\mu p_\mu - m) u_s (p) & \rightarrow & \overline{u}_s (p) (\gamma^\mu p_\mu - m) \\
+            \downarrow & & \downarrow \\
+            u_s (p) = \frac{1}{m} \gamma^\mu p_\mu u_s (p) & \rightarrow & \overline{u}_s (p) = \frac{1}{m} \overline{u}_s (p) \gamma^\mu p_\mu \\
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned} []
+            \overline{u}_{r}^{\dagger} (\vec{p}) \overline{u}_{s} (\vec{p}) & = \frac{1}{2} ( \overline{u}_{r} (\vec{p}) \gamma^{0} \overline{u}_{s} (\vec{p}) + \overline{u}_{r} (\vec{p}) \gamma^{0} \overline{u}_{s} (\vec{p}) ) \\
+            & = \frac{1}{2} ( \overline{u}_{r} (\vec{p}) \gamma^{0} \gamma^\mu p_\mu \overline{u}_{s} (\vec{p}) + \overline{u}_{r} (\vec{p}) \gamma^{0} \gamma^\mu p_\mu \overline{u}_{s} (\vec{p}) ) \\
+            & = \overline{u}_{r} (\vec{p}) \{ \gamma^0, \gamma^\mu \} \overline{u}_{s} (\vec{p})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \{ \gamma^0, \gamma^\mu \} = 2 \eta^{0 \mu}
+    \end{equation}
+
+    \begin{equation}
+        u^{\dagger}_r (p) u_s (p) = \frac{\omega}{m} \overline{u}_r (p) u_s (p) = \frac{\omega}{m} \delta_{r s}
+    \end{equation}
+
+    Let's Start by finding the formula for $a_{r} (p)$:
+
+    \begin{equation}
+        \psi (x, t) = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} + b^{\dagger}_s (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \int \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i (\omega - \omega') \cdot x} + b^{\dagger}_s (\vec{p}) v_s (\vec{p}) e^{i (\omega - \omega') \cdot x}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i (\omega - \omega') \cdot x} e^{i (p - p') \cdot x} + b^{\dagger}_s (\vec{p}) v_s (\vec{p}) e^{i (\omega - \omega') \cdot x} e^{- i (p - p') \cdot x}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    The X integration can be done with the following formulas:
+
+    \begin{equation}
+        \int e^{- i (\vec{k} - \vec{k'} \cdot \vec{x})} d^3 x = \delta^3 (\vec{k} - \vec{k'}) \int e^{- i (\vec{k} - \vec{k'} \cdot \vec{x})} \frac{d^3 x}{(2 \pi)^3} = \delta^3 (\vec{k} - \vec{k'})
+    \end{equation}
+
+    Applying them gives:
+
+    \begin{equation}
+        \int \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i (\omega - \omega') \cdot x} \delta^3 (\vec{p} - \vec{p'}) + b^{\dagger}_s (\vec{p}) v_s (\vec{p}) e^{i (\omega - \omega') \cdot x} \delta^3 (\vec{p} - \vec{p'})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    Now the P integration can be done:
+
+    \begin{equation}
+        \int \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) + b^{\dagger}_s (\vec{p}) v_s (\vec{p}) e ^{2 i \omega' t}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [a_s (- \vec{p}) u_s (\vec{p}) + b^{\dagger}_s (- \vec{p}) v_s (\vec{p}) e ^{2 i \omega' t}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{u}_{r} (\vec{p}) \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [a_s (- \vec{p}) \overline{u}_{r} (\vec{p}) u_s (\vec{p}) + b^{\dagger}_s (- \vec{p}) \overline{u}_{r} (\vec{p}) v_s (\vec{p}) e ^{2 i \omega' t}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \overline{u}_{r} (\vec{p}) v_{s} (\vec{p}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{u}_{r} (\vec{p}) \psi (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} a_s (- \vec{p}) \overline{u}_{r} (\vec{p}) u_s (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            \overline{u}_{r} (\vec{p}) = \overline{u}_{r} (- \vec{p}) \gamma^0 & & \overline{u}_{s} (- \vec{p}) = \gamma^0 \overline{u}_{s} (\vec{p})
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{u}_{r} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x = \frac{m}{\omega} a_s (- \vec{p}) \overline{u}_{r} (\vec{p}) \gamma^0 \overline{u}_{s} (\vec{p})
+    \end{equation}
+
+    \begin{equation}
+        \overline{u}_{r} (\vec{p}) \gamma^0 \overline{u}_{s} (\vec{p}) = \frac{m}{\omega} \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{u}_{r} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x = \sum_s a_s (- \vec{p}) \delta_{rs} a_r (- \vec{p})
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            a_r (\vec{p}) = \int \overline{u}_{r} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x
+        \end{equation}
+    \end{framed}
+
+    Taking the hermitian conjugate gives the result for $a_{r}^{\dagger} (\vec{p})$:
+
+    \begin{equation}
+        a_r (\vec{p}) = \int u^{\dagger} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \psi (x, t) \gamma^0 u^{\dagger} (\vec{p}) e^{i p \cdot x} d^3 x = a_r^\dagger (\vec{p})
+    \end{equation}
+    
+    \begin{framed}
+        \begin{equation}
+            \overline{a}_r (\vec{p}) = \int \psi (x, t) \gamma^0 u^{\dagger} (\vec{p}) e^{i p \cdot x} d^3 x
+        \end{equation}
+    \end{framed}
+
+    Now let's solve or $b_{r} (\vec{p})$:
+
+    \begin{equation}
+        \psi (x, t) = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s (\vec{p}) e^{- i p \cdot x} + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s (\vec{p}) e^{- i (p - p')} + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) e^{i (p - p')}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s (\vec{p}) e^{- i (\omega - \omega') \cdot t} e^{i (p - p') \cdot x} + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) e^{i (\omega - \omega') \cdot t} e^{- i (p - p') \cdot x}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    The $x$ integration can be done with the following formulas:
+
+    \begin{equation}
+        \int e^{-i (k - k') \cdot x} \frac{d^3 x}{(2 \pi)^3} = \delta^{3} (\vec{k} - \vec{k'})
+    \end{equation}
+
+    \begin{equation}
+        \int e^{-i (k + k') \cdot x} \frac{d^3 x}{(2 \pi)^3} = \delta^{3} (\vec{k} + \vec{k'})
+    \end{equation}
+
+    This gives:
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s (\vec{p}) e^{- i (\omega - \omega') \cdot t} \delta^{3} (\vec{p} - \vec{p'}) + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) e^{i (\omega - \omega') \cdot t} \delta^{3} (\vec{p} + \vec{p'})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    Now for the $p$ integration:
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s (\vec{p}) e^{- i (\omega - \omega') \cdot t} + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) e^{i (\omega - \omega') \cdot t}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [b_s (- \vec{p}) v_s (- \vec{p}) e^{- i (\omega - \omega') \cdot t} + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) e^{i (\omega - \omega') \cdot t}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) v_{s} (\vec{p}) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} [b_s (- \vec{p}) v_s (- \vec{p}) e^{- i (\omega - \omega') \cdot t}  v_{s} (\vec{p}) + a^{\dagger}_s (\vec{p}) u_s (\vec{p}) v_{s} (\vec{p}) e^{i (\omega - \omega') \cdot t}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \overline{u}_{r} (\vec{p}) v_{s} (\vec{p}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \int \overline{\psi} (x, t) v_{s} (\vec{p}) e^{i p \cdot x} d^3 x = \sum_{s} \int \frac{m}{\omega} b_s (- \vec{p}) v_s (- \vec{p}) e^{- i (\omega - \omega') \cdot t}  v_{s} (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            v_{r} (\vec{p}) = \gamma^0 \overline{v}_{r} (- \vec{p}) & & v_{s} (- \vec{p}) = \overline{v}_{s} (\vec{p}) \gamma^0
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        - \int \overline{\psi} (x, t) v_{s} (\vec{p}) e^{i p \cdot x} d^3 x = - \sum_{s} \int \frac{m}{\omega} b_s (- \vec{p}) v_s (- \vec{p}) e^{- i (\omega - \omega') \cdot t}  v_{s} (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}[]
+            v_{r} (\vec{p}) = - \gamma^0 \overline{v}_{r} (- \vec{p}) & & v_{s} (- \vec{p}) = - \overline{v}_{s} (\vec{p}) \gamma^0
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \overline{v}_{r} (\vec{p}) \gamma^0 \overline{v}_{s} (\vec{p}) = \frac{m}{\omega} \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \int \psi (x, t) \gamma^0 v (\vec{p}) e^{i p \cdot x} d^3 x = b_r (\vec{p})
+    \end{equation}
+    
+    \begin{framed}
+        \begin{equation}
+            b_r (\vec{p}) = \int \psi (x, t) \gamma^0 v (\vec{p}) e^{i p \cdot x} d^3 x
+        \end{equation}
+    \end{framed}
+
+    Taking the hermitian conjugate gives the result for $b_{r}^{\dagger} (\vec{p})$:
+
+    \begin{equation}
+        b_r (\vec{p}) = \int \psi (x, t) \gamma^0 v (\vec{p}) e^{i p \cdot x} d^3 x
+    \end{equation}
+
+    \begin{equation}
+        b_r^\dagger (\vec{p}) = \int v^{\dagger} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            \overline{b_r} (\vec{p}) = \int v^{\dagger} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x
+        \end{equation}
+    \end{framed}
+
+    So, the complete set is as follows:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}[]
+                a_r (\vec{p}) = \int \overline{u}_{r} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x & & b_r (\vec{p}) = \int \psi (x, t) \gamma^0 v (\vec{p}) e^{i p \cdot x} d^3 x \\
+                \overline{a}_r (\vec{p}) = \int \psi (x, t) \gamma^0 u^{\dagger} (\vec{p}) e^{i p \cdot x} d^3 x & & \overline{b_r} (\vec{p}) = \int v^{\dagger} (\vec{p}) \gamma^0 \psi (x, t) e^{i p \cdot x} d^3 x
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    Quantizing with equal time commutation relation gives unphysical answers. To get results that make sense, one must quantize with equal time anticommutation relations. This turns out to be
+    necessary any time a half integer spin is being quantized. It has the effect of causing the field quanta to obey Fermi-Dirac statistics, and therefore be Fermions, as we shall see. 
+    Additionally, quantizing integer spin fields with equal time anticommutation relation gives similar unphysical results. The effect is called the spin-statistics theorem. Replacing
+    commutators with anticommutators gives the following anticommutation relations:
+
+    \begin{equation}
+        \{ \psi_i (\vec{x}, t), \pi_{\psi_j} (\vec{x}, t) \} = i \delta^{3} (\bar{x} - \bar{x'}) \delta_{ij}
+    \end{equation}
+
+    \begin{equation}
+        \{ \psi_i (\vec{x}, t), \psi_j^{\dagger} (\vec{x}, t) \} = \delta^{3} (\bar{x} - \bar{x'}) \delta_{ij}
+    \end{equation}
+
+    \begin{equation}
+        \{ \pi_{\psi_i} (\vec{x}, t), \pi_{\psi_j} (\vec{x}, t) \} = 0
+    \end{equation}
+
+    \begin{equation}
+        \{ \psi_i (\vec{x}, t), \psi_j (\vec{x}, t) \} = 0
+    \end{equation}
+
+    Now, we can start evaluating the Fourier Coefficient anticommutators. Let's evaluate $\{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\}$ first:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} [u_r (\vec{p}) \gamma^0 \psi (\vec{x}, t) \overline{\psi} (\vec{x}, t) \gamma^0 u_s (\vec{p'}) + \overline{\psi} (\vec{x}, t) \gamma^0 u_s (\vec{p'}) \overline{u}_r (\vec{p'}) \psi (\vec{x}, t)] \; d^3 x d^3 x'
+    \end{equation}
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} [u_r (\vec{p})  \psi (\vec{x}, t) \psi^{\dagger} (\vec{x}, t)  u_s (\vec{p'}) + \psi^{\dagger} (\vec{x}, t)  u_s (\vec{p'}) u^{\dagger}_r (\vec{p'}) \psi (\vec{x}, t)] \; d^3 x d^3 x'
+    \end{equation}
+
+    Where $t = t'$. Manipulating, and un-supressing the spinor index gives:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} [u_{ri} (\vec{p})  \psi_i (\vec{x}, t) \psi^{\dagger}_j (\vec{x}, t)  u_{sj} (\vec{p'}) + \psi^{\dagger}_j (\vec{x}, t)  u_{sj} (\vec{p'}) u^{\dagger}_{ri} (\vec{p'}) \psi_i (\vec{x}, t)] \; d^3 x d^3 x'
+    \end{equation}
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} [\psi_i (\vec{x}, t) \psi^{\dagger}_j (\vec{x}, t) + \psi^{\dagger}_j (\vec{x}, t) \psi_i (\vec{x}, t)] \; d^3 x d^3 x'
+    \end{equation}
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} \{ \psi_i (\vec{x}, t), \psi^{\dagger}_j (\vec{x}, t) \} \; d^3 x d^3 x'
+    \end{equation}
+
+    Now applying equal time anticommutation relations:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} u_{ri} (\vec{p}) \delta^{3} (\vec{x} - \vec{x'}) \delta_{ij} u_{si} (\vec{p'}) \; d^3 x d^3 x'
+    \end{equation}
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} u_{ri} (\vec{p}) u_{si} (\vec{p'}) \delta^{3} (\vec{x} - \vec{x'}) \; d^3 x d^3 x'
+    \end{equation}
+
+    Now, supressing the spinor indices:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i p \cdot x - i p' \cdot x'} u_r (\vec{p}) u_s (\vec{p'}) \delta^{3} (\vec{x} - \vec{x'}) \; d^3 x d^3 x'
+    \end{equation}
+
+    Doing the $\vec{x}$ integration gives:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = \int e^{i (p - p') \cdot x'} u_r (\vec{p}) u_s (\vec{p'}) \; d^3 x d^3 x'
+    \end{equation}
+
+    Now, we can use the following integral to do the x-integration:
+
+    \begin{equation}
+        \int e^{- i (\vec{k} - \vec{k'} \cdot \vec{x})} d^3 x = \delta^3 (\vec{k} - \vec{k'}) \int e^{- i (\vec{k} - \vec{k'} \cdot \vec{x})} \frac{d^3 x}{(2 \pi)^3} = (2 \pi)^3 \delta^3 (\vec{k} - \vec{k'})
+    \end{equation}
+
+    Applying this gives:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = (2 \pi)^3 \delta^3 (\vec{k} - \vec{k'}) u_r (\vec{p}) u_s (\vec{p'}) \; d^3 x d^3 x'
+    \end{equation}
+
+    Then we also have $u_r^{\dagger} (\vec{p}) u_s (\vec{p}) = \frac{\omega}{m} \delta_{rs}$:
+
+    \begin{framed}
+        \begin{equation}
+            \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = (2 \pi)^3 \delta^3 (\vec{k} - \vec{k'}) \frac{\omega}{m} \delta_{rs} \; d^3 x d^3 x'
+        \end{equation}
+    \end{framed}
+
+    All other Fourier coefficient anticommutators trivially evaluate to zero, given that
+
+    \begin{equation}
+        \{ \pi_{\psi_i} (\vec{x}, t), \pi_{\psi_j} (\vec{x'}, t) \} = 0
+    \end{equation} 
+
+    and
+
+    \begin{equation}
+        \{ \psi_i (\vec{x}, t), \psi_j (\vec{x}, t) \} = 0
+    \end{equation}
+
+    So, the complete set of Fourier coefficient anticommutation relations is as follows:
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s^{\dagger} (\vec{p'})\} = (2 \pi)^3 \delta^3 (\vec{k} - \vec{k'}) \frac{\omega}{m} \delta_{rs} \; d^3 x d^3 x'
+    \end{equation}
+
+    \begin{equation}
+        \{b_r (\vec{p}), b_s^{\dagger} (\vec{p'})\} = (2 \pi)^3 \delta^3 (\vec{k} - \vec{k'}) \frac{\omega}{m} \delta_{rs} \; d^3 x d^3 x'
+    \end{equation}
+
+    \begin{equation}
+        \{a_r (\vec{p}), a_s (\vec{p'})\} = 0 \qquad \{a_r^{\dagger} (\vec{p}), a_s^{\dagger} (\vec{p'})\} = 0
+    \end{equation}
+
+    \begin{equation}
+        \{a_r (\vec{p}), b_s (\vec{p'})\} = 0 \qquad \{a_r^{\dagger} (\vec{p}), b_s^{\dagger} (\vec{p'})\} = 0
+    \end{equation}
+
+    \begin{equation}
+        \{a_r^{\dagger} (\vec{p}), b_s (\vec{p'})\} = 0 \qquad \{a_r (\vec{p}), b_s^{\dagger} (\vec{p'})\} = 0
+    \end{equation}
+
+    With these anticommutation relations established, the states of the theory can be worked out. The first step is to express
+    the Hamiltonian in terms of the Fourier coefficients. The process of doing this starts with the expression for the Hamiltonian
+    given above:
+
+    \begin{equation}
+        H = \int i \psi^{\dagger} \partial_{0} \psi d^3 x
+    \end{equation}
+
+    Now we can insert the values of the fields:
+
+    \begin{equation}
+        \partial_{0} \psi (x, t) = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} + b_s^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \psi^{\dagger} (x, t) = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s^{\dagger} (\vec{p}) e^{- i p \cdot x} + a_s^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    Inserting these gives:
+
+    \begin{equation}
+        H = i \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} + b_s^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] [b_s (\vec{p}) v_s^{\dagger} (\vec{p}) e^{- i p \cdot x} + a_s^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{- i p \cdot x} \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x} \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Now, the following relations can be used to do the integration over x:
+
+    \begin{equation}
+        \int e^{-i (k-k') \cdot x} d^3 x = \int e^{-i (\omega-\omega') \cdot x} e^{-i (k-k') \cdot x} d^3 x = e^{-i (\omega-\omega') \cdot x} (2 \pi^3) \delta^3 (k - k') = (2 \pi^3) \delta^3 (k - k')
+    \end{equation}
+
+    \begin{equation}
+        \int e^{-i (k-k') \cdot x} d^3 x = \int e^{-i (\omega-\omega') \cdot x} e^{-i (k-k') \cdot x} d^3 x = e^{-i (\omega-\omega') \cdot x} (2 \pi^3) \delta^3 (k + k') = e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k')
+    \end{equation}
+
+    Applying these:
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{-2i \omega t} (2 \pi^3) \delta^3 (p + p') \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \delta^3 (p - p') \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) \delta^3 (p - p') \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3) \delta^3 (p + p')] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Now the p' integration can be done:
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} e^{-2i \omega t} (2 \pi^3) (\vec{p}) \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3)] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        - \gamma^0 v_r (\vec{p}) = v_r (- \vec{p}) \qquad u_s (- \vec{p}) = u_s (\vec{p})
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} e^{-2i \omega t} (2 \pi^3) (\vec{p}) \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3)] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \overline{v}_r (\vec{p}) u_s (\vec{p}) = 0 \qquad \overline{u}_r (\vec{p}) v_s (\vec{p}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        u_r^{\dagger} (\vec{p}) u_s (\vec{p}) = \frac{\omega}{m} \delta_{rs} \qquad v_r^{\dagger} (\vec{p}) v_s (\vec{p}) = \frac{\omega}{m} \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) \frac{\omega}{m} \delta_{rs} \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{\omega}{m} \delta_{rs}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) - \{ b_s (\vec{p}), b_s^{\dagger} (\vec{p}) \}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    This can be re-expressed using $\{ b_s (\vec{p}), b_s^{\dagger} (\vec{p}) \} = (2 \pi)^3 \frac{\omega}{m} \delta^3 (\vec{p} - \vec{p'}) \delta_{rs}$ as follows:
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) - (2 \pi)^3 \frac{\omega}{m} \delta^3 (\vec{p} - \vec{p'}) \delta_{rs}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Infinite (and finite) shifts in the zero point of the energy scale cannot be measured, so the last term can be ignored. Doing this gives the normal ordering Hamiltonian:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}
+                H = i \sum_{s} \int \frac{m}{\omega} [b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \\
+            + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) - (2 \pi)^3 \frac{\omega}{m} \delta^3 (\vec{p} - \vec{p'}) \delta_{rs}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    In the case of spin half fields, normal ordering is formally defined as, at the cost of a minus sign every time operators are moved past each other, positioning all
+    $a_s^{\dagger} (\vec{p})$ and $b_s^{\dagger} (\vec{p})$ operators (later we weill see that these are creation operators) to the left and all $a_s (\vec{p})$ and
+    $b_s (\vec{p})$ (these will turn out to be annihilation operators to the right). Doing this yields more sensible quantum physical expressions. The big difference
+    between normal ordering bosonic operators and fermionic oerpators is the minus sign that shows up under interchange of fermionic operators.
+
+    While we are at it, it is worth expressing the momentum and charge introduced above in terms of the Fourier coefficients. Let's start with the momentum. above, we found
+    that the momentum is equal to:
+
+    \begin{equation}
+        \vec{P} = - i \int \psi^{\dagger} \nabla \psi d^3 x
+    \end{equation}
+
+    Now we can insert the values of the fields:
+
+    \begin{equation}
+        \nabla \psi (x, t) = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} - b_s^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \psi^{\dagger} (x, t) = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s^{\dagger} (\vec{p}) e^{- i p \cdot x} + a_s^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    Inserting these:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = - i \int \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{- i p \cdot x} \\
+            + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x} \\
+            + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} \\
+            a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3} \frac{d^{3} p'}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Now, the following relations can be used to do the integration over x:
+
+    \begin{equation}
+        \int e^{-i (k-k') \cdot x} d^3 x = \int e^{-i (\omega-\omega') \cdot x} e^{-i (k-k') \cdot x} d^3 x = e^{-i (\omega-\omega') \cdot x} (2 \pi^3) \delta^3 (k - k') = (2 \pi^3) \delta^3 (k - k')
+    \end{equation}
+
+    \begin{equation}
+        \int e^{-i (k-k') \cdot x} d^3 x = \int e^{-i (\omega-\omega') \cdot x} e^{-i (k-k') \cdot x} d^3 x = e^{-i (\omega-\omega') \cdot x} (2 \pi^3) \delta^3 (k + k') = e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k')
+    \end{equation}
+
+    Applying these:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = - i \int \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k') \\
+            + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) (2 \pi^3) \delta^3 (k - k') \\
+            + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) (2 \pi^3) \delta^3 (k - k') \\
+            a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k')] \frac{d^{3} p}{(2 \pi)^3} \frac{d^{3} p'}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        - \gamma^0 v_r (\vec{p}) = v_r (- \vec{p}) \qquad u_s (- \vec{p}) = u_s (\vec{p})
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} e^{-2i \omega t} (2 \pi^3) (\vec{p}) \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3)] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \overline{v}_r (\vec{p}) u_s (\vec{p}) = 0 \qquad \overline{u}_r (\vec{p}) v_s (\vec{p}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        u_r^{\dagger} (\vec{p}) u_s (\vec{p}) = \frac{\omega}{m} \delta_{rs} \qquad v_r^{\dagger} (\vec{p}) v_s (\vec{p}) = \frac{\omega}{m} \delta_{rs}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) \frac{\omega}{m} \delta_{rs} \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{\omega}{m} \delta_{rs}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Normal ordering then gives the final answer:
+
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}
+                H = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) \\
+            + a_r^{\dagger} (\vec{p}) a_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+            \end{aligned}
+        \end{equation}
+    \end{framed}
+
+    We can see now that normal ordering uniquely bypasses the divergence to return the empirically correct result. So we take the normal
+    ordered momentum as the final result. Now that the momentum is done, let's express the charge introduced at the beginning in terms of
+    the Fourier coefficients:
+
+    \begin{equation}
+        Q = \int \psi^{\dagger} \psi d^3 x
+    \end{equation}
+
+    Now we can insert the values of the fields:
+
+    \begin{equation}
+        \partial_{0} \psi (x, t) = \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} + b_s^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    \begin{equation}
+        \psi^{\dagger} (x, t) = \sum_{s} \int \frac{m}{\omega} [b_s (\vec{p}) v_s^{\dagger} (\vec{p}) e^{- i p \cdot x} + a_s^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3}
+    \end{equation}
+
+    Inserting these gives:
+
+    \begin{equation}
+        Q = i \sum_{s} \int \frac{m}{\omega} [a_s (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} + b_s^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] [b_s (\vec{p}) v_s^{\dagger} (\vec{p}) e^{- i p \cdot x} + a_s^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{i p \cdot x}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+    \end{equation}
+
+
+    \begin{equation}
+        \begin{aligned}
+            Q = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{- i p \cdot x} \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x} \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) e^{- i p \cdot x} \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{i p \cdot x}] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Now, the following relations can be used to do the integration over x:
+
+    \begin{equation}
+        \int e^{-i (k-k') \cdot x} d^3 x = \int e^{-i (\omega-\omega') \cdot x} e^{-i (k-k') \cdot x} d^3 x = e^{-i (\omega-\omega') \cdot x} (2 \pi^3) \delta^3 (k - k') = (2 \pi^3) \delta^3 (k - k')
+    \end{equation}
+
+    \begin{equation}
+        \int e^{-i (k-k') \cdot x} d^3 x = \int e^{-i (\omega-\omega') \cdot x} e^{-i (k-k') \cdot x} d^3 x = e^{-i (\omega-\omega') \cdot x} (2 \pi^3) \delta^3 (k + k') = e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k')
+    \end{equation}
+
+    Applying these:
+
+    \begin{equation}
+        \begin{aligned}
+            Q = - i \int \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} (\vec{p}) e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k') \\
+            + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) (2 \pi^3) \delta^3 (k - k') \\
+            + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) (2 \pi^3) \delta^3 (k - k') \\
+            a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3) \delta^3 (k + k')] \frac{d^{3} p}{(2 \pi)^3} \frac{d^{3} p'}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    Now the p' integration can be done:
+
+    \begin{equation}
+        - \gamma^0 v_r (\vec{p}) = v_r (- \vec{p}) \qquad u_s (- \vec{p}) = u_s (\vec{p})
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            Q = i \sum_{s} \int \frac{m}{\omega} \\
+        [b_r (\vec{p}) a_s (\vec{p}) v_r^{\dagger} (\vec{p}) u_s^{\dagger} e^{-2i \omega t} (2 \pi^3) (\vec{p}) \\
+        + b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p}) \\
+        a_r^{\dagger} (\vec{p}) b_s^{\dagger} (\vec{p}) u_r^{\dagger} (\vec{p}) v_s (\vec{p}) e^{-2i \omega t} (2 \pi^3)] \\
+        \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \overline{v}_r (\vec{p}) u_s (\vec{p}) = 0 \qquad \overline{u}_r (\vec{p}) v_s (\vec{p}) = 0
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            Q = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) v_r^{\dagger} (\vec{p}) v_s (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) u_r^{\dagger} (\vec{p}) u_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    This can be reexpressed using $\{ b_s (\vec{p}), b_s^{\dagger} (\vec{p}) \} = (2 \pi)^3 \frac{\omega}{m} \delta^3 (\vec{p} - \vec{p'}) \delta_{rs}$ as follows:
+
+    \begin{equation}
+        \begin{aligned}
+            Q = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p}) \frac{\omega}{m} \delta_{rs} \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{\omega}{m} \delta_{rs}] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    We see now that normal ordering uniquely bypasses the divergence and returns the empirically correct result. So, we take the normal ordered charge as the final
+    result:
+
+    \begin{framed}
+        \begin{equation}
+            Q = i \sum_{s} \int \frac{m}{\omega} [b_r (\vec{p}) b_s^{\dagger} (\vec{p})
+            + a_r^{\dagger} (\vec{p}) a_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{equation}
+    \end{framed}
+
+    Now let's find the meaning of the various Fourier coefficient operators by exploring their effect on energy eigenstates.s
+
+    \begin{equation}
+        H_n | E \rangle = E | E \rangle
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} [b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x \\
+        + \sum_{s} \int \frac{m}{\omega} a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x \\
+        + \sum_{s} \int \frac{m}{\omega} [ a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \{ a_r^{\dagger} (\vec{p}), a_s (\vec{p}) \} ] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x \\
+        + \sum_{s} \int \frac{m}{\omega} [ a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{\omega}{m} \delta^3 (\vec{p} - \vec{p'}) \delta_{rs} ] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            H_n a_s (\vec{p}) = (E - \omega) a_s (\vec{p}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    A virtually identical calculation gives the following result for $b_s (\vec{p})$
+
+    \begin{framed}
+        \begin{equation}
+            H_n b_s (\vec{p}) = (E - \omega) b_s (\vec{p}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    Therefore, we see that $a_s (\vec{p})$ and $b_s (\vec{p})$ are lowering or annihilation operators (as mentioned above). They remove a quantum of energy from the state
+    they act on. Now let's characterize $a_s^{\dagger} (\vec{p})$:
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} [b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \\
+        + a_r^{\dagger} (\vec{p}) a_s (\vec{p})] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x \\
+        + \sum_{s} \int \frac{m}{\omega} a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x \\
+        + \sum_{s} \int \frac{m}{\omega} [ a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \{ a_r^{\dagger} (\vec{p}), a_s (\vec{p}) \} ] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            H_n a_{s} (\vec{p}) | E = \sum_{s} \int \frac{m}{\omega} b_s^{\dagger} (\vec{p}) b_r (\vec{p}) \frac{d^{3} p}{(2 \pi)^3} d^3 x \\
+        + \sum_{s} \int \frac{m}{\omega} [ a_r^{\dagger} (\vec{p}) a_s (\vec{p}) \frac{\omega}{m} \delta^3 (\vec{p} - \vec{p'}) \delta_{rs} ] \frac{d^{3} p}{(2 \pi)^3} d^3 x
+        \end{aligned}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            H_n a_s (\vec{p}) = (E + \omega) a_s (\vec{p}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    A virtually identical calculation gives the following result for $b_s (\vec{p})$
+
+    \begin{framed}
+        \begin{equation}
+            H_n b_s (\vec{p}) = (E + \omega) b_s (\vec{p}) | E \rangle
+        \end{equation}
+    \end{framed}
+
+    Therefore, we see that $a_s^{\dagger} (\vec{p})$ and $b_s^{\dagger} (\vec{p})$ are lowering or annihilation operators (as mentioned above). They remove a quantum of energy from the state
+    they act on. From here, a few important realizations can be made. First, because $H_n$ is an integral over $a_s^{\dagger} (\vec{p}) a_s (\vec{p})$ and $b_s^{\dagger} (\vec{p}) b_s (\vec{p})$,
+    its expectation values are nonnegative:
+
+    \begin{equation}
+        \langle \psi | H_n | \psi \rangle
+    \end{equation}
+
+    With this in mind, because $a_s (\vec{p})$ and $b_s (\vec{p})$ lower the value of the eigenvalue by one quantum, there must be a lowest state that gets zeroes by $a_s (\vec{p})$ and $b_s (\vec{p})$:
+
+    \begin{equation}
+        a_s (\vec{p}) | 0 \rangle = 0 \qquad b_s (\vec{p}) | 0 \rangle = 0
+    \end{equation}
+
+    This ground state will be taken as the definition of a vacuum, because it has no quanta of left to be annihilated. One can then interpret these energy quanta to be particles (in this case, spin half
+    massive particles of two different types because we are quantizing a massive complex Dirac spinor field theory). With this interpretation, one can see that field quantization has had the folowing
+    effect. At a given frequency. BAsically the states of the theory simply correspond to a vacuum containing some number of massive spin zero particles with various frequencies. One can act on the vacuum
+    state with the creation operator to populate it with particles. A particle state can be written in the folowing way:
+
+    \begin{equation}
+        \begin{aligned}
+            a_s^{\dagger} (\vec{k}) | 0 \rangle = | \vec{k}, s \rangle \\
+            b_s^{\dagger} (\vec{k}) | 0 \rangle = | \vec{k}, s \rangle
+        \end{aligned}
+    \end{equation}
+
+    The complete spectrum of energy eigenstates can be written as follows:
+
+    \begin{equation}
+        \prod_{i = 1}^{K} a_s^{\dagger} (\vec{k}) \prod_{j = 1}^{L} b_s^{\dagger} (\vec{k}) | 0 \rangle = | (\vec{p}_1, s_1)_a ... (\vec{p}_K, s_K)_a ... (\vec{p}_1, s_1)_b ... (\vec{p}_K, s_K)_b \rangle
+    \end{equation}
+
+    Because the creation operators anticommute with each other, these field quanta obey Fermi-Dirac statistics, and are Fermions, which obey the Pauli Exclusion Principle. The zero point on the energy scale
+    is set such that the energy of the vacuum has the value zero. As a consequence:
+
+    \begin{equation}
+        \begin{aligned}
+            a_s^{\dagger} (\vec{k}) | 0 \rangle = | \vec{k}, s \rangle \\
+            b_s^{\dagger} (\vec{k}) | 0 \rangle = | \vec{k}, s \rangle
+        \end{aligned}
+    \end{equation}
+
+    The zero point on the energy ise set such that the energy of the vacuum has the vaue zero. As a consequence:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} | \vec{k}, s \rangle = \omega | \vec{k}, s \rangle \\
+            \vec{P} | \vec{k}, s \rangle = \omega | \vec{k}, s \rangle
+        \end{aligned}
+    \end{equation}
+
+    With the above calculated formula for the momentum operator, one finds:
+
+    \begin{equation}
+        \begin{aligned}
+            \vec{P} | \vec{k}, s \rangle = \vec{k} | \vec{k}, s \rangle \\
+            \vec{P} | \vec{k}, s \rangle = \vec{k} | \vec{k}, s \rangle
+        \end{aligned}
+    \end{equation}
+
+    Now for the key result from this charge calculation. Applying the charge operator to the two different types of particle states gives the following relations:
+
+    \begin{equation}
+        \begin{aligned}
+            Q a^{\dagger} (\vec{k}) | 0 \rangle = a^{\dagger} (\vec{k}) | 0 \rangle \\
+            Q b^{\dagger} (\vec{k}) | 0 \rangle = b^{\dagger} (\vec{k}) | 0 \rangle
+        \end{aligned}
+    \end{equation}
+
+    This cements our interpretation of these two different types of particle states as particles and their antiparticles.
+
+\end{document}

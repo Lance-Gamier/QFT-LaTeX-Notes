@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{}%
+\contentsline {section}{\numberline {2}Scattering Order to the $2^{nd}$ Order}{2}{}%
+\contentsline {section}{\numberline {3}Interpretation of Field Operators and Propagators}{6}{}%
+\contentsline {section}{\numberline {4}Proof that First Order Term Always Vanishes}{7}{}%
+\contentsline {section}{\numberline {5}Which scattering Operator Terms Contribute to Each Scattering Matrix Elements}{12}{}%
+\contentsline {section}{\numberline {6}Feynman Diagram Interpretation of Contributing Scattering Operator Terms}{16}{}%
+\contentsline {section}{\numberline {7}Direct Computation of Second Order Amplitudes}{21}{}%
+\contentsline {subsection}{\numberline {7.1}$e^{-}$ Compton Scattering}{22}{}%
+\contentsline {subsection}{\numberline {7.2}$e^{+}$ Compton Scattering}{23}{}%
+\contentsline {subsection}{\numberline {7.3}Pair Annihilation}{23}{}%
+\contentsline {subsection}{\numberline {7.4}Pair Production}{26}{}%
+\contentsline {subsection}{\numberline {7.5}$e^{-}$ Moller Scattering}{28}{}%
+\contentsline {subsection}{\numberline {7.6}$e^{+}$ Moller Scattering}{33}{}%
+\contentsline {section}{\numberline {8}Direct Order of Second Order Amplitudes Continued}{33}{}%
+\contentsline {subsection}{\numberline {8.1}Bhabha Scattering}{33}{}%
+\contentsline {subsection}{\numberline {8.2}Electron Self-Energy}{36}{}%
+\contentsline {subsection}{\numberline {8.3}Positron Self-Energy}{37}{}%
+\contentsline {subsection}{\numberline {8.4}Photon Self-Energy}{37}{}%
+\contentsline {subsection}{\numberline {8.5}Vacuum Self-Energy}{38}{}%
+\contentsline {section}{\numberline {9}Derivation of Feynman Rules by Inspection of Feynman Diagrams and Calculated Amplitudes}{39}{}%
