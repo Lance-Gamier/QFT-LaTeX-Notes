@@ -36,27 +36,47 @@
     photon lines. Ignoring the ones that pertain to quantum loop corrections, the QED Feynman rules are:
 
     \begin{center}
-        \begin{tabular}[center]{|c|c|}
+        \begin{tabular}{|c|c|}
             \hline
-            Incoming electron & $U_{e}$ \\
+            $\langle e^{-}, \gamma | S_{a} | e^{-}, \gamma \rangle$ & $\langle e^{-}, \gamma | S_{b} | e^{-}, \gamma \rangle$ \\
             \hline
-            Outgoing electron & $\overline{U}_{e}$ \\
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex [label = right: $x_1$] (a);
+                    \vertex [below = of a, label = left: $x_2$] (b);
+                    \vertex [above right = of a, label = $\gamma$] (c);
+                    \vertex [above left = of a, label = $e^{-}$] (d);
+                    \vertex [below left = of b, label = $\gamma$] (e);
+                    \vertex [below right = of b, label = $e^{+}$] (f);
+    
+                    \diagram{
+                        (b) -- [fermion] (a);
+                        (c) -- [boson] (b);
+                        (a) -- [fermion] (d);
+                        (e) -- [boson] (a);
+                        (b) -- [fermion] (f);
+                    };
+                \end{feynman}
+            \end{tikzpicture} & \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex [label = right: $x_1$] (a);
+                    \vertex [below = of a, label = left: $x_2$] (b);
+                    \vertex [above right = of a, label = $e^{+}$] (c);
+                    \vertex [above left = of a, label = $e^{-}$] (d);
+                    \vertex [below left = of b, label = $e^{-}$] (e);
+                    \vertex [below right = of b, label = $e^{+}$] (f);
+    
+                    \diagram{
+                        (b) -- [fermion] (a);
+                        (c) -- [fermion] (a);
+                        (a) -- [boson] (d);
+                        (e) -- [boson] (b);
+                        (b) -- [fermion] (f);
+                    };
+                \end{feynman}
+            \end{tikzpicture} \\
             \hline
-            Incoming positron & $V_{e}$ \\
-            \hline
-            Outgoing positron & $\overline{V}_{e}$ \\
-            \hline
-            Incoming photon & $\epsilon_{1 \mu} (first polarization)$ \\
-            \hline
-            Outgoing photon & $\epsilon_{2 \mu} (second polarization)$ \\
-            \hline
-            Vertex & $-i e \gamma^{\mu}$ \\
-            \hline
-            Internal fermion & $i S_{F} (p) = \frac{i}{\slashed{p} - m + i (\epsilon = 0)} = \frac{\slashed{p} + m}{p^2 - m^2}$ \\
-            \hline
-            Internal photon & $i D^{F}_{\mu \nu} (p) = - \frac{i g_{\mu \nu}}{q^2 + i(\epsilon = 0)}$ \\
-            \hline
-        \end{tabular}
+        \end{tabular} \\
     \end{center}
 
     Where the dot product of the polarization vectors with themselves is equal to $-1$. The second link tht I mentioned in the preamble
@@ -68,12 +88,12 @@
     \begin{center}
         \begin{framed}
             \begin{equation}
-                \frac{m_1}{2} \frac{(2 \pi)^4 |\mathscr{M}_{fi}|^2}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]} \prod_{n = 1}^{N_f} \frac{m_n d^3 \vec{p}_n}{(2 \pi)^3 E_n} \prod_{n = 1}^{N_b} \frac{d^3 \vec{p}_n}{(2 \pi)^3 E_n}
+                d \sigma \frac{m_1}{2} \frac{(2 \pi)^4 |\mathscr{M}_{fi}|^2}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]^{\frac{1}{2}}} \prod_{n = 1}^{N_f} \frac{m_n d^3 \vec{p}_n}{(2 \pi)^3 E_n} \prod_{n = 1}^{N_b} \frac{d^3 \vec{p}_n}{(2 \pi)^3 E_n}
             \end{equation}
         \end{framed}
     \end{center}
 
-    The first link that I mentioned in the preambe is to a video on deriving this formula.
+    The first link that I mentioned in the preambe is to a video on deriving this formula. \\
 
     This calculation will have a few distinct stages. First, we will simplify the general differential scattering cross section formua as much
     as we can without knowing the Feynman amplitude. second, we wil use the Feynman rules to write out the Feynman amplitude,
@@ -107,7 +127,7 @@
     conservation delta functions, integration simply yields the following
 
     \begin{equation}
-        d^3 \sigma = \frac{m}{4 k_i \cdot p_i} \frac{d^3 \vec{k}_f}{(2 \pi)^3 E_{p_f} E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (k_i + p_i - k_f - p_f)
+        d^3 \sigma = \frac{m^2}{4(2 \pi)^2 k_i \cdot p_i} \frac{d^3 \vec{k}_f}{E_{k_f} E_{p_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta (E_{k_i} + E_{p_i} - E_{k_f} - E_{p_f})
     \end{equation}
 
     Where the delta function has enforced momentum conservation:
@@ -120,7 +140,7 @@
     reveal the solid angle differential (remember, $d\sigma$ contains two differentials):
 
     \begin{equation}
-        d^3 \sigma = \frac{m}{4 k_i \cdot p_i} \frac{|\vec{k}_f|^2 d|\vec{k}_f| d \Omega}{(2 \pi)^3 E_{p_f} E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (k_i + p_i - k_f - p_f)
+        d^3 \sigma = \frac{m^2}{4 (2 \pi)^2 k_i \cdot p_i} \frac{|\vec{k}_f|^2 d|\vec{k}_f| d \Omega}{E_{k_f} E_{p_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta (E_{k_i} + E_{p_i} - E_{k_f} - E_{p_f})
     \end{equation}
 
     Now, to get the scattering cross section purely with respect to the solid angle, we must integrate over $|\vec{k}_1|$. The remaining delta function
@@ -128,13 +148,13 @@
     Specifically, the integral we need to perform is:
 
     \begin{equation}
-        d^3 \sigma = \frac{m d\Omega}{4 k_i \cdot p_i} \int \frac{|\vec{k}_f|^2 d|\vec{k}_f|}{(2 \pi)^3 E_{p_f} E_{k_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (k_i + p_i - k_f - p_f)
+        d^3 \sigma = \frac{m^2 d\Omega}{4 (2 \pi)^2 k_i \cdot p_i} \int \frac{|\vec{k}_f|^2 d|\vec{k}_f|}{(2 \pi)^3 E_{k_f} E_{p_f}} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \delta (E_{k_i} + E_{p_i} - E_{k_f} - E_{p_f})
     \end{equation}
 
-    using normal identities, we can rewrite the delta function in the following way that makes the integral easy to do:
+    Using normal identities, we can rewrite the delta function in the following way that makes the integral easy to do:
 
     \begin{equation}
-        \delta^4 (k_i + p_i - k_f - p_f) = \delta (E_{k_i} + E_{p_i} - |\vec{k}| - \sqrt{|\vec{k}_f|^2 + m^2}) = \delta[f(|\vec{k}_f|)] = \frac{\delta[|\vec{k}_f| - |\vec{k}_f|_0]}{|\vec{k}_f|}
+        \delta^4 (E_{k_i} + E_{p_i} - E_{k_f} - E_{p_f}) = \delta (E_{k_i} + E_{p_i} - |\vec{k}| - \sqrt{|\vec{k}_f|^2 + m^2}) = \delta[f(|\vec{k}_f|)] = \frac{\delta[|\vec{k}_f| - |\vec{k}_f|_0]}{|\vec{k}_f|}
     \end{equation}
 
     Where $f'(|\vec{k}_f|)$ is the derivative of the f-function, and $|\vec{k}_f|_0$ is the root of the f-function, or the actual value of $|k_f|$ (the value
@@ -160,6 +180,12 @@
         |f'(|\vec{k}_f|)| = \frac{p_f \cdot k_f}{E_{k_f} E_{p_f}}
     \end{equation}
 
+    As was previously said, the delta function enforces energy conservation:
+
+    \begin{equation}
+        E_{k_i} + E_{p_i} - E_{k_f} - E_{p_f}
+    \end{equation}
+
     It is worth pointing out that the superscript on the differential is usually dropped. It was useful to keep track of things while we were doing this integration,
     but it is no longer needed, so we will drop it. We therefore will write:
 
@@ -175,12 +201,18 @@
     \end{equation}
 
     \begin{equation}
-        \frac{d \sigma}{d \Omega} = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \frac{1}{p_f \cdot k_f}
+        \frac{d \sigma}{d \Omega} = \frac{m^2 |k_f|^2}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 \frac{1}{p_f \cdot k_f}
     \end{equation}
 
     \begin{equation}
-        \frac{d \sigma}{d \Omega} = \frac{m^2 d \Omega}{4 (2 \pi)^2 k_i \cdot p_i} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2
+        \frac{d \sigma}{d \Omega} = \frac{m^2 (|k_f|^2 = (E_{k_f})^2)}{4 (2 \pi)^2 (p_f \cdot k_f) (k_i \cdot p_i)} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2
     \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            \frac{d \sigma}{d \Omega} = \frac{m^2 (E_{k_f})^2}{4 (2 \pi)^2 (p_f \cdot k_f) (k_i \cdot p_i)} \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2
+        \end{equation}
+    \end{framed}
 
     \section*{The Feynman Amplitude}
 
@@ -189,30 +221,30 @@
     \begin{equation}
         \begin{aligned}
             M_{fi} = M_{if}^1 + M_{if}^2 & \\
-            & = \overline{U}_e (p_f, s_f) (- i e \gamma^{\mu}) \epsilon_{\mu}' \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \epsilon_{\nu} (- i e \gamma^{\mu}) \overline{U}_e (p_f, s_f) \\
-            & + \epsilon_{\nu} (- i e \gamma^{\mu}) \overline{U}_e (p_f, s_f) \frac{i}{\slashed{p}_i + \slashed{k}_i - m} (- i e \gamma^{\mu}) \epsilon_{\mu}' \overline{U}_e (p_f, s_f)
+            & = \overline{U}_e (p_f, s_f) (- i e \gamma^{\mu}) \epsilon_{\mu}' \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \epsilon_{\nu} (- i e \gamma^{\mu}) U_e (p_i, s_i) \\
+            & + \epsilon_{\nu} (- i e \gamma^{\mu}) \overline{U}_e (p_f, s_f) \frac{i}{\slashed{p}_i + \slashed{k}_f - m} (- i e \gamma^{\mu}) \epsilon_{\mu}' U_e (p_i, s_i)
         \end{aligned}
     \end{equation}
 
     We can then perform some basic simplification:
 
     \begin{equation}
-        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \slashed{\epsilon} \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \slashed{\epsilon} \overline{U}_e (p_i, s_i)
-        - i e^2 \overline{U}_e (p_f, s_f) \slashed{\epsilon} \frac{i}{\slashed{p}_i - \slashed{k}_f - m} \slashed{\epsilon} \overline{U}_e (p_i, s_i)
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \slashed{\epsilon} \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \slashed{\epsilon} U_e (p_i, s_i)
+        - i e^2 \overline{U}_e (p_f, s_f) \slashed{\epsilon} \frac{i}{\slashed{p}_i - \slashed{k}_f - m} \slashed{\epsilon} U_e (p_i, s_i)
     \end{equation}
 
     \begin{equation}
-        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{i}{\slashed{p}_i + \slashed{k}_i - m} \slashed{\epsilon} + \slashed{\epsilon} \frac{i}{\slashed{p}_i - \slashed{k}_f - m} \slashed{\epsilon} \bigg) \overline{U}_e (p_i, s_i)
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{1}{\slashed{p}_i + \slashed{k}_i - m} \slashed{\epsilon} + \slashed{\epsilon} \frac{1}{\slashed{p}_i - \slashed{k}_f - m} \slashed{\epsilon} \bigg) U_e (p_i, s_i)
     \end{equation}
 
     \begin{equation}
-        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{i}{(\slashed{p}_i + \slashed{k}_i)^2 - m} \slashed{\epsilon} + \slashed{\epsilon} \frac{i}{(\slashed{p}_i - \slashed{k}_f)^2 - m} \slashed{\epsilon} \bigg) \overline{U}_e (p_i, s_i)
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon} \frac{\slashed{p}_i + \slashed{k}_i - m}{(\slashed{p}_i + \slashed{k}_i)^2 - m} \slashed{\epsilon} + \slashed{\epsilon} \frac{\slashed{p}_i - \slashed{k}_f - m}{(\slashed{p}_i - \slashed{k}_f)^2 - m} \slashed{\epsilon} \bigg) U_e (p_i, s_i)
     \end{equation}
 
     We can now work on simplifying the denomiators. Let's start with the first one. Multiplying everything out and writing it in index notation gives the following:
 
     \begin{equation}
-        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} p_{i \nu} + k_{i \mu} k _{i \nu} + p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = \gamma^{\mu} \gamma^{\nu} (p_{i \mu} p_{i \nu} + k_{i \mu} k _{i \nu} + p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
     \end{equation}
 
     Next, one must apply the following identity:
@@ -224,25 +256,31 @@
     Inserting this into the denominator gives the following: 
 
     \begin{equation}
-        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + p_i \cdot p_i I + k_i \cdot k_i I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = p_i \cdot p_i I + k_i \cdot k_i I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
     \end{equation}
 
     However, we know that $p_i \cdot p_i = m^2$ and $k_i \cdot k_i = 0$, so the denominator simplifies down to:
 
     \begin{equation}
-        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + \gamma^{\mu} \gamma^{\nu} (p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = \gamma^{\mu} \gamma^{\nu} (p_{i \mu} k_{i \nu} + p_{i \nu} k_{i \mu})
     \end{equation}
 
     We can now rewrite this in the following way:
 
     \begin{equation}
-        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = - m^2 I + \gamma^{\mu} \gamma^{\nu} (\gamma^{\mu} \gamma^{\nu} + \gamma^{\nu} \gamma^{\mu}) p_{i \mu} k_{i \nu}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = \gamma^{\mu} \gamma^{\nu} (\gamma^{\mu} \gamma^{\nu} + \gamma^{\nu} \gamma^{\mu}) p_{i \mu} k_{i \nu}
     \end{equation}
 
     We can now apply the Clifford algebra to get:
 
     \begin{equation}
         (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I = 2 g^{\mu \nu} p_{i \mu} k_{i \nu} I = 2 p_i \cdot k_i I
+    \end{equation}
+
+    A similar anaysis on the second denominator gives the following result:
+
+    \begin{equation}
+        (\slashed{p}_i + \slashed{k}_i)^2 - m^2 I =  2 p_i \cdot k_i I
     \end{equation}
 
     So therefore the Feynman amplitude is:
@@ -266,13 +304,13 @@
     \end{equation}
     
     \begin{equation}
-        \slashed{k}_i \slashed{\epsilon} = (2 g^{\mu \nu} - \gamma^\nu \gamma^\nu) k_{i \nu} = 2 k_i \cdot \epsilon - \slashed{\epsilon} \slashed{k}_i
+        \slashed{k}_i \slashed{\epsilon} = (2 g^{\mu \nu} - \gamma^\nu \gamma^\nu) k_{i \mu} \epsilon_\nu = 2 k_i \cdot \epsilon - \slashed{\epsilon} \slashed{k}_i
     \end{equation}
 
     Plugging these resuts in gives:
 
     \begin{equation}
-        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} = 2 (p_i + k_i) \cdot \epsilon \slashed{p}_i \slashed{\epsilon} + \slashed{k}_i \slashed{\epsilon} + m \slashed{\epsilon}
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} = 2 (p_i + k_i) \cdot \epsilon - \slashed{\epsilon} \slashed{p}_i + \slashed{\epsilon} \slashed{k}_i + m \slashed{\epsilon}
     \end{equation}
 
     Because $\epsilon$ is the initial polarization vector of the photon, it is transverse to the initial photon momentum, so that dot product is zero. Also, the goal is to write the cross section in
@@ -299,17 +337,17 @@
     The numerator of the second term in the Feynman ampitude simpifies down in the same way to the following:
 
     \begin{equation}
-        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon} U_e (p_i, s_i) = - \slashed{\epsilon} \slashed{k}_i U_e (p_i, s_i)
+        (\slashed{p}_i + \slashed{k}_i - m) \slashed{\epsilon'} U_e (p_i, s_i) = - \slashed{\epsilon'} \slashed{k}_f U_e (p_i, s_i)
     \end{equation}
 
     Substituting this into the Feynman amplitude gives us the most simpified result that is obtainable before squaring:
 
     \begin{equation}
-        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon'} \frac{- \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \slashed{\epsilon} \frac{\slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg( \slashed{\epsilon'} \frac{- \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \slashed{\epsilon} \frac{\slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) U_e (p_i, s_i)
     \end{equation}
 
     \begin{equation}
-        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{2 p_i \cdot k_f} \bigg) U_e (p_i, s_i)
     \end{equation}
 
     The next step is to write down the absolute square of the amplitude, and then simplify A LOT more.
@@ -321,31 +359,31 @@
     conjugate are given below:
 
     \begin{equation}
-        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+        M_{fi} = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{- 2 p_i \cdot k_f} \bigg) U_e (p_i, s_i)
     \end{equation}
 
     \begin{equation}
-        M_{fi}^* = - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i)
+        M_{fi}^* = - i e^2 \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_f} \bigg) U_e (p_f, s_f)
     \end{equation}
 
     With these results, we can write down a convenient expression for the needed square of the Feynman amplitude:
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg|- i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) \Bigg|^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} e^4 \sum_{S_i S_f} \Bigg|- \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{2 p_i \cdot k_f} \bigg) U_e (p_i, s_i) \Bigg|^2
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} - i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) i e^2 \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_f, s_f)
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} e^4 \sum_{S_i S_f} \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{2 p_i \cdot k_f} \bigg) U_e (p_i, s_i) i e^2 \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) U_e (p_f, s_f)
     \end{equation}
 
     Because the quantity under the sum is scalar, we can take its trace without changing anything:
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg[- i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) i e^2 \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_f, s_f) \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} e^4 \sum_{S_i S_f} Tr \Bigg[ \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{2 p_i \cdot k_f} \bigg) U_e (p_i, s_i) \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_f, s_f) \Bigg]^2
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg[- i e^2 \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_i, s_i) i e^2 \overline{U}_e (p_f, s_f) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_ss, s_f) \overline{U}_e (p_f, s_f) \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} e^4 \sum_{S_i S_f} Tr \Bigg[ \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{2 p_i \cdot k_f} \bigg) U_e (p_i, s_i) \overline{U}_e (p_i, s_i) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_f} \bigg) \overline{U}_e (p_ss, s_f) \overline{U}_e (p_f, s_f) \Bigg]^2
     \end{equation}
 
     The reason why this version of the squared amplitude is favorable is because, with this factor ordering, we can easily simplify the product of spinors using the following two identity:
@@ -357,13 +395,13 @@
     So, then the square of the Feynman amplitude is:
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{1}{2} \sum_{S_i S_f} \Bigg[- i e^2 \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \frac{\slashed{p} + I m}{2 m} \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \frac{\slashed{p} + I m}{2 m} \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{2} \sum_{S_i S_f} \Bigg[\bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{2 p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{2 p_i \cdot k_f} \bigg) \frac{\slashed{p}_i + m}{2 m} \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) \frac{\slashed{p}_f + m}{2 m} \Bigg]^2
     \end{equation}
 
     We can then manipulate this further:
 
     \begin{equation}
-        = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) (\slashed{p} + I m) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{2 p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{2 p_i \cdot k_f} \bigg) (\slashed{p} + I m) \Bigg]^2
+        = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \bigg(\frac{\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i}{p_i \cdot k_i} + \frac{\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f}{p_i \cdot k_f} \bigg) (\slashed{p}_i + I m) \bigg(\frac{\slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon}}{p_i \cdot k_i} + \frac{\slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'}}{p_i \cdot k_f} \bigg) (\slashed{p}_f + I m) \Bigg]^2
     \end{equation}
 
     \begin{equation}
@@ -377,7 +415,7 @@
             T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)] \\
             T_2 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m)] \\
             T_3 = Tr [\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f (\slashed{p}_i + m) \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)] \\
-            T_4 = Tr [\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'} (\slashed{p}_f + m)] \\
+            T_4 = Tr [\slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m)] \\
         \end{aligned}
     \end{equation}
 
@@ -390,32 +428,32 @@
     \end{equation}
 
     \begin{equation}
-        = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i + \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i m + \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f + \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} m]
+        = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{p}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f + \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i m \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f + \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{p}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} m + \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i m \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} m]
     \end{equation}
 
     \begin{equation}
-        = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i] + m Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i m] + m Tr[\slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f] + m^2 Tr[\slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'}]
+        = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{p}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f] + m Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f] + m Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{p}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} m] + m^2 Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'}]
     \end{equation}
 
     Traces of products of odd numbers of gamma matrices are zero. This simplifieds things radically. We end up with half the number of terms:
 
     \begin{equation}
-        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i] + m^2 Tr[\slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'}]
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{p}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f] + m^2 Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'}]
     \end{equation}
 
     The last term is zero because of the middle two factors. We can prove that the product yields zero using Dirac-Clifford algebra, and the fact that photons are massless:
 
     \begin{equation}
-        \slashed{k}_i \slashed{k}_i = \gamma^\mu \gamma^\nu k_{i \mu} k_{i \nu} = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) k_{i \mu} k_{i \nu} = g^{\mu \nu} k_{i \mu} k_{i \nu} = k_i \cdot k-i I = 0
+        \slashed{k}_i \slashed{k}_i = \gamma^\mu \gamma^\nu k_{i \mu} k_{i \nu} = \frac{1}{2} (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) k_{i \mu} k_{i \nu} = g^{\mu \nu} k_{i \mu} k_{i \nu} I = k_i \cdot k_i I = 0
     \end{equation}
 
     Inserting this into trace gives:
 
     \begin{equation}
-        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i]
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{p}_i \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f]
     \end{equation}
 
-    Agaub, consider the middle two factors. Specifically, we can reverse the order of the product at the cost of a minus sign, and a dot product term using the Dirac-Clifford algebra
+    Again, consider the middle two factors. Specifically, we can reverse the order of the product at the cost of a minus sign, and a dot product term using the Dirac-Clifford algebra
     (as we did previously):
 
     \begin{equation}
@@ -425,19 +463,19 @@
     Inserting this gives two terms:
 
     \begin{equation}
-        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i] - 2 p_i \cdot k_i Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i]
+        T_1 = Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{k}_i \slashed{p}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f] - 2 p_i \cdot k_i Tr [\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f]
     \end{equation}
 
     Obviously, the first term vanishes due to the $\slashed{k}_i \slashed{k}_i = 0$ identity that I proved previously. This leaves us with:
 
     \begin{equation}
-        T_1 = - 2 p_i \cdot k_i Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k} \slashed{p}_i]
+        T_1 = 2 p_i \cdot k_i Tr[\slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f]
     \end{equation}
 
     Now we can use the Dirac-Clifford algebra to reverse two other factors in the usual way:
 
     \begin{equation}
-        \slashed{\epsilon} \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} \epsilon k_{i \nu} = 2 \epsilon \cdot k_i I - \slashed{k}_i \slashed{\epsilon}
+        \slashed{\epsilon} \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} \epsilon_\mu k_{i \nu} = (2 g^{\mu \nu} I - \gamma^{\mu} \gamma^{\nu}) \epsilon_\mu k_{i \nu} = 2 \epsilon \cdot k_i I - \slashed{k}_i \slashed{\epsilon}
     \end{equation}
 
     However, there is an additional simplification. Because photons are transverse polarized, $\epsilon \cdot k_i = 0$. Therefore, we have:
@@ -449,39 +487,45 @@
     Inserting this gives:
 
     \begin{equation}
-        T_1 = -2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon} \slashed{p}_f]
+        T_1 = -2 p_i \cdot k_i Tr[\slashed{\epsilon'} \slashed{k}_i \slashed{\epsilon} \slashed{\epsilon} \slashed{\epsilon'} \slashed{p}_f]
     \end{equation}
 
     We can now use the Dirac-Clifford algebra to simplify the $\slashed{\epsilon} \slashed{\epsilon}$ product in a way similar to the proof of $\slashed{k}_i \slashed{k}_i = 0$.
     The only difference is that this time, the critical dot product is equal to $-1$ instead of zero. Specifically, we have the following:
 
     \begin{equation}
-        \slashed{\epsilon} \slashed{\epsilon} = \gamma^{\mu} \gamma^{\nu} \epsilon_\mu \epsilon_\nu = 2 \epsilon \cdot k_i I - \epsilon_\mu \epsilon_\nu = g^{\mu \nu} \epsilon_\mu \epsilon_\nu I = \epsilon \cdot \epsilon I = - I
+        \slashed{\epsilon} \slashed{\epsilon} = \gamma^{\mu} \gamma^{\nu} \epsilon_\mu \epsilon_\nu = (\gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu) \epsilon_{\mu} \epsilon_{\nu} = g^{\mu \nu} \epsilon_\mu \epsilon_\nu I = \epsilon \cdot \epsilon I = - I
+    \end{equation}
+
+    Inserting this result reduces $T_1$ to the Following:
+
+    \begin{equation}
+        T_1 = 2 p_i \cdot k_i Tr \big[ \slashed{\epsilon'} \slashed{k}_i \slashed{\epsilon'} \slashed{p}_f \big]
     \end{equation}
 
     We can now reorder the first two factors under the trace using the Dirac-Clifford algebra inthe classic way:
 
     \begin{equation}
-        \slashed{\epsilon} \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} \epsilon k_{i \nu} = 2 \epsilon \cdot k_i I - \slashed{k}_i \slashed{\epsilon}
+        \slashed{\epsilon'} \slashed{k}_i = \gamma^{\mu} \gamma^{\nu} \epsilon'_{\mu} k_{i \nu} = (2 g^{\mu \nu} I - \gamma^{\mu} \gamma^{\nu}) \epsilon'_{\mu} k_{i \nu} = 2 \epsilon_{\mu} \cdot k_i I - \slashed{k}_i \slashed{\epsilon'}
     \end{equation}
 
     Inserting this result gives:
 
     \begin{equation}
-        T_1 = 2 p_i \cdot k_i \epsilon' \cdot k_i Tr \big[ \slashed{\epsilon} \slashed{p}_f \big] - 2 p_i \cdot k_i Tr \big[ \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f \big]
+        T_1 = 2 p_i \cdot k_i \epsilon' \cdot k_i Tr \big[ \slashed{\epsilon'} \slashed{p}_f \big] - 2 p_i \cdot k_i Tr \big[ \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon'} \slashed{p}_f \big]
     \end{equation}
 
     In the second term that we evaluated before, namely, $\slashed{\epsilon'} \slashed{\epsilon'}$. We can evaluate it in the same way that we did with the $\slashed{\epsilon} \slashed{\epsilon}$ product and naturally, it yields
     the same result:
 
     \begin{equation}
-        \slashed{\epsilon'} \slashed{\epsilon'} = \gamma^{\mu} \gamma^{\nu} \epsilon'_\mu \epsilon'_\nu = 2 \epsilon' \cdot k_i I - \epsilon'_\mu \epsilon'_\nu = g^{\mu \nu} \epsilon'_\mu \epsilon'_\nu I = \epsilon' \cdot \epsilon' I = - I
+        \slashed{\epsilon'} \slashed{\epsilon'} = \gamma^{\mu} \gamma^{\nu} \epsilon'_\mu \epsilon'_\nu = (2 g^{\mu \nu} I - \gamma^{\mu} \gamma^{\nu}) \epsilon'_\mu \epsilon'_\nu = g^{\mu \nu} \epsilon'_\mu \epsilon'_\nu I = \epsilon' \cdot \epsilon' I = - I
     \end{equation}
 
     Inserting the result simplifies $T_1$ down to the following:
 
     \begin{equation}
-        T_1 = 4 p_i \cdot k_i \epsilon' \cdot k_i Tr \big[ \slashed{\epsilon} \slashed{p}_f \big] + 2 p_i \cdot k_i Tr \big[ \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f \big]
+        T_1 = 4 p_i \cdot k_i \epsilon' \cdot k_i Tr \big[ \slashed{\epsilon'} \slashed{p}_f \big] + 2 p_i \cdot k_i Tr \big[ \slashed{k}_i \slashed{p}_f \big]
     \end{equation}
 
     Now, the trace of two gamma matrices is given by the following common identity:
@@ -493,7 +537,7 @@
     Inserting this gives the following trace free result for $T_1$:
 
     \begin{equation}
-        T_1 = 16 p_i \cdot k_i \epsilon' \cdot k_i \slashed{\epsilon} \slashed{p}_f + 8 p_i \cdot k_i \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f
+        T_1 = 16 p_i \cdot k_i \epsilon' \cdot k_i \epsilon' p_f + 8 p_i \cdot k_i k_i \cdot p_f = 8 p_i \cdot k_i [2 \epsilon' \cdot k_i \epsilon' \cdot p_f + k_i \cdot p_f]
     \end{equation}
 
     Even though all of the traces are gone, we are not done simplifying $T_1$. The first additional simplification that can be accomplished begins with an identity derived from the
@@ -519,7 +563,7 @@
     Inserting this into $T_1$ yields the following simplification:
 
     \begin{equation}
-        T_1 = 16 p_i \cdot k_i \epsilon' \cdot k_i \slashed{\epsilon} \slashed{p}_f + 8 p_i \cdot k_i \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_f = 8 p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_f]
+        T_1 = 16 p_i \cdot k_i \epsilon' \cdot k_i \epsilon' p_f + 8 p_i \cdot k_i k_i \cdot p_f = 8 p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_f]
     \end{equation}
 
     The final simplification of $T_1$ also comes from messing with the four momentum conservation relation. First, we must rearrange it into the following form:
@@ -542,7 +586,7 @@
         \end{equation}
     \end{framed}
 
-    one can then deduce the fourth trace from above through interchange of momenta and polarization vectors. Specifically, if one looks back at the original traces, one finds that
+    One can then deduce the fourth trace from above through interchange of momenta and polarization vectors. Specifically, if one looks back at the original traces, one finds that
     they are interconverted by the following interchange:
 
     \begin{equation}
@@ -568,37 +612,37 @@
     In evaluating this, the first step is to use the four-momentum conservation relation to replace $\slashed{p}_f$ in the last factor. Doing this gives:
 
     \begin{equation}
-        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m + \slashed{k}_i + \slashed{k}_f) ]
+        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m + \slashed{k}_i - \slashed{k}_f) ]
     \end{equation}
 
     The cyclic property of the trace can then be used to move the front two factors to the back:
 
     \begin{equation}
-        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m + \slashed{k}_i + \slashed{k}_f) ]
+        T_2 = Tr [ \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m + \slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     We can then split the trace into two terms:
 
     \begin{equation}
-        T_2 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m)] + Tr [ \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m ) \slashed{\epsilon'} \slashed{\epsilon} ( \slashed{k}_i + \slashed{k}_f) ]
+        T_2 = Tr [ \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_i + m ) \slashed{\epsilon'} \slashed{\epsilon} ] + Tr [ \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     We will simplify the first and second terms separately:
 
     \begin{equation}
-        First Term = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m)]
+        First Term = Tr [ \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_i + m ) \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     We can multiply out the first term and split up into four terms:
 
     \begin{equation}
-        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m Tr[\slashed{\epsilon'} \slashed{\epsilon}] + m Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+        First Term = Tr [\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_i \slashed{\epsilon'} \slashed{\epsilon}] + m Tr[\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}] + m Tr[\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_i \slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr[\slashed{k}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}]
     \end{equation}
 
     Traces of products of odd numbers of gamma matrices are zero. This eliminates the two terms that are linear in the mass:
 
     \begin{equation}
-        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+        First Term = Tr [\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_i \slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr[\slashed{k}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}]
     \end{equation}
 
     This can be simplified by using a couple of identities proved previously in this document (remember, these are valid 
@@ -611,13 +655,13 @@
     Specifically, we can use these identities to reorder some factors in the first part to produce the following:
 
     \begin{equation}
-        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+        First Term = Tr [\slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_i] + m^2 Tr[\slashed{k}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}]
     \end{equation}
 
     We can then use the cyclic property of the trace on the left trace to produce the following:
 
     \begin{equation}
-        First Term = Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+        First Term = Tr [\slashed{p}_i \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr[\slashed{k}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}]
     \end{equation}
 
     We can then use the Dirac-clifford algebra twice in the classic way to simplify the first three factors in the left trace.
@@ -626,49 +670,49 @@
     together gives:
 
     \begin{equation}
-        \slashed{p}_i \slashed{k}_i \slashed{p}_i = (2 p_i \cdot k_i I - \slashed{k}_i \slashed{p}_i) \slashed{p}_i = 2 p_i \cdot k_i \slashed{p}_i - \slashed{k}_i \slashed{p}_i \slashed{p}_i - m^2 \slashed{k}_i
+        \slashed{p}_i \slashed{k}_i \slashed{p}_i = (2 p_i \cdot k_i I - \slashed{k}_i \slashed{p}_i) \slashed{p}_i = 2 p_i \cdot k_i \slashed{p}_i - \slashed{k}_i \slashed{p}_i \slashed{p}_i = 2 p_i \cdot k_i \slashed{p}_i - m^2 \slashed{k}_i
     \end{equation}
 
     Inserting this into the first term gives the following result:
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}] - m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr [\slashed{\epsilon'} \slashed{\epsilon}]
+        First Term = 2 p_i \cdot k_i Tr [ \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ] - m^2 Tr[\slashed{k}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon}] + m^2 Tr[\slashed{k}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     The last two terms cancel each other to give
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}]
+        First Term = 2 p_i \cdot k_i Tr [ \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     We can then apply the cyclic property of trace to get :
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}]
+        First Term = 2 p_i \cdot k_i Tr [ \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} \slashed{p}_i ]
     \end{equation}
 
     We can then apply the following two identities again:
 
     \begin{equation}
-        \slashed{p}_i \slashed{\epsilon'} = - \slashed{\epsilon'} \slashed{p}_i \qquad \slashed{p}_i \slashed{\epsilon} = - \slashed{\epsilon} \slashed{p}_i
+        \slashed{p}_i \slashed{\epsilon'} = - \slashed{\epsilon'} \slashed{p}_i \qquad \slashed{p}_i \slashed{\epsilon'} = - \slashed{\epsilon'} \slashed{p}_i
     \end{equation}
 
     Doing this gives:
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i Tr[\slashed{\epsilon} \slashed{\epsilon'}]
+        First Term = 2 p_i \cdot k_i Tr [ \slashed{k}_f \slashed{p}_i \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     Thus, the trace is equal to half the sum of the two yellow highlighted terms:
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i \frac{1}{2} Tr[(\slashed{p}_f \slashed{k}_f + \slashed{p}_i \slashed{k}_i) \slashed{\epsilon} \slashed{\epsilon'}]
+        First Term = 2 p_i \cdot k_i \frac{1}{2} Tr[(\slashed{p}_i \slashed{k}_f + \slashed{k}_f \slashed{p}_i) \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     We can then apply the Dirac-Clifford algebra:
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i Tr[(\slashed{p}_f \slashed{k}_f + \slashed{p}_i \slashed{k}_i) \slashed{\epsilon} \slashed{\epsilon'}]
+        First Term = 2 p_i \cdot k_i p_i \cdot k_f Tr[ \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} ]
     \end{equation}
 
     Now one can make use of the following well-known gamma matrix trace identity:
@@ -680,14 +724,14 @@
     Inserting this gives the following result for the First Term:
 
     \begin{equation}
-        First Term = 2 p_i \cdot k_i Tr[(\slashed{p}_f \slashed{k}_f + \slashed{p}_i \slashed{k}_i) \slashed{\epsilon} \slashed{\epsilon'}]
+        First Term = 2 p_i \cdot k_i p_i \cdot k_f Tr[ 4 (\epsilon \cdot \epsilon')^2 - 4 \epsilon \cdot \epsilon \epsilon' \cdot \epsilon' + 4 (\epsilon \cdot \epsilon')^2 ]
     \end{equation}
 
     Recall now that $\epsilon \cdot \epsilon = \epsilon' \cdot \epsilon' = -1$. Inserting these values and simplifying produces the following final answer for the First Term:
 
     \begin{framed}
         \begin{equation}
-            8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1)
+            First Term = 8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1)
         \end{equation}
     \end{framed}
 
@@ -726,68 +770,68 @@
     We can then split this trace into the sum of three:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+        Second Term = 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] - Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_i \slashed{\epsilon} ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     We can simplify the left trace using the $\slashed{\epsilon} \slashed{\epsilon} = - I$ identity proved above to get:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] - Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_i \slashed{\epsilon} ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     Then, with two identities proved above $\slashed{k}_i \slashed{k}_i = 0$ and $\slashed{k}_i \slashed{\epsilon} = \slashed{\epsilon} \slashed{k}_i$, we can rearrange and then eliminate the middle trace. First applying 
     $\slashed{k}_i \slashed{\epsilon} = \slashed{\epsilon} \slashed{k}_i$ gives:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     Now we can use the cyclic property of the trace on the same term:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] + Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] + Tr[ \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i \slashed{k}_i ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     Next, we can see that the middle trace vanishes because $\slashed{k}_i \slashed{k}_i = 0$. So we have:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     We can then apply the familiar relation $\slashed{\epsilon'} \slashed{k} = - \slashed{k}_f \slashed{\epsilon's}$ to the second part:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] - Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     We can then reorder two factors in the usual way with the Dirac-Clifford Algebra: $\slashed{\epsilon} \slashed{k}_f = - \slashed{k}_f \slashed{\epsilon} + 2 \epsilon \cdot k-f$, Applying this produces the following:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] - 2 \epsilon \cdot k_f Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ] - 2 \epsilon \cdot k_f Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon'} \slashed{\epsilon} ]
     \end{equation}
 
     The $\slashed{\epsilon'} \slashed{\epsilon'} = -1$ identity simplifies the last term, giving us:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] - 2 \epsilon \cdot k_f Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] + Tr[ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} \slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ] + 2 \epsilon \cdot k_f Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     Next, we can apply $\slashed{\epsilon'} \slashed{k}_f = - \slashed{k}_f \slashed{\epsilon'}$ to the middle trace to get:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr [] - 2 \epsilon \cdot k_f Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] - Tr[ \slashed{k}_i \slashed{p}_i \slashed{\epsilon'} \slashed{k}_f \slashed{k}_f \slashed{\epsilon} \slashed{\epsilon'} \slashed{\epsilon} ] + 2 \epsilon \cdot k_f Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     We now see that the middle term is zero because $\slashed{k}_f \slashed{k}_f = 0$:
 
     \begin{equation}
-        Second Term = - 2 k_i \cdot \epsilon' Tr [] - Tr []
+        Second Term = - 2 k_i \cdot \epsilon' Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon'} ] + 2 \epsilon \cdot k_f Tr [ \slashed{k}_i \slashed{p}_i \slashed{k}_f \slashed{\epsilon} ]
     \end{equation}
 
     Now we can use the $Tr [\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma] = 4 g^{\mu \nu} g^{\rho \sigma} - 4 g^{\mu \rho} g^{\nu \sigma} + 4 g^{\mu \sigma} g^{\nu \rho}$ identity to evaluate the traces. We get:
 
     \begin{equation}
-        Second Term = -2 k_i \cdot \epsilon' 4 () + 2 \epsilon \cdot k_f 4s
+        Second Term = -2 k_i \cdot \epsilon' 4 (k_i \cdot p_i k_f \cdot \epsilon' - k_i \cdot k_f p_i \cdot \epsilon' + k_i \cdot \epsilon'  p_i \cdot k_f) + 2 \epsilon \cdot k_f 4 (k_i \cdot p_i k_f \cdot \epsilon - k_i \cdot k_f p_i \cdot \epsilon + k_i \cdot \epsilon  p_i \cdot k_f)
     \end{equation}
 
     This looks long and complicated, but this is actually very simple because we know that the following dot products are zero:
@@ -817,12 +861,12 @@
     third traces are equal. this gives:
     
     \begin{equation}
-        T_3s = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m) ]
+        T_3 = Tr [ \slashed{\epsilon'} \slashed{\epsilon} \slashed{k}_f (\slashed{p}_i + m) \slashed{k}_i \slashed{\epsilon'} \slashed{\epsilon} (\slashed{p}_f + m) ]
     \end{equation}
 
     \begin{framed}
         \begin{equation}
-            T_3 = 8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) + Tr [\slashed{k}_i (\slashed{p}_i + m) \slashed{k}_f \slashed{\epsilon'} \slashed{\epsilon} (\slashed{k}_i - \slashed{k}_f) \slashed{\epsilon'} \slashed{\epsilon}]
+            T_3 = 8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) - 8 (k_i \cdot \epsilon')^2 p_i \cdot k_f + 8 (\epsilon \cdot k_f)^2 k_i \cdot p_i
         \end{equation}
     \end{framed}
 
@@ -831,64 +875,108 @@
     The last expression that we had for the electronspin averaged/summed, squared Feynman amplitude is the following:
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]
     \end{equation}
     
     We just did all of the traces, Inserting them gives:
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \begin{aligned}
+            \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = & \frac{e^4}{4 (2m)^2} \Bigg[ \frac{8 p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_f]}{(p_i \cdot k_i)^2} + \frac{8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) - 8 (k_i \cdot \epsilon')^2 p_i \cdot k_f + 8 (\epsilon \cdot k_f)^2 k_i \cdot p_i}{p_i \cdot k_i p_i \cdot k_f} \\
+            & + \frac{8 p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) - 8 (k_i \cdot \epsilon')^2 p_i \cdot k_f + 8 (\epsilon \cdot k_f)^2 k_i \cdot p_i}{p_i \cdot k_f p_i \cdot} + \frac{- 8 p_i \cdot k_f \big[ 2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i \big]}{(p_i \cdot k_f)^2} \Bigg]
+        \end{aligned}
     \end{equation}
 
     The rest of the simplification is trivial algebra. I have written out the process below:
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \begin{aligned}
+            \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = & \frac{e^4}{2m} \Bigg[ \frac{p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_i]}{(p_i \cdot k_i)^2} + \frac{p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) - (k_i \cdot \epsilon')^2 p_i \cdot k_f + (\epsilon \cdot k_f)^2 k_i \cdot p_i}{p_i \cdot k_i p_i \cdot k_f} \\
+            & + \frac{p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1) - (k_i \cdot \epsilon')^2 p_i \cdot k_f + (\epsilon \cdot k_f)^2 k_i \cdot p_i}{p_i \cdot k_f p_i \cdot} + \frac{- p_i \cdot k_f \big[ 2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i \big]}{(p_i \cdot k_f)^2} \Bigg]
+        \end{aligned}
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \begin{aligned}
+            \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = & \frac{e^4}{2m} \Bigg[ \frac{p_i \cdot k_i [2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_i]}{(p_i \cdot k_i)^2} + \frac{p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1)}{p_i \cdot k_i p_i \cdot k_f} - \frac{(k_i \cdot \epsilon')^2 p_i \cdot k_f}{p_i \cdot k_i p_i \cdot k_f} + \frac{(\epsilon \cdot k_f)^2 k_i \cdot p_i}{p_i \cdot k_i p_i \cdot k_f} \\
+            & + \frac{p_i \cdot k_i p_i \cdot k_f (2 (\epsilon \cdot \epsilon')^2 - 1)}{p_i \cdot k_f p_i \cdot} - \frac{(k_i \cdot \epsilon')^2 p_i \cdot k_f}{p_i \cdot k_f p_i \cdot} + \frac{(\epsilon \cdot k_f)^2 k_i \cdot p_i}{p_i \cdot k_f p_i \cdot} + \frac{- p_i \cdot k_f \big[ 2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i \big]}{(p_i \cdot k_f)^2} \Bigg]
+        \end{aligned}
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \begin{aligned}
+            \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = & \frac{e^4}{2m} \Bigg[ \frac{2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_i}{p_i \cdot k_i} + 2 (\epsilon \cdot \epsilon')^2 - 1 - \frac{(k_i \cdot \epsilon')^2}{p_i \cdot k_i} + \frac{(\epsilon \cdot k_f)^2}{p_i \cdot k_f} \\
+            & + 2 (\epsilon \cdot \epsilon')^2 - 1 - \frac{(k_i \cdot \epsilon')^2}{p_i \cdot k_i} + \frac{(\epsilon \cdot k_f)^2}{p_i \cdot k_f} + \frac{2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i}{p_i \cdot k_f} \Bigg]
+        \end{aligned}
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{2m} \Bigg[ \frac{2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_i}{p_i \cdot k_i} - 2 \frac{(k_i \cdot \epsilon')^2}{p_i \cdot k_i} + 2 \frac{(\epsilon \cdot k_f)^2}{p_i \cdot k_f}
+        + \frac{2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i}{p_i \cdot k_f} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{2m} \Bigg[ \frac{2 (\epsilon' \cdot k_i)^2 + k_f \cdot p_i - 2 (k_i \cdot \epsilon')^2}{p_i \cdot k_i}
+        + \frac{- 2 (\epsilon \cdot k_f)^2 - p_i \cdot k_i + 2 (\epsilon \cdot k_f)^2}{p_i \cdot k_f} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
     \end{equation}
 
     \begin{equation}
-        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{4 (2m)^2} Tr \Bigg[ \frac{T_1}{(p_i \cdot k_i)^2} + \frac{T_2}{p_i \cdot k_i p_i \cdot k_f} + \frac{T_3}{p_i \cdot k_f p_i \cdot} + \frac{T_4}{(p_i \cdot k_f)^2} \Bigg]^2
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{2m} \Bigg[ \frac{k_f \cdot p_i}{p_i \cdot k_i}
+        + \frac{p_i \cdot k_i}{p_i \cdot k_f} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg] 
     \end{equation}
 
     Considering that this reaction is in the initial electron's rest frame, this simplifies to:
 
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{2m} \Bigg[ \frac{k_{f0} p_{i0}}{p_{i0} k_{i0}}
+        + \frac{p_{i0} k_{i0}}{p_{i0} k_{f0}} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg] = \frac{e^4}{2m^2} \Bigg[ \frac{k_{f0}}{k_{i0}}
+        + \frac{k_{i0}}{k_{f0}} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
+    \end{equation}
+
+    It is now a good idea to change to a slightly less convenient, but more standard notation, now that nearly all of the calculation is done. Specifically, the notation change is:
+    
+    \begin{equation}
+        k_{f0} = k'_{0} \qquad  k_{i0} = k'_{0}
+    \end{equation}
+
+    Inserting this gives the following:
+
+    \begin{equation}
+        \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2 = \frac{e^4}{2m^2} \Bigg[ \frac{k'_{0}}{k_{0}}
+        + \frac{k_{0}}{k'_{0}} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
+    \end{equation}
+
+    Inserting this into the cross section and doing some final manipulations gives the final answer for the Klein-Nishina cross scattering cross section. 
+    The simplified scattering cross section that we had from the second section:
+
+    \begin{equation}
+        \frac{d \sigma}{d \Omega} = \frac{m^2 E^2_{k_f}}{4 (2 \pi)^2 (p_f \cdot k_f) (k_i \cdot p_i) } \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+    \end{equation}
+
     Putting this fully in the rest frame of the initial electron, and rewriting the numertaor slightly, reduces it to:
 
     \begin{equation}
-        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+        \frac{d \sigma}{d \Omega} = \frac{1}{4 (2 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
     \end{equation}
 
     We are now ready to insert the result for $\frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2$ in. We get:
 
     \begin{equation}
-        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+        \frac{d \sigma}{d \Omega} = \frac{1}{4 (2 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{e^4}{2m^2} \Bigg[ \frac{k'_{0}}{k_{0}}
+        + \frac{k_{0}}{k'_{0}} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
     \end{equation}
 
     \begin{equation}
-        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+        \frac{d \sigma}{d \Omega} = \frac{\alpha^2}{4 m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Bigg[ \frac{k'_{0}}{k_{0}}
+        + \frac{k_{0}}{k'_{0}} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
     \end{equation}
 
     We therefore have the final answer for tree level Compton scattering:
 
     \begin{framed}
         \begin{equation}
-            \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{2} \sum_{S_i S_f} |M_{fi}|^2s
+            \frac{d \sigma}{d \Omega} = \frac{\alpha^2}{4 m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Bigg[ \frac{k'_{0}}{k_{0}}
+            + \frac{k_{0}}{k'_{0}} + 4 (\epsilon \cdot \epsilon')^2 - 2 \Bigg]
         \end{equation}
     \end{framed}
 
@@ -920,7 +1008,7 @@
 
     \begin{equation}
         \begin{aligned}
-            p_{f \mu}  = (1 \: 0 \: -k'_0 \sin (\theta) \: k_0 - k'_0 \cos (\theta) )
+            p_{f \mu}  = (E_f \: 0 \: -k'_0 \sin (\theta) \: k_0 - k'_0 \cos (\theta) )
         \end{aligned}
     \end{equation}
 
@@ -950,20 +1038,20 @@
 
     \begin{equation}
         \begin{aligned}
-            \epsilon_{\mu}^{(2)'s}  = (0 \: 1 \: 0 \: 0)
+            \epsilon_{\mu}^{(2)'s}  = (0 \: 1 \: \cos (\theta) \: - \sin (\theta))
         \end{aligned}
     \end{equation}
 
     Given this parametrization we can write out the approximately polarization averaged and summed Feynman amplitude:
 
     \begin{equation}
-        \frac{1}{4} \sum_{S_i S_f \epsilon \epsilon's} |M_{fi}|^2s = \frac{1}{4} \sum_{\epsilon \epsilon'} \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + 4 (\epsilon \cdot \epsilon') - 2 \Big] = \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + \sin^2 (\theta) \Big]
+        \frac{1}{4} \sum_{S_i S_f \epsilon \epsilon's} |M_{fi}|^2s = \frac{1}{4} \sum_{\epsilon \epsilon'} \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + 4 (\epsilon \cdot \epsilon') - 2 \Big] = \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} - \sin^2 (\theta) \Big]
     \end{equation}
 
     Therefore, the unpolarized scattering cross section is:
 
     \begin{equation}
-        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{4} \sum_{\epsilon \epsilon'} \frac{e^4}{m^2} \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + 4 (\epsilon \cdot \epsilon') - 2 \Big] = \frac{e^4}{m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + \sin^2 (\theta) \Big]
+        \frac{d \sigma}{d \Omega} = \frac{1}{2 (4 \pi)^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \frac{1}{4} \sum_{S_i S_f} |M_{fi}|^2s = \frac{e^4}{m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} - \sin^2 (\theta) \Big]
     \end{equation}
 
     So, we have the final answer for the unpolarized Compoton Scattering Cross Section:
@@ -971,7 +1059,7 @@
     \begin{framed}
         \center{Unpolarized Klein Nishina Formula}
         \begin{equation}
-            \frac{d \sigma}{d \Omega} = \frac{e^4}{m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} + \sin^2 (\theta) \Big]
+            \frac{d \sigma}{d \Omega} = \frac{e^4}{m^2} \bigg( \frac{k'_0}{k_0} \bigg)^2 \Big[ \frac{k'_0}{k_0} + \frac{k_0}{k'_0} - \sin^2 (\theta) \Big]
         \end{equation}
     \end{framed}
 
