@@ -28,7 +28,49 @@
 
     Let's now get to the actual calcuation. At the tree level, we have the following Feynman diagrams for Moller scattering in QED:
 
-    % Insert Feynman Diagrams here
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{$\langle e^{-}, e^{-} | S_{EM} | e^{-}, e^{-} \rangle$} \\
+            \hline
+            \begin{tikzpicture}
+                    \begin{feynman}
+                        \vertex [label = below: $x_1$] (a);
+                        \vertex [right = of a,label = above: $x_2$] (b);
+                        \vertex [above left = of a, label = $e^{-}$] (c);
+                        \vertex [below left = of a, label = $e^{-}$] (d);
+                        \vertex [above right = of b, label = $e^{-}$] (e);
+                        \vertex [below right = of b, label = $e^{-}$] (f);
+        
+                        \diagram{
+                            (a) -- [boson] (b);
+                            (a) -- [fermion] (c);
+                            (d) -- [fermion] (a);
+                            (e) -- [fermion] (b);
+                            (b) -- [fermion] (f);
+                        };
+                    \end{feynman}
+                \end{tikzpicture} & \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex [label = below: $x_1$] (a);
+                    \vertex [right = of a,label = above: $x_2$] (b);
+                    \vertex [above left = of a, label = $e^{-}$] (c);
+                    \vertex [below left = of a, label = $e^{-}$] (d);
+                    \vertex [above right = of b, label = $e^{-}$] (e);
+                    \vertex [below right = of b, label = $e^{-}$] (f);
+    
+                    \diagram{
+                        (a) -- [boson] (b);
+                        (e) -- [fermion] (a);
+                        (d) -- [fermion] (a);
+                        (c) -- [fermion] (b);
+                        (b) -- [fermion] (f);
+                    };
+                \end{feynman}
+            \end{tikzpicture} \\
+            \hline
+        \end{tabular} \\
+    \end{center}
 
     As usual, solid lines are fermion lines, and wavy lines are photon lines. In this case, all of the thermion lines are electron lines as shown by the foward-in-time arrows.
 
@@ -65,7 +107,7 @@
     The calculation of the Moller scattering cross section starts witht the general formula for the differential cross section:
 
     \begin{center}
-        \boxed{d \sigma = m_1 m_2 \frac{(2 \pi)^4 |M_{fi}|^2 \delta^4 (P_f - P_i)}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]^{1/2}} \prod_{n = 1}^{N_b} \frac{d^3 \vec{p}_n}{(2 \pi)^3 2 E_n}}
+        \boxed{d \sigma = m_1 m_2 \frac{(2 \pi)^4 |M_{fi}|^2 \delta^4 (P_f - P_i)}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]^{1/2}} \prod_{n = 1}^{N_f} \frac{m_n d^3 \vec{p}_n}{(2 \pi)^3 2 E_n}}
     \end{center}
 
     There is also a link in the description for a video whre I show how to derive this general formula.
@@ -81,13 +123,29 @@
 
     \section*{Preparation Of the Scattering Cross Section Formula}
 
-    The first thing we will do in this section is insert the momentum variables written in t he Feynman diagrams into the differential scattering cross section.We can see from the diagrams that we only
+    The first thing we will do in this section is insert the momentum variables written in the Feynman diagrams into the differential scattering cross section.We can see from the diagrams that we only
     have two outgoing particles so the immediate result of this will be simpler than the starting point. Beyond this, the standard result also includes averaging over the incoming fermion spins and
-    summing over the outgoing fermion spins, wo we need t o insert those averages/sums on the absolute squared Feynman amplitude into the differential scattering cross section. Doing all this to the
+    summing over the outgoing fermion spins, wo we need to insert those averages/sums on the absolute squared Feynman amplitude into the differential scattering cross section. Doing all this to the
     formula given in the introduction easily gives us:
 
     \begin{equation}
-        d^3 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)
+        d^3 \sigma = \frac{m_1^2 m_2^2}{[(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{(2 \pi)^2 E_{k_1}} \frac{d^3 \vec{k}_1}{(2 \pi)^2 E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - p'_1 - p'_2)
+    \end{equation}
+
+    You may notice that I added a 6 superscript to the differential on $\sigma$. This is to indicate how many differentials there are on the other side of the equation. This number will drop as we complete
+    phase space integrations over some of the momentum and energy variables.
+    
+    The standard Moller differential scattering cross section is with respect to the solid angle of one of the outgoing electrons. Therefore one of the things we will need to do in preparing the differential
+    scattering cross section is integrate over the other momentum variables. It turns out that this can be done before we can work out the Feynman Amplitude, because of the delta functions that show up in
+    the cross section formula. They are there to impose energy and momentum conservation. Therefore, we can do the necessary phase space integration without knowing the Feynman amplitude, as long ase we take
+    energy and momentum conservation relations to be true for the Feynman amplitude, which depends on those variables. It turns out that these relations are extremely useful in simplifying the absolute square
+    of the Feynman amplitude. 
+
+    I chose to integrate over $\vec{p}_2$ to begin with. This is the first step in getting the differential cross section with respect to the solid angle of the $\vec{p}_1$ electron (this is an arbitrary choice,
+    it doesn't matter which one we choose). Because of the momentum conservation delta functions, integration simply yields the following:
+
+    \begin{equation}
+        d^3 \sigma = \frac{m_1^2 m_2^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \frac{d^3 \vec{p'}_1}{E'_1 E'_2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
     \end{equation}
 
     Where the delta function has enforced the following mechanical conservation relation:
@@ -100,13 +158,13 @@
     cross section with respect to. Doing this gives:
 
     \begin{equation}
-        d^3 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)
+        d^3 \sigma = \frac{m_1^2 m_2^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \frac{|\vec{p'}_1|^2 d |\vec{p'}_1| d \Omega}{E'_1 E'_2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
     \end{equation}
 
     Therefore, the final integration that we must perform to get the differential scattering cross section with respect to the solid angle is the following:
 
     \begin{equation}
-        d^3 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)
+        d^2 \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \int \frac{|\vec{p'}_1|^2 d |\vec{p'}_1|}{E'_1 E'_2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
     \end{equation}
 
     where
@@ -119,10 +177,10 @@
     We can use the standard identity to rewrite the energy conservation delta function in an easy to integrate form. Specifically, we have the following: 
 
     \begin{equation}
-        \delta (E_{p_1} + E_{p_2} - E_{k_1} - E_{k_2}) = \delta (E_{p_1} + E_{p_2} - |\vec{k}_1| - E (|\vec{k}_2|) ) = \delta [f (|\vec{k}_1|)] = \frac{\delta [|\vec{k}_1| - |\vec{k}_1|_0]}{f' (|\vec{k}_1|s)}
+        \delta (E_1 + E_2 - E'_1 - E'_2) = \delta (E_1 + E_2 - |\vec{p'}_1| - E (|\vec{p'}_2|) ) = \delta [f (|\vec{p}_1|)] = \frac{\delta [|\vec{p'}_1| - |\vec{p'}_1|_0]}{f' (|\vec{p'}_1|s)}
     \end{equation}
 
-    Where $f'(|\vec{k}_1|)$ is the derivative of the f-function, and $|\vec{k}_1|$ is the root of the f-function, or the actual value of $|\vec{k}_1|$. Because of the delta function, the integration simply forces:
+    Where $f'(|\vec{k}_1|)$ is the derivative of the f-function, and $|\vec{k}_1|$ is the root of the f-function, or the actual value of $|\vec{p'}_1|$. Because of the delta function, the integration simply forces:
 
     \begin{equation}
         |\vec{p'}_1| = |\vec{p'}_1|_0
@@ -137,7 +195,7 @@
     We can then relabel the actual momentum $|\vec{p'}_1|_0$ with the symbol previously just used for the integration variable, to make things simpler. The integration over the magnitude of the momentum gives: 
 
     \begin{equation}
-        d^2 \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} \frac{|\vec{k}_1|^2 d^3 |\vec{k}_1|}{E_{k_1} E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+        d^2 \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{1}{f' (|\vec{p}_1|s)}
     \end{equation}
 
     Where $f' (|\vec{p}_1|)$ works out to be:
@@ -150,7 +208,7 @@
     We therefore will write: 
 
     \begin{equation}
-        d \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+        d \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{1}{f' (|\vec{p}_1|s)}
     \end{equation}
 
     Keep in mind that because of the integrations that we did $d \sigma$ doesn't quite mean what it did in the general formula in the introduction before any  integration had been done.
@@ -158,17 +216,17 @@
     If we insert the value of $f' (|\vec{p}_1|)$, the differential cross section becomes:
 
     \begin{equation}
-        d \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+        d \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{E'_1 E'_2}{E'_1 + E'_2}
     \end{equation}
 
     \begin{equation}
-        d \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+        d \sigma = \frac{m_1^2 m_2^2 |\vec{p}_1|^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{1}{(E'_1 + E'_2)^2}
     \end{equation}
 
     By applying energy conservation that was mandated by the last delta function, we can replace $E'_1 + E'_2$ with $E_1 + E_2$. This gives:
 
     \begin{equation}
-        d \sigma = \frac{m^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m^4]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{k}_1|^2}{E_{k_1} E_{k_2}} \frac{1}{f' (|\vec{k}_1|s)}
+        d \sigma = \frac{m_1^2 m_2^2 |\vec{p}_1|^2}{(2 \pi)^2 (E'_1 + E'_2)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
     \end{equation}
 
     Because we are assuming the center of mass frame, we can write:
@@ -180,36 +238,47 @@
     Therefore, the differential scattering cross section becomes:
 
     \begin{center}
-        \boxed{\frac{m^2 (m + E)}{4 (2 \pi)^2 |p| (m + E - |p| \cos \theta)^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - k_1 - k_2)}
+        \boxed{\frac{d sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2}
     \end{center}
 
     This completes the pre-simplification of the differential scattering cross section. Now we must begin the process of computing the Feynman amplitude.
 
     \section*{The Feynman Amplitude}
 
-    The next step is to use Feynman's rules to write the Feynman amplitude. The feynman amplitude has two terms in it:
+    The next step is to use Feynman diagrams and rules given in the introduction to write down the Feynman amplitude. The feynman amplitude has two terms in it. Two given Feynman diagrams contribute to the
+    Tree Level, so we have two terms in the Feynman amplitude:
 
     \begin{equation}
-        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \slashed{\epsilon}_2 \frac{\slashed{p}_1 - \slashed{k}_1 + m}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \slashed{\epsilon}_1 \frac{\slashed{p}_1 - \slashed{k}_2 + m}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi} = M_{if}^1 + M_{if}^2
     \end{equation}
 
     The first diagram yields
 
     \begin{equation}
-        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \slashed{\epsilon}_2 \frac{\slashed{p}_1 - \slashed{k}_1 + m}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \slashed{\epsilon}_1 \frac{\slashed{p}_1 - \slashed{k}_2 + m}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi}^1 = i e \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{i g^{\mu \nu}}{(p'_1 - p_1)^2} \times - i e \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1)
+    \end{equation}
+
+    \begin{equation}
+    = i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{i g^{\mu \nu}}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1)
     \end{equation}
 
     For the second of the two diagrams (there is a relative minus sign due to the interchange of external fermion legs) one gets:
 
     \begin{equation}
-        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \slashed{\epsilon}_2 \frac{\slashed{p}_1 - \slashed{k}_1 + m}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \slashed{\epsilon}_1 \frac{\slashed{p}_1 - \slashed{k}_2 + m}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi}^2 = i e \overline{U}_e (p'_1, s'_1) \gamma^{\mu} U_e (p_2, s_2) \frac{i g^{\mu \nu}}{(p'_1 - p_1)^2} \times - i e \overline{U}_e (p'_2, s'_2) \gamma_{\mu} U_e (p_1, s_1)
+    \end{equation}
+
+    \begin{equation}
+    = - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\mu} U_e (p_2, s_2) \frac{i g^{\mu \nu}}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\mu} U_e (p_1, s_1)
     \end{equation}
 
     The total Feynman amplitude therefore is:
 
-    \begin{equation}
-        M_{fi} = M_{if}^1 + M_{if}^2
-    \end{equation}
+    \begin{eqnarray}
+        M_{fi} = M_{if}^1 + M_{if}^2 \\
+        = i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1) \\
+        - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\mu} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\mu} U_e (p_1, s_1)
+    \end{eqnarray}
 
     In this particular calculation, there isn't really any more simplification to be done before the Feynman amplitude is squared, so that is what we will now do.
 
@@ -219,25 +288,25 @@
     consists of complex conujugating the prefactor, flipping the spinors, and reversing the order of the sandwiched matrices. The Feynman amplitude terms and their complex conjugates are given below:
 
     \begin{equation}
-        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi} = i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1)
     \end{equation}
 
     \begin{equation}
-        M_{fi}^* = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi}^* = - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\rho} U_e (p_1, s_1)
     \end{equation}
 
     \begin{equation}
-        M_{fi} = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi} = - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\mu} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\mu} U_e (p_1, s_1)
     \end{equation}
 
     \begin{equation}
-        M_{fi}^* = i e^2 \overline{V}_e (p_2, s_2) \bigg( \frac{\slashed{\epsilon}_2 \slashed{\epsilon}_1 \slashed{k}_1}{2 p_1 \cdot k_1} \slashed{\epsilon}_1  + \frac{\slashed{\epsilon}_1 \slashed{\epsilon}_2 \slashed{k}_2}{2 p_1 \cdot k_2} \slashed{\epsilon}_2 \bigg) U_e (p_1, s_1)
+        M_{fi}^* = i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\rho} U_e (p_1, s_1)
     \end{equation}
 
     We can now insert these into the square:
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} [|M_{f i}^1|^2+M_{fi}^2 M_{fi}^{1*} + M_{fi}^1 M_{fi}^{2*} + |M_{f i}^2|^2]
     \end{equation}
 
     It is worth beginning the simplification of this square by handling each term separately.
@@ -246,33 +315,38 @@
         (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
     \end{equation}
 
-    \begin{equation}
-        \sum_{\pm s} U (p, s) \overline{U} (p, s) = \frac{\slashed{p} + m}{2m} \qquad \sum_{\pm s} V (p, s) \overline{V} (p, s) = \frac{\slashed{p} - m}{2m}
-    \end{equation}
+    \begin{eqnarray}
+        = \sum_{S_f S_i} i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1) \\
+        \times - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\rho} U_e (p_1, s_1)
+    \end{eqnarray}
 
     Simplifying some gives:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1) \\
+        \times \overline{U}_e (p'_1, s'_1) \gamma^{\rho} U_e (p_2, s_2)  \overline{U}_e (p'_2, s'_2) \gamma_{\rho} U_e (p_1, s_1)
+    \end{eqnarray}
 
     The order of the four scalar factors can then be optimized for the next step:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} U_e (p_1, s_1) \gamma_{\rho} \overline{U}_e (p'_1, s'_1) \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1) \\
+        \times Tr \overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2)
+    \end{eqnarray}
 
-    One can then introduce traces of specifica paris of scalar factors, because taking the trace of a scalar changes nothing:
+    One can then introduce traces of specific paris of scalar factors, because taking the trace of a scalar changes nothing:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} Tr [U_e (p_1, s_1) \gamma_{\rho} \overline{U}_e (p'_1, s'_1) \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1)] \\
+        \times Tr [\overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2)]
+    \end{eqnarray}
 
     The Cyclic property of the trace can then be used to rearranged factors under the trace to yield:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} Tr [\gamma_{\mu} U_e (p_1, s_1) \overline{U}_e (p'_1, s'_1) \gamma_{\rho} \overline{U}_e (p'_1, s'_1) U_e (p_1, s_1)] \\
+        \times Tr [\gamma^{\mu} \overline{U}_e (p'_2, s'_2) U_e (p_2, s_2) \gamma^{\rho} \overline{U}_e (p'_2, s'_2) U_e (p_2, s_2)]
+    \end{eqnarray}
 
     We are now ready to apply the following identity:
 
@@ -282,16 +356,16 @@
 
     Applying it gives the final result for this term for this section:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+    \end{center}
 
     Given that the only difference between the two Feynman amplitude terms is a flipped sign and flipped outgoing momentum variables, we can derive a similar expression for the fourth term in the square by simply making those changes
     to the above boxed result (the flip sign cancels). Doing this gives the following:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+    \end{center}
 
     Next, the same process can be performed on the first of the cross terms in the square:
 
@@ -302,44 +376,52 @@
     Simplifying a little:
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
+        M_{fi}^1 = i e \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{i g^{\mu \nu}}{(p'_1 - p_1)^2} \times - i e \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1)
     \end{equation}
+
+    \begin{eqnarray}
+        = \sum_{S_f S_i} i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1) \\
+        \times - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\rho} U_e (p_1, s_1)
+    \end{eqnarray}
 
     The order of the four scalar factors can then be optimized for the last step:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} U_e (p_1, s_1) \gamma_{\rho} \overline{U}_e (p'_1, s'_1) \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (p_1, s_1) \\
+        \times Tr \overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2)
+    \end{eqnarray}
 
     One can then take the trace of the scalar quantity under the sum because taking the trace of a scalar changes nothing:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} Tr [U_e (p_1, s_1) \gamma_{\rho} \overline{U}_e (p'_1, s'_1) \overline{U}_e (p'_1, s'_1) \gamma_{\mu} U_e (, s_1)] \\
+        \times Tr [\overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \overline{U}_e (p'_2, s'_2) \gamma^{\mu} U_e (p_2, s_2)]
+    \end{eqnarray}
 
     One can then use the cyclic property of the trace to prepare this for the final step:
 
-    \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
-    \end{equation}
+    \begin{eqnarray}p_1
+        = \frac{e^4}{4 (p'_1 - p_1)^2} \sum_{S_f S_i} Tr [\gamma_{\mu} U_e (p_1, s_1) \overline{U}_e (p'_1, s'_1) \gamma_{\rho} \overline{U}_e (p'_1, s'_1) U_e (p_1, s_1)] \\
+        \times Tr [\gamma^{\mu} \overline{U}_e (p'_2, s'_2) U_e (p_2, s_2) \gamma^{\rho} \overline{U}_e (p'_2, s'_2) U_e (p_2, s_2)]
+    \end{eqnarray}
 
     The final step consists of applying the same identity as before:
 
     \begin{equation}
-        \sum_{\pm s} U (p, s) \overline{U} (p, s) = \frac{\slashed{p} + m}{2m} \qquad \sum_{\pm s} V (p, s) \overline{V} (p, s) = \frac{\slashed{p} - m}{2m}
+        \sum_{\pm s} U (p, s) \overline{U} (p, s) = \frac{\slashed{p} + m}{2m}
     \end{equation}
 
-    Applying it gieves the final answer for this trace for this section:
+    Applying it gives the final answer for this trace for this section:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+    \end{center}
 
     Performing the same interchange that got the four the term from the frist, provides us with the term term from the second:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+    \end{center}
 
     Inserting these results into the square of the Feynman amplitude produces the following result:
 
@@ -347,40 +429,78 @@
         (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
     \end{equation}
 
+    \begin{equation}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} [|M_{f i}^1|^2+M_{fi}^2 M_{fi}^{1*} + M_{fi}^1 M_{fi}^{2*} + |M_{f i}^2|^2]
+    \end{equation}
+
     This can be written more simply as follows:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+    \end{center}
 
     To simplify this squared Feynman amplitude down further requires the traces to be evaluated. This is the subject of next section.
 
     \section*{Evaluating The Traces}
 
     \begin{equation}
-        Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        Tr [\gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\nu \frac{\slashed{p}_1 + m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma_\mu (\slashed{p'}_1 + m) \gamma_\rho (\slashed{p}_1 + m)]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{(2m)^2} Tr[\gamma_\mu \slashed{p'}_1 \gamma_\rho \slashed{p}_1 + m \gamma_\mu \gamma_\rho \slashed{p}_1 + m \gamma_\mu \slashed{p'}_1 \gamma_\rho + m^2 \gamma_\mu \gamma_\rho]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{(2m)^2} \big[ Tr[\gamma_\mu \slashed{p'}_1 \gamma_\rho \slashed{p}_1] + m Tr[\gamma_\mu \gamma_\rho \slashed{p}_1] + m Tr[\gamma_\mu \slashed{p'}_1 \gamma_\rho] + m^2 Tr[\gamma_\mu \gamma_\rho] \big]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{(2m)^2} \big[ Tr[\gamma_\mu \slashed{p'}_1 \gamma_\rho \slashed{p}_1] + m^2 Tr[\gamma_\mu \gamma_\rho] \big] = \frac{1}{(2m)^2} \big[ T_1 + m^2 T_2 \big]
     \end{equation}
 
     The two traces that show up in the break-down of the initial trace can be evaluated using two common gamma matrix identities:
 
-    \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
-    \end{equation}
+    \begin{eqnarray}
+        T_1 = \frac{1}{(2m)^2} = p_1^{\alpha} p_2^{'\beta} Tr [\gamma_\mu \gamma_\rho \gamma_\alpha \gamma_\beta] = 4 p_1^{\alpha} p_2^{'\beta} (g_{\mu \alpha} g_{\rho \beta} - g_{\mu \rho} g_{\alpha \beta} + g_{\mu \beta} g_{\alpha \rho}) \\
+        = 4 (p_{1 \mu} p'_{1 \rho} - 4 p_1 \cdot p'_1 g_{\mu \nu} + p_{1 \rho} p'_{1 \mu}) \\ 
+        T_2 = Tr [\gamma_\mu \gamma_\rho] = 4 g_{\mu \rho}
+    \end{eqnarray}
 
     Inserting these results for the contributing traces produces the following result for the original trace that we actually wanted:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{\Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg] = \frac{1}{m^2} [p_{1 \mu} p'_{1 \rho} - 4 p_1 \cdot p'_1 g_{\mu \nu} + p_{1 \rho} p'_{1 \mu} + m^2 g_{\mu \rho}]}
+    \end{center}
 
     The only difference between the trace we just calculated and the second one that shows up in the Feynman amplitude square is the raising of indices, and the subscripts being 2 instead of 1. Because of this, the result for the second trace can be
     simply written down from the result we just got:
 
-    \begin{framed}
-        |
-    \end{framed}
+    \begin{center}
+        \boxed{\Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg] = \frac{1}{m^2} [p_{2}^{\mu} p_{2}^{' \rho} - 4 p_2 \cdot p'_2 g^{\mu \nu} + p_{2}^{\rho} p_{2}^{' \mu} + m^2 g^{\mu \rho}]}
+    \end{center}
 
     We must then contract these two results to get the complete first term numerator in the Feynman amplitude square Doing this is pretty trivial: 
+
+    \begin{equation}
+        Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]
+    \end{equation}
+
+    \begin{equation}
+        = \frac{1}{m^4} [p_{1 \mu} p'_{1 \rho} - 4 p_1 \cdot p'_1 g_{\mu \nu} + p_{1 \rho} p'_{1 \mu} + m^2 g_{\mu \rho}] [p_{2}^{\mu} p_{2}^{' \rho} - 4 p_2 \cdot p'_2 g^{\mu \nu} + p_{2}^{\rho} p_{2}^{' \mu} + m^2 g^{\mu \rho}]
+    \end{equation}
+
+    \begin{eqnarray}
+        = \frac{1}{m^4} [p_1 \cdot p_2 p'_1 \cdot p'_2 - p_1 \cdot p'_1 p_2 \cdot p'_2 + p_1 \cdot p'_2 p'_1 \cdot p_2 + m^2 p_1 \cdot p'_1 + p_1 \cdot p'_1 p_2 \cdot p'_2 + 4 p_1 \cdot p'_1 p_2 \cdot p'_2 - p_1 \\
+        \cdot p'_1 p_2 \cdot p'_2 - 4 m^2 p_1 \cdot p'_1 + p_1 \cdot p'_2 p'_1 \cdot p_2 - p_1 \cdot p'_1 p_2 \cdot p'_2 + p_1 \cdot p'_2 p_1 \cdot p'_2 + m^2 p_1 \cdot p'_1 + m^2 p_2 \\
+        \cdot p'_2 - 4 m^2 p_2 \cdot p'_2 + m^2 p_2 \cdot p'_2 + 4 m^2]
+    \end{eqnarray}
+
+    \begin{equation}
+        = \frac{2}{m^2} [p_1 \cdot p_2 p'_1 \cdot p'_2 + p_1 \cdot p'_2 p'_1 \cdot p_2 - m^2 p_1 \cdot p'_1 - m^2 p_2 \cdot p'_2 + 2 m^4]
+    \end{equation}
+
+    The delta functions in the scattering cross section formula enforced energy and momentum conservation which, put together, yields four-momentum conservation implies the following relation:
 
     \begin{equation}
         p_1 + p_2 = p'_1 + p'_2
@@ -395,7 +515,11 @@
     These relations can be derived from four-momentum conservation by squaring and simplifying for the first one, or rearranging, squaring and simplifying for the last two. Applying these to the contracted trace product allows it to be rewritten as follows:
 
     \begin{equation}
-        Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        Tr [\gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\nu \frac{\slashed{p}_1 + m}{2 m}] Tr [\gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\nu \frac{\slashed{p}_1 + m}{2 m}]
+    \end{equation}
+
+    \begin{equation}
+        \frac{2}{m^4} [(p_1 \cdot p_2)^2 + (p_1 \cdot p'_2)^2 - 2 m^2 p_1 \cdot p'_1 + 2 m^4]
     \end{equation}
 
     The Final simplification of this contracted trace product can be achieved by applying the four momentum conservation relation direactly to the last two terms. Specifically, they can be rewritten as follows:
@@ -407,42 +531,61 @@
     Inserting this gives the final result for this contracted product of traces:
 
     \begin{framed}
-        |
+        \begin{equation}
+            \begin{aligned}
+                Tr [\gamma_\mu \frac{\slashed{p'}_1 + m}{2m} \gamma_\rho \frac{\slashed{p}_1 + m}{2 m}] Tr [\gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\rho \frac{\slashed{p}_1 + m}{2 m}] \\
+                = \frac{2}{m^4} [(p_1 \cdot p_2)^2 + (p_1 \cdot p'_2)^2 - 2 m^2 (p_1 \cdot p'_2 - p_1 \cdot p_2)]
+            \end{aligned}
+        \end{equation}
     \end{framed}
 
     One can then interchange the final momentum to get the last term in the Feynman amplitude square:
 
     \begin{framed}
-        |
+        \begin{equation}
+            \begin{aligned}
+                Tr [\gamma_\mu \frac{\slashed{p'}_1 + m}{2m} \gamma_\rho \frac{\slashed{p}_1 + m}{2 m}] Tr [\gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\rho \frac{\slashed{p}_1 + m}{2 m}] \\
+                = \frac{2}{m^4} [(p_1 \cdot p_2)^2 + (p_1 \cdot p'_2)^2 - 2 m^2 (p_1 \cdot p'_2 - p_1 \cdot p_2)]
+            \end{aligned}
+        \end{equation}
     \end{framed}
 
     Now we can handle the cross term trace numerators in the Feynman amplitude square. The first one preliminarily simplifies down as follows:
 
     \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        Tr [\gamma_\mu \frac{\slashed{p'}_1 + m}{2m} \gamma_\rho \frac{\slashed{p}_1 + m}{2 m} \gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\rho \frac{\slashed{p}_1 + m}{2 m}]
     \end{equation}
 
     \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        = \frac{1}{(2 m)^2} Tr [\gamma_\mu (\slashed{p'}_1 + m) \gamma_\rho (\slashed{p}_1 + m) \gamma^\mu (\slashed{p'}_2 + m) \gamma^\rho (\slashed{p}_2 + m)]
     \end{equation}
 
     \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        = \frac{1}{(2 m)^2} Tr [(\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 + m \gamma_\mu \gamma_\rho \slashed{p'}_1 + m \gamma_\mu \slashed{p}_1 \gamma_\rho + m^2 \gamma_\mu \gamma_\rho) (\gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2 + m \gamma^\mu \gamma^\rho \slashed{p'}_2 + m \gamma^\mu \slashed{p}_2 \gamma^\rho + m^2 \gamma^\mu \gamma^\rho)]
     \end{equation}
 
-    \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{1}{(2 m)^2} Tr \Big[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2 + m \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \slashed{p'}_2 + m \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho + m^2 \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \\
+        m \gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2 + m^2 \gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \slashed{p'}_2 + m^2 \gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho + m^2 \gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \\
+        m \gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2 + m^2 \gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2 + m^2 \gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho + m^2 \gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho \\
+        m^2 \gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2 + m^3 \gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2 + m^3 \gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho + m^4 \gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho \Big]
+    \end{eqnarray}
 
-    \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{1}{(2 m)^2} \Big[ Tr[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \slashed{p'}_2] + m Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] \\
+        m Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^2 Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] \\
+        m Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho] \\
+        m^2 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^3 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2] + m^3 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^4 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho] \Big]
+    \end{eqnarray}
 
     Traces of products of odd numbers of gamma mat rices are zero, so.
 
-    \begin{equation}
-        Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
-    \end{equation}
+    \begin{eqnarray}
+        = \frac{1}{(2 m)^2} \Big[ Tr[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] \\
+        + m^2 Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^2 Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] \\
+        + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho] \\
+        m^2 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^4 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho] \Big]
+    \end{eqnarray}
 
     This can be rewritten in terms of a sequence of t races that we will evaluate separately and then insert back in:
 
@@ -453,10 +596,10 @@
     Where
 
     \begin{eqnarray}
-        T_1 = & T_2 = \\
-        T_3 = & T_4 = \\
-        T_5 = & T_6 = \\
-        T_7 = & T_8 = \\
+        T_1 = Tr[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] & T_2 = Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] \\
+        T_3 = Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho \slashed{p'}_2] & T_4 = Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho] \\
+        T_5 = Tr[\gamma_\mu \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] & T_6 = Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2] \\
+        T_7 = Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] & T_8 = Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho] \\
     \end{eqnarray}
 
     \begin{equation}
