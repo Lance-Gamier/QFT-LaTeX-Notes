@@ -238,7 +238,7 @@
     Therefore, the differential scattering cross section becomes:
 
     \begin{center}
-        \boxed{\frac{d sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2}
+        \boxed{\frac{d \sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2}
     \end{center}
 
     This completes the pre-simplification of the differential scattering cross section. Now we must begin the process of computing the Feynman amplitude.
@@ -443,6 +443,8 @@
 
     \section*{Evaluating The Traces}
 
+    The first trace can be broken up the following way:
+
     \begin{equation}
         Tr [\gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\nu \frac{\slashed{p}_1 + m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma_\mu (\slashed{p'}_1 + m) \gamma_\rho (\slashed{p}_1 + m)]
     \end{equation}
@@ -470,14 +472,14 @@
     Inserting these results for the contributing traces produces the following result for the original trace that we actually wanted:
 
     \begin{center}
-        \boxed{\Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg] = \frac{1}{m^2} [p_{1 \mu} p'_{1 \rho} - 4 p_1 \cdot p'_1 g_{\mu \nu} + p_{1 \rho} p'_{1 \mu} + m^2 g_{\mu \rho}]}
+        \boxed{\Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg] = \mathbf{\frac{1}{m^2} [p_{1 \mu} p'_{1 \rho} - 4 p_1 \cdot p'_1 g_{\mu \nu} + p_{1 \rho} p'_{1 \mu} + m^2 g_{\mu \rho}]} }
     \end{center}
 
     The only difference between the trace we just calculated and the second one that shows up in the Feynman amplitude square is the raising of indices, and the subscripts being 2 instead of 1. Because of this, the result for the second trace can be
     simply written down from the result we just got:
 
     \begin{center}
-        \boxed{\Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg] = \frac{1}{m^2} [p_{2}^{\mu} p_{2}^{' \rho} - 4 p_2 \cdot p'_2 g^{\mu \nu} + p_{2}^{\rho} p_{2}^{' \mu} + m^2 g^{\mu \rho}]}
+        \boxed{\Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg] = mathbf{\frac{1}{m^2} [p_{2}^{\mu} p_{2}^{' \rho} - 4 p_2 \cdot p'_2 g^{\mu \nu} + p_{2}^{\rho} p_{2}^{' \mu} + m^2 g^{\mu \rho}]} }
     \end{center}
 
     We must then contract these two results to get the complete first term numerator in the Feynman amplitude square Doing this is pretty trivial: 
@@ -578,7 +580,7 @@
         m^2 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^3 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho \slashed{p'}_2] + m^3 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho] + m^4 Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho] \Big]
     \end{eqnarray}
 
-    Traces of products of odd numbers of gamma mat rices are zero, so.
+    Traces of products of odd numbers of gamma matrices are zero, so.
 
     \begin{eqnarray}
         = \frac{1}{(2 m)^2} \Big[ Tr[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] + m^2 Tr[\gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \gamma^\rho] \\
@@ -602,15 +604,18 @@
         T_7 = Tr[\gamma_\mu \gamma_\rho \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] & T_8 = Tr[\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho] \\
     \end{eqnarray}
 
+    We can then simplify these down separately using the following list of gamma matrices:
+
     \begin{equation}
-        Tr [\gamma^\mu \gamma^\nu] = 4 g^{\mu \nu}
+        Tr [\gamma^\mu \gamma^\nu] = 4 g^{\mu \nu} \qquad \gamma_\mu \gamma_\nu \gamma^\mu = -2 \gamma_\nu \qquad \gamma_\mu \gamma_\nu \gamma_\rho \gamma^\mu = 4 g_{\mu \nu} I \qquad \gamma_\mu \gamma_\nu \gamma_\rho \gamma_\sigma \gamma^\mu = -2 \gamma_\sigma \gamma_\rho \gamma_\nu \qquad Tr[\gamma_\mu \gamma_\nu] = 4 g_{\mu \nu}
     \end{equation}
 
     Applying these to the various traces allows for their simplificaiton as follows:
 
-    \begin{equation}
-        T_1^{\mu \nu} = Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
-    \end{equation}
+    \begin{eqnarray}
+        T_1 Tr[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] = p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \delta} Tr [\gamma_\mu \gamma_\alpha \gamma_\rho \gamma_\beta \gamma^\mu \gamma_\lambda \gamma^\rho \gamma_\delta] = -2 p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \gamma} Tr [\gamma_beta \gamma_\rho \gamma_\alpha \gamma_\gamma \gamma^\rho \gamma_\delta] \\
+        = -8 g_{\alpha \gamma} p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \delta} Tr[\gamma_\beta \gamma_\delta] = -32 g_{\alpha \gamma} p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \gamma} g_{\beta \delta} = \mathbf{-32 p_1 \cdot p_2 p'_1 \cdot p'_2}
+    \end{eqnarray}
 
     % Insert large table here
 
@@ -621,19 +626,322 @@
     Substituting all of these simplified traces back in, gives the following:
 
     \begin{equation}
-        Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        Tr [\gamma_\mu \frac{\slashed{p'}_1 + m}{2m} \gamma_\rho \frac{\slashed{p}_1 + m}{2 m} \gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\rho \frac{\slashed{p}_1 + m}{2 m}]
     \end{equation}
 
     \begin{equation}
-        Tr [\gamma^\mu \frac{\slashed{p'}_2 - m}{2m} \gamma^\nu \frac{\slashed{p}_2 - m}{2 m}] = \frac{1}{(2m)^2} Tr[\gamma^\mu \gamma^\nu]
+        \frac{1}{m^4} [-2 p_1 \cdot p_2 + p'_1 \cdot p'_2 + m^2 p_1 \cdot p'_1 + m^2 p'_1 \cdot p'_2 + m^2 p'_1 \cdot p_2 + m^2 p_1 \cdot p'_2 m^2 p_1 \cdot p_2 + m^2 p_2 \cdot p'_2 - 2 m^4]
     \end{equation}
+
+    \begin{equation}
+        \frac{1}{m^4} [-2 p_1 \cdot p_2 + m^2 p_1 \cdot p'_2 + m^2 (p_1 \cdot p'_1 + p'_1 \cdot p'_2 + p_1 \cdot p_2 + p_2 \cdot p'_2) + m^2 p'_1 \cdot p_2 - 2 m^4]
+    \end{equation}
+
+    We can then apply four momentum conservation to simplify this this quite a bit just like we did above for the contracted trace produce. The algebra proceeds as folows:
+
+    \begin{equation}
+        \frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + m^2 p_1 \cdot p'_2 + 2 m^2 (p_1 \cdot p'_1 + p_1 \cdot p_2 + p_2 \cdot p'_2) - 2 m^4]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + 2 m^2 (p_1 \cdot (p'_1 \cdot p'_2) + 2 p_1 \cdot p_2 + p'_2 \cdot (p_1 \cdot p_2)) - 2 m^4]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + 2 m^2 (p_1 \cdot (p_1 \cdot p_2) + 2 p_1 \cdot p_2 + p'_2 \cdot (p'_1 \cdot p'_2)) - 2 m^4]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + m^2 (2 m^2 + 4 p_1 \cdot p_2) - 2 m^4]
+    \end{equation}
+
+    \begin{equation}
+        \frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + 4 m^2 p_1 \cdot p_2]
+    \end{equation}
+
+    So the final answer is:
+
+    \begin{framed}
+        \begin{eqnarray}
+            Tr [\gamma_\mu \frac{\slashed{p'}_1 + m}{2m} \gamma_\rho \frac{\slashed{p}_1 + m}{2 m} \gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\rho \frac{\slashed{p}_1 + m}{2 m}] \\
+            = \mathbf{\frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + 4 m^2 p_1 \cdot p_2]}
+        \end{eqnarray}
+    \end{framed}
+
+    We can then interchange the final momenta in the result we just got to get the final trace that we need:
+
+    \begin{framed}
+        \begin{eqnarray}
+            Tr [\gamma_\mu \frac{\slashed{p'}_1 + m}{2m} \gamma_\rho \frac{\slashed{p}_1 + m}{2 m} \gamma^\mu \frac{\slashed{p'}_1 + m}{2m} \gamma^\rho \frac{\slashed{p}_1 + m}{2 m}] \\
+            = \mathbf{\frac{1}{m^4} [-2 (p_1 \cdot p_2)^2 + 4 m^2 p_1 \cdot p_2]}
+        \end{eqnarray}
+    \end{framed}
+
+    Now that all of the traces have been computed, the results can be inserted into the equation for the square of the Feynman amplitude:
+
+    \begin{framed}
+        \begin{eqnarray}
+            (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]
+        \end{eqnarray}
+    \end{framed}
 
     \section*{Parametrization}
 
+    Throughout this calculation so far, we have escaped picking a specific parametrization for the momentum vectors, all that was needed was to remember that we were taking the center of mass frame, and even then, this fact was only applied twice to simplify
+    the scattering cross section formula at the end of the second section. To simplify the result any further however, a specific parametrization must be selected. Fig. 1 illustrates the center of mass frame in a manner that makes this task easier:
+
+    % insert diagram here
+
+    From Fig. 1, we can easily write down the standard parametrization: 
+
+    \begin{equation}
+        p_{1 \mu} = E \: 0 \: 0 \: |\mathbf{p}|
+    \end{equation}
+    
+    \begin{equation}
+        p_{2 \mu} = E \: 0 \: 0 \: - |\mathbf{p}|
+    \end{equation}
+
+    \begin{equation}
+        p'_{1 \mu} = E \: 0 \: |\mathbf{p}| \sin \theta \: |\mathbf{p}| \cos \theta
+    \end{equation}
+
+    \begin{equation}
+        p'_{2 \mu} = E \: 0 \: - |\mathbf{p}| \sin \theta \: - |\mathbf{p}| \cos \theta
+    \end{equation}
+
+    We can then evaluate all of the momentum variable dependent quantities in the squared Feynman amplitude, and the differential scattering cross section formula in terms of the selected parametrization. This gives the following:
+
+    \begin{equation}
+        |\vec{p}_1| = \sqrt{E^2 - m^2}
+    \end{equation}
+
+    \begin{equation}
+        |\vec{p'}_1| = \sqrt{E^2 - m^2}
+    \end{equation}
+
+    \begin{equation}
+        p_1 \cdot p_2 = 2 E^2 - m^2
+    \end{equation}
+
+    \begin{equation}
+        p_1 \cdot p'_1 = E^2 (1 - \cos \theta) + m^2 \cos \theta
+    \end{equation}
+
+    \begin{equation}
+        p_1 \cdot p'_1 = E^2 (1 - \cos \theta) - m^2 \cos \theta
+    \end{equation}
+
+    \begin{eqnarray}
+        (p'_1 - p_1)^4 = (p'_1 - p_1) \cdot (p'_1 - p_1) (p'_1 - p_1) \cdot (p'_1 - p_1) = 4 (m^4 - 2 m^2 p_1 \cdot p'_1 + (p'_1 - p_1)^2) \\
+        = 4 (m^2 - p'_1 - p_1)^2 = 4 (m^2 - E^2 (1 - \cos \theta) - m^2 \cos \theta)^2
+    \end{eqnarray}
+
+    \begin{equation}
+        (p'_1 - p_1)^4 = 4 (m^4 - 2 m^2 p_1 \cdot p'_2 + (p_1 \cdot p'_2)^2) = 4 (m^2 - p_1 \cdot p'_2) = 4 (m^2 - E^2 (1 + \cos \theta) + m^2 \cos \theta)^2
+    \end{equation}
+
+    \begin{eqnarray}
+        (p'_1 - p_1)^2 (p'_1 - p_1)^2 = 4 (m^4 - m^2 p_1 \cdot p'_2 - m^2 p_1 \cdot p'_2 + p_1 \cdot p'_2 p_1 \cdot p'_1) \\
+        = 4 (m^4 - m^2 (E^2 (1 + \cos \theta) - m^2 \cos \theta) - m^2 (E^2 (1 + \cos \theta) + m^2 \cos \theta) ) \\
+        + (E^2 (1 + \cos \theta) - m^2 \cos \theta) (E^2 (1 + \cos \theta) + m^2 \cos \theta) = 4 (E^2 - m^2)^2 \sin^2 \theta 
+    \end{eqnarray}
+
+    We can now plug all of these results into the differential scattering cross section formula, and the squared Feynman amplitude. Doing this produces the following results:
+
+    \begin{equation}
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
+    \end{equation}
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
     \section*{Final Simplification to Yield Main Result}
+
+    Figuring out how to simplify the Feynman amplitude square without help is rather hellish given the complicated dependence on trig functions. However, it is quite easy if someone tells you which algebraic steps to take and which trig identities
+    to use. Here follows exactly that explanation. The key to getting this simplification is to manipulate the expression until one can make use of the following trig identities:
+
+    \begin{framed}
+
+        \begin{equation}
+            \frac{1}{1 - \cos \theta} + \frac{1}{1 + \cos \theta} = \mathbf{\frac{2}{\sin^2 \theta}}
+        \end{equation}
+
+        \begin{equation}
+            \frac{1}{(1 - \cos \theta)^2} + \frac{1}{(1 + \cos \theta)^2} = \mathbf{\frac{4}{\sin^4 \theta} - \frac{2}{\sin^2 \theta}}
+        \end{equation}
+
+        \begin{equation}
+            (\frac{1}{(1 - \cos \theta)^2} + \frac{1}{(1 + \cos \theta)^2}) \cos^2 \theta = \mathbf{\frac{4}{\sin^4 \theta} - \frac{6}{\sin^2 \theta} + 2}
+        \end{equation}
+ 
+        \begin{equation}
+            (\frac{1 - \cos \theta}{(1 - \cos \theta)^2} + \frac{1 + \cos \theta}{(1 + \cos \theta)^2}) \cos^2 \theta = \mathbf{- \frac{8}{\sin^4 \theta} + \frac{10}{\sin^2 \theta} - 2}
+        \end{equation}
+
+        \begin{equation}
+            \frac{(1 + \cos \theta)^2}{(1 - \cos \theta)^2} + \frac{(1 - \cos \theta)^2}{(1 + \cos \theta)^2} = \mathbf{\frac{16}{\sin^4 \theta} - \frac{16}{\sin^2 \theta} + 2}
+        \end{equation}
+
+    \end{framed}
+
+    These trig identities aren't too hard to prove, but proving them is probably longer than what they would typically give students in trigonometry class.
+
+    The expression for the squared amplitude that we are starting with the one from above:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    The first step in getting the squared amplitude into the form where these trig identities are applicable is to factor the first two denominators:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    One can then factor out $4 (E^2 - m^2)$ from all of the denominators:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    Then we can factor the last term in both of the first two numerators:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    We can then split up the first two fraction into individual terms:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    We can then bring the $\frac{(1 + \cos \theta)^2}{(1 - \cos \theta)^2} + \frac{(1 - \cos \theta)^2}{(1 + \cos \theta)^2}$ to thfe front, and also add and subtract $\mathbf{\frac{16}{\sin^4 \theta} - \frac{16}{\sin^2 \theta} + 2}$. The added
+    copy can be combined with the last term, and the subtracted copy can be placed as the third term, giving us:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    Inserting this gives:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    We can then refactor everything in the large curvy parentheses based on the sine function power multiplying the term. This gives:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    We can simplify the nunmerator of the second term in the large curvy parentheses, and we can also write the last term as a perfect square:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    We can then write the first of those numerator of the next term to the right as follows:
+
+    \begin{equation}
+        -4 E^2 - 4E^2 m^2 + 5 m^4 = 8 (m^2 - E^2)^2 - 3(2 E^2 - m^2)^2
+    \end{equation}
+
+    Inserting that gives:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    We can combine like terms throughout the whole expression:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    Next, we can factor $2 (m^2 - E^2)^2$ out of the large parentheses to get:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    Pulling out the last factor of two gives the final answer:
+
+    \begin{eqnarray}
+        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        = \frac{e^4}{2 m^4}
+    \end{eqnarray}
+
+    Now, recall that the differential cross section in terms of the Feynman amplitude worked out to be:
+
+    \begin{equation}
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m^4 \alpha^2}{E^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i, S_f} \frac{|M_{fi}|}{e^4}
+    \end{equation}
+
+    Plugging in the result for the average of the square of the Feynman amplitude gives the Moller formula:
+
+    \begin{framed}
+        \begin{equation}
+            \mathbf{\frac{d \sigma}{d \Omega} = }
+        \end{equation}
+    \end{framed}
 
     \section*{Ultra-Relativistic Limit}
 
+    From here, the ultra-relativistic limit is considered, then the non relativistic limit. In the ultra-relativistic limit, the mass becomes negligible, meaning the ultra-relativistic, or high energy limit is merely the limit as the electron
+    mass goes to zero. Taking this limit on the Moller scattering cross section given in the box gives:
+
+    \begin{equation}
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m^4 \alpha^2}{E^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i, S_f} \frac{|M_{fi}|}{e^4}
+    \end{equation}
+
+    \begin{equation}
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m^4 \alpha^2}{E^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i, S_f} \frac{|M_{fi}|}{e^4}
+    \end{equation}
+
+    \begin{framed}
+        \begin{equation}
+            \mathbf{\frac{d \sigma}{d \Omega} = }
+        \end{equation}
+    \end{framed}
+
+    Lastly, we can study the non-relativistic limit.
+        
     \section*{Nonrelativistic Limit}
+
+    Of course, in this limit the denominator of the prefactor goes to zero, and the prefactor diverges. However, this isn't actually that relevant to taking the limit because it multiplies the whole expression. We only care to figure out which
+    terms become insignificant \textit{relative to others as E approaches m}. No prefactor (even a divergent one) affects \textit{relative} significance of terms. With this in mind, we can see that the last term in the general formula get very
+    small compared to the first to, wo we have the following result:
+
+    \begin{equation}
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m^4 \alpha^2}{E^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i, S_f} \frac{|M_{fi}|}{e^4}
+    \end{equation}
+
+    \begin{equation}
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m^4 \alpha^2}{E^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i, S_f} \frac{|M_{fi}|}{e^4}
+    \end{equation}
+
+    In the non-relativistic limit, we also have $p = mv$. Therefore, the Moller scattering cross section in the non-relativistic limit is the following:
+
+    \begin{framed}
+        \begin{equation}
+            \mathbf{\frac{d \sigma}{d \Omega} = }
+        \end{equation}
+    \end{framed}
 
 \end{document}

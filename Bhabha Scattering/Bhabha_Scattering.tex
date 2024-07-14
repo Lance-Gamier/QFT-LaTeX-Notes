@@ -32,7 +32,49 @@
 
     At the tree level, we have the following Feynman diagrams for Bhabha scattering in QED:
 
-    % Insert the Feynman Diagrams here
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            $\langle e^{-}, e^{+} | S_{\alpha} | e^{-}, e^{+} \rangle$ & $\langle e^{-}, \gamma | S_{\beta} | e^{-}, e^{+} \rangle$ \\
+            \hline
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex [label = right: $x_1$] (a);
+                    \vertex [below = of a, label = left: $x_2$] (b);
+                    \vertex [above right = of a, label = $e^{+}$] (c);
+                    \vertex [above left = of a, label = $e^{-}$] (d);
+                    \vertex [below left = of b, label = $e^{-}$] (e);
+                    \vertex [below right = of b, label = $e^{+}$] (f);
+    
+                    \diagram{
+                        (a) -- [boson] (b);
+                        (c) -- [fermion] (a);
+                        (a) -- [fermion] (d);
+                        (e) -- [fermion] (b);
+                        (b) -- [fermion] (f);
+                    };
+                \end{feynman}
+            \end{tikzpicture} & \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex [label = below: $x_1$] (a);
+                    \vertex [right = of a,label = above: $x_2$] (b);
+                    \vertex [above left = of a, label = $e^{-}$] (c);
+                    \vertex [below left = of a, label = $e^{-}$] (d);
+                    \vertex [above right = of b, label = $e^{+}$] (e);
+                    \vertex [below right = of b, label = $e^{+}$] (f);
+    
+                    \diagram{
+                        (a) -- [boson] (b);
+                        (a) -- [fermion] (c);
+                        (d) -- [fermion] (a);
+                        (e) -- [fermion] (b);
+                        (b) -- [fermion] (f);
+                    };
+                \end{feynman}
+            \end{tikzpicture} \\
+            \hline
+        \end{tabular} \\
+    \end{center}
 
     Here, solid lines are fermion lines, and wavy lines are photon lines.
 
