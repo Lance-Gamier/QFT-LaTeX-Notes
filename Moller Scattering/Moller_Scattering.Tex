@@ -110,6 +110,10 @@
         \boxed{d \sigma = m_1 m_2 \frac{(2 \pi)^4 |M_{fi}|^2 \delta^4 (P_f - P_i)}{[(p_1 \cdot p_2)^2 - m_1^2 m_2^2]^{1/2}} \prod_{n = 1}^{N_f} \frac{m_n d^3 \vec{p}_n}{(2 \pi)^3 2 E_n}}
     \end{center}
 
+    \[
+        \mathbf{N_f = number \: of \: outgoing \: fermions}
+    \]
+
     There is also a link in the description for a video whre I show how to derive this general formula.
 
     This general calculation will have several distinct stages. First, we will simplify the general differential scattering cross section formula as we can without knowing the Feynman amplitude.
@@ -129,7 +133,7 @@
     formula given in the introduction easily gives us:
 
     \begin{equation}
-        d^3 \sigma = \frac{m_1^2 m_2^2}{[(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{k}_1}{(2 \pi)^2 E_{k_1}} \frac{d^3 \vec{k}_1}{(2 \pi)^2 E_{k_2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - p'_1 - p'_2)
+        d^6 \sigma = \frac{m_1^2 m_2^2}{[(p_1 \cdot p_2) - m^4]^{1/2}} \frac{d^3 \vec{p}_1}{(2 \pi)^2 E_{p_1}} \frac{d^3 \vec{p}_1}{(2 \pi)^2 E_{p_2}} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (p_1 + p_2 - p'_1 - p'_2)
     \end{equation}
 
     You may notice that I added a 6 superscript to the differential on $\sigma$. This is to indicate how many differentials there are on the other side of the equation. This number will drop as we complete
@@ -145,7 +149,7 @@
     it doesn't matter which one we choose). Because of the momentum conservation delta functions, integration simply yields the following:
 
     \begin{equation}
-        d^3 \sigma = \frac{m_1^2 m_2^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \frac{d^3 \vec{p'}_1}{E'_1 E'_2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
+        d^3 \sigma = \frac{m_1^2 m_2^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \frac{d^3 \vec{p'}_1}{E'_1 E'_2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
     \end{equation}
 
     Where the delta function has enforced the following mechanical conservation relation:
@@ -158,13 +162,13 @@
     cross section with respect to. Doing this gives:
 
     \begin{equation}
-        d^3 \sigma = \frac{m_1^2 m_2^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \frac{|\vec{p'}_1|^2 d |\vec{p'}_1| d \Omega}{E'_1 E'_2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
+        d^3 \sigma = \frac{m_1^2 m_2^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \frac{|\vec{p'}_1|^2 d |\vec{p'}_1| d \Omega}{E'_1 E'_2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
     \end{equation}
 
     Therefore, the final integration that we must perform to get the differential scattering cross section with respect to the solid angle is the following:
 
     \begin{equation}
-        d^2 \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \int \frac{|\vec{p'}_1|^2 d |\vec{p'}_1|}{E'_1 E'_2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
+        d^2 \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \int \frac{|\vec{p'}_1|^2 d |\vec{p'}_1|}{E'_1 E'_2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \delta^4 (E_{1} + E_{2} - E'_{1} - E'_{2})
     \end{equation}
 
     where
@@ -195,20 +199,20 @@
     We can then relabel the actual momentum $|\vec{p'}_1|_0$ with the symbol previously just used for the integration variable, to make things simpler. The integration over the magnitude of the momentum gives: 
 
     \begin{equation}
-        d^2 \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{1}{f' (|\vec{p}_1|s)}
+        d^2 \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{1}{f' (|\vec{p}_1|s)}
     \end{equation}
 
     Where $f' (|\vec{p}_1|)$ works out to be:
 
     \begin{equation}
-        f' (|\vec{k}_1|) = \frac{\vec{k}_1 \cdot \vec{k}_2}{E_{k_1} E_{k_2s}}
+        f' (|\vec{p}_1|) = \frac{\vec{k}_1 \cdot \vec{k}_2}{E_{k_1} E_{k_2s}}
     \end{equation}
 
     It is worth pointing out that the superscript on the differential is uaually dropped. It wa suseful to keep track of things while we were doing the integration, but it is no longer needed, we we will drop it. 
     We therefore will write: 
 
     \begin{equation}
-        d \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{1}{f' (|\vec{p}_1|s)}
+        d \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{1}{f' (|\vec{p}_1|s)}
     \end{equation}
 
     Keep in mind that because of the integrations that we did $d \sigma$ doesn't quite mean what it did in the general formula in the introduction before any  integration had been done.
@@ -216,17 +220,17 @@
     If we insert the value of $f' (|\vec{p}_1|)$, the differential cross section becomes:
 
     \begin{equation}
-        d \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{E'_1 E'_2}{E'_1 + E'_2}
+        d \sigma = \frac{m_1^2 m_2^2 d \Omega}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{|\vec{p}_1|^2}{E'_1 E'_2} \frac{E'_1 E'_2}{E'_1 + E'_2}
     \end{equation}
 
     \begin{equation}
-        d \sigma = \frac{m_1^2 m_2^2 |\vec{p}_1|^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{1}{(E'_1 + E'_2)^2}
+        d \sigma = \frac{m_1^2 m_2^2 |\vec{p}_1|^2}{(2 \pi)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2 \frac{1}{(E'_1 + E'_2)^2}
     \end{equation}
 
     By applying energy conservation that was mandated by the last delta function, we can replace $E'_1 + E'_2$ with $E_1 + E_2$. This gives:
 
     \begin{equation}
-        d \sigma = \frac{m_1^2 m_2^2 |\vec{p}_1|^2}{(2 \pi)^2 (E'_1 + E'_2)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
+        d \sigma = \frac{m_1^2 m_2^2 |\vec{p}_1|^2}{(2 \pi)^2 (E'_1 + E'_2)^2 [(p_1 \cdot p_2) - m_1^2 m_2^2]^{1/2}} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2
     \end{equation}
 
     Because we are assuming the center of mass frame, we can write:
@@ -238,7 +242,7 @@
     Therefore, the differential scattering cross section becomes:
 
     \begin{center}
-        \boxed{\frac{d \sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2}
+        \boxed{ \mathbf{\frac{d \sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2} }
     \end{center}
 
     This completes the pre-simplification of the differential scattering cross section. Now we must begin the process of computing the Feynman amplitude.
@@ -292,7 +296,7 @@
     \end{equation}
 
     \begin{equation}
-        M_{fi}^* = - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\rho} U_e (p_1, s_1)
+        \boxed{M_{fi}^* = - i e^2 \overline{U}_e (p'_1, s'_1) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_2, s'_2) \gamma_{\rho} U_e (p_1, s_1)}
     \end{equation}
 
     \begin{equation}
@@ -300,19 +304,19 @@
     \end{equation}
 
     \begin{equation}
-        M_{fi}^* = i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\rho} U_e (p_1, s_1)
+        \boxed{M_{fi}^* = i e^2 \overline{U}_e (p'_2, s'_2) \gamma^{\rho} U_e (p_2, s_2) \frac{1}{(p'_1 - p_1)^2} \overline{U}_e (p'_1, s'_1) \gamma_{\rho} U_e (p_1, s_1)}
     \end{equation}
 
     We can now insert these into the square:
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} [|M_{f i}^1|^2+M_{fi}^2 M_{fi}^{1*} + M_{fi}^1 M_{fi}^{2*} + |M_{f i}^2|^2]
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} [|M_{f i}^1|^2+M_{fi}^2 M_{fi}^{1*} + M_{fi}^1 M_{fi}^{2*} + |M_{f i}^2|^2]
     \end{equation}
 
     It is worth beginning the simplification of this square by handling each term separately.
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} M_{fi} M*_{fi}
     \end{equation}
 
     \begin{eqnarray}
@@ -357,20 +361,20 @@
     Applying it gives the final result for this term for this section:
 
     \begin{center}
-        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+        \boxed{\mathbf{\bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]} }
     \end{center}
 
     Given that the only difference between the two Feynman amplitude terms is a flipped sign and flipped outgoing momentum variables, we can derive a similar expression for the fourth term in the square by simply making those changes
     to the above boxed result (the flip sign cancels). Doing this gives the following:
 
     \begin{center}
-        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+        \boxed{\mathbf{\bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]} }
     \end{center}
 
     Next, the same process can be performed on the first of the cross terms in the square:
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} M_{fi} M*_{fi}
     \end{equation}
 
     Simplifying a little:
@@ -414,29 +418,29 @@
     Applying it gives the final answer for this trace for this section:
 
     \begin{center}
-        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+        \boxed{ \mathbf{\bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]} }
     \end{center}
 
     Performing the same interchange that got the four the term from the frist, provides us with the term term from the second:
 
     \begin{center}
-        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+        \boxed{ \mathbf{\bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]} }
     \end{center}
 
     Inserting these results into the square of the Feynman amplitude produces the following result:
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} M_{fi} M*_{fi}
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} [|M_{f i}^1|^2+M_{fi}^2 M_{fi}^{1*} + M_{fi}^1 M_{fi}^{2*} + |M_{f i}^2|^2]
     \end{equation}
 
     \begin{equation}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = (\frac{1}{2})^2 \sum_{S_f S_i} [|M_{f i}^1|^2+M_{fi}^2 M_{fi}^{1*} + M_{fi}^1 M_{fi}^{2*} + |M_{f i}^2|^2]
+        \bigg( \frac{1}{4} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} M_{fi} M*_{fi}
     \end{equation}
 
     This can be written more simply as follows:
 
     \begin{center}
-        \boxed{(\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
+        \boxed{\bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
     \end{center}
 
     To simplify this squared Feynman amplitude down further requires the traces to be evaluated. This is the subject of next section.
@@ -681,7 +685,7 @@
 
     \begin{framed}
         \begin{eqnarray}
-            (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]
+            \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]
         \end{eqnarray}
     \end{framed}
 
@@ -750,11 +754,11 @@
     We can now plug all of these results into the differential scattering cross section formula, and the squared Feynman amplitude. Doing this produces the following results:
 
     \begin{equation}
-        \frac{d \sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} (\frac{1}{2})^2 \sum_{S_i S_f} |M_{fi}|^2
+        \frac{d \sigma_{CM}}{d \Omega} = \frac{m_1^2 m_2^2}{(2 \pi)^2 (E'_1 + E'_2)^2} \frac{|\vec{p'}_1|^2}{|\vec{p}_1|^2} \bigg( \frac{1}{2} \bigg)^2 \sum_{S_i S_f} |M_{fi}|^2
     \end{equation}
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
@@ -792,35 +796,35 @@
     The expression for the squared amplitude that we are starting with the one from above:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     The first step in getting the squared amplitude into the form where these trig identities are applicable is to factor the first two denominators:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     One can then factor out $4 (E^2 - m^2)$ from all of the denominators:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     Then we can factor the last term in both of the first two numerators:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     We can then split up the first two fraction into individual terms:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
@@ -828,28 +832,28 @@
     copy can be combined with the last term, and the subtracted copy can be placed as the third term, giving us:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     Inserting this gives:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     We can then refactor everything in the large curvy parentheses based on the sine function power multiplying the term. This gives:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     We can simplify the nunmerator of the second term in the large curvy parentheses, and we can also write the last term as a perfect square:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
@@ -862,28 +866,28 @@
     Inserting that gives:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     We can combine like terms throughout the whole expression:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     Next, we can factor $2 (m^2 - E^2)^2$ out of the large parentheses to get:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
     Pulling out the last factor of two gives the final answer:
 
     \begin{eqnarray}
-        (\frac{1}{2})^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+        \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
         = \frac{e^4}{2 m^4}
     \end{eqnarray}
 
