@@ -434,14 +434,25 @@
     \end{equation}
 
     \begin{equation}
-        \bigg( \frac{1}{4} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} M_{fi} M*_{fi}
+        \begin{aligned}
+            \Bigg( \frac{1}{4} \bigg)^2 \bigg[ \frac{e^4}{(p'_1 - p_1)^4} Tr \bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \bigg] Tr \bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \bigg] \\
+            + \frac{e^4}{(p'_1 - p_1)^4} Tr \bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \bigg] \\
+            + \frac{e^4}{(p'_1 - p_1)^4} Tr \bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \bigg] \\
+            + \frac{e^4}{(p'_1 - p_1)^4} Tr \bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \bigg] Tr \bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \bigg] \Bigg]
+        \end{aligned}
     \end{equation}
 
     This can be written more simply as follows:
 
-    \begin{center}
-        \boxed{\bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 = Tr \Bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \Bigg] Tr \Bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \Bigg]}
-    \end{center}
+    \begin{framed}
+        \begin{equation}
+            \begin{aligned}
+                \bigg( \frac{1}{2} \bigg)^2 \sum_{S_f S_i} |M_{f i}|^2 \\
+                = \frac{e^4}{4} \Bigg[ \frac{1}{(p'_1 - p_1)^4} Tr \bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \bigg] Tr \bigg[ \gamma_{\mu} \frac{\slashed{p} + m}{2m} \gamma_{\rho} \frac{\slashed{p} + m}{2m} \bigg] \\
+                - \frac{1}{(p'_2 - p_1)^2 (p'_1 - p_1)^2 } Tr \bigg[ \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \gamma^{\mu} \frac{\slashed{p} + m}{2m} \gamma^{\rho} \frac{\slashed{p} + m}{2m} \bigg] + (p'_1 \leftrightarrow p's_2) \Bigg]
+            \end{aligned}
+        \end{equation}
+    \end{framed}
 
     To simplify this squared Feynman amplitude down further requires the traces to be evaluated. This is the subject of next section.
 
@@ -614,14 +625,24 @@
         Tr [\gamma^\mu \gamma^\nu] = 4 g^{\mu \nu} \qquad \gamma_\mu \gamma_\nu \gamma^\mu = -2 \gamma_\nu \qquad \gamma_\mu \gamma_\nu \gamma_\rho \gamma^\mu = 4 g_{\mu \nu} I \qquad \gamma_\mu \gamma_\nu \gamma_\rho \gamma_\sigma \gamma^\mu = -2 \gamma_\sigma \gamma_\rho \gamma_\nu \qquad Tr[\gamma_\mu \gamma_\nu] = 4 g_{\mu \nu}
     \end{equation}
 
-    Applying these to the various traces allows for their simplificaiton as follows:
+    Applying these to the various traces allows for their simplification as follows:
 
     \begin{eqnarray}
         T_1 Tr[ \gamma_\mu \slashed{p}_1 \gamma_\rho \slashed{p'}_1 \gamma^\mu \slashed{p}_2 \gamma^\rho \slashed{p'}_2] = p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \delta} Tr [\gamma_\mu \gamma_\alpha \gamma_\rho \gamma_\beta \gamma^\mu \gamma_\lambda \gamma^\rho \gamma_\delta] = -2 p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \gamma} Tr [\gamma_beta \gamma_\rho \gamma_\alpha \gamma_\gamma \gamma^\rho \gamma_\delta] \\
         = -8 g_{\alpha \gamma} p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \delta} Tr[\gamma_\beta \gamma_\delta] = -32 g_{\alpha \gamma} p_1^\alpha p_1^{' \beta} p_2^\gamma p_2^{' \gamma} g_{\beta \delta} = \mathbf{-32 p_1 \cdot p_2 p'_1 \cdot p'_2}
     \end{eqnarray}
 
-    % Insert large table here
+    \begin{center}
+        \begin{tabular}{| c | c |}
+            \hline
+            \shortstack{$T_2$ \\ $=$ \\ $16 g_{\alpha \beta} = \mathbf{16 p_1 \cdot p'_1}$} & \shortstack{$T_3$ \\ $=$ \\ $16 g_{\alpha \beta} = \mathbf{16 p'_1 \cdot p'_2}$} \\
+            \hline
+            \shortstack{$T_4$ \\ $=$ \\ $16 g_{\alpha \beta} = \mathbf{16 p'_1 \cdot p_2}$} & \shortstack{$T_5$ \\ $=$ \\ $16 g_{\alpha \beta} = \mathbf{16 p_1 \cdot p'_2}$} \\
+            \hline
+            \shortstack{$T_6$ \\ $=$ \\ $16 g_{\alpha \beta} = \mathbf{16 p_1 \cdot p_2}$} & \shortstack{$T_7$ \\ $=$ \\ $16 g_{\alpha \beta} = \mathbf{16 p_2 \cdot p'_2}$} \\
+            \hline
+        \end{tabular}
+    \end{center}
 
     \begin{equation}
         T_8 = Tr [\gamma_\mu \gamma_\rho \gamma^\mu \gamma^\rho] = - 2 Tr [\gamma_\mu \gamma^\nu] = - 8 Tr [I] = -32
