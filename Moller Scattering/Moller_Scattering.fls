@@ -264,11 +264,11 @@ INPUT C:\Users\Lance\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
-OUTPUT Moller_Scattering.pdf
-INPUT C:\Users\Lance\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+OUTPUT Moller_Scattering.pdf
+INPUT C:\Users\Lance\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm

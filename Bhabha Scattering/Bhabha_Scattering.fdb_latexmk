@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1741613547.26435 "c:/Users/Lance/Documents/Codes/LaTeX-Notes/Bhabha Scattering/Bhabha_Scattering.tex" "Bhabha_Scattering.pdf" "Bhabha_Scattering" 1741613549.50116 0
-  "Bhabha_Scattering.aux" 1741613549 33 e6d77a6cc1977d88a849501f83258f9d "pdflatex"
-  "Bhabha_Scattering.tex" 1741613546 35711 d5e589f4de81ad3d9c200c5eaf6be14b ""
+["pdflatex"] 1741671111.01691 "c:/Users/Lance/Documents/Codes/LaTeX-Notes/Bhabha Scattering/Bhabha_Scattering.tex" "Bhabha_Scattering.pdf" "Bhabha_Scattering" 1741671112.97445 0
+  "Bhabha_Scattering.aux" 1741671112 33 e6d77a6cc1977d88a849501f83258f9d "pdflatex"
+  "Bhabha_Scattering.tex" 1741671110 35828 011e092ddd0fb2243ff56cb82c7f98ce ""
   "C:/Users/Lance/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1712985220 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Lance/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1712398695 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/Lance/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1712398697 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -33,6 +33,8 @@
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/tfm/public/esint/esint10.tfm" 1136768653 364 55557743e6c24ee44e49bc5e8dbbe3cd ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1247596666 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
+  "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb" 1247596667 32034 bef395850903374c2ca83678bcfd98d0 ""
+  "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb" 1247596667 32007 e8fa0078355f39467039935974716569 ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1247596667 37912 07513ec114ac737ab54cea0152f4424b ""
@@ -161,7 +163,7 @@
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/tex/latex/tikz-feynman/tikzfeynman.keys.code.tex" 1454663014 30485 290c9ab1d3def5802ae47c3d6189ac2f ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/tex/latex/tikz-feynman/tikzlibraryfeynman.code.tex" 1454663014 11610 8e70e7f6c7e9a7e7ee03990108a6bbdd ""
   "C:/Users/Lance/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/Users/Lance/Documents/Codes/LaTeX-Notes/Bhabha Scattering/Bhabha_Scattering.tex" 1741613546 35711 d5e589f4de81ad3d9c200c5eaf6be14b ""
+  "c:/Users/Lance/Documents/Codes/LaTeX-Notes/Bhabha Scattering/Bhabha_Scattering.tex" 1741671110 35828 011e092ddd0fb2243ff56cb82c7f98ce ""
   (generated)
   "Bhabha_Scattering.aux"
   "Bhabha_Scattering.log"
