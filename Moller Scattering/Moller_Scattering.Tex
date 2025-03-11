@@ -715,7 +715,21 @@
     Throughout this calculation so far, we have escaped picking a specific parametrization for the momentum vectors, all that was needed was to remember that we were taking the center of mass frame, and even then, this fact was only applied twice to simplify
     the scattering cross section formula at the end of the second section. To simplify the result any further however, a specific parametrization must be selected. Fig. 1 illustrates the center of mass frame in a manner that makes this task easier:
 
-    % insert diagram here
+    \begin{center}
+        \begin{tikzpicture}
+            % Horizontal Line
+            \draw[-, thick] (-3, 0) -- (-0.1, 0) node[midway, above] {\small};
+            \draw[-, thick] (3, 0) -- (0.1, 0) node[midway, above] {\small};
+    
+            % Arrow after Collision
+            \draw[->, thick] (-0.1, 0) -- (-2, 2) node[midway, left] {\small};
+            \draw[->, thick] (0.1, 0) -- (2, -2) node[midway, right] {\small};
+    
+            % Theta
+            \node at (0.8, -0.3) {\small $\theta$};
+    
+        \end{tikzpicture}
+    \end{center}
 
     From Fig. 1, we can easily write down the standard parametrization: 
 

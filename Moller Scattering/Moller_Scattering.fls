@@ -269,6 +269,16 @@ INPUT C:\Users\Lance\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr9.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi9.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy9.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex9.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx9.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx6.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Users\Lance\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\esint\esint10.tfm
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
 INPUT Moller_Scattering.aux
 INPUT C:\Users\Lance\AppData\Local\MiKTeX\fonts\pk\ljfour\public\esint\dpi600\esint10.pk
@@ -289,6 +299,8 @@ INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi5.pfb
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi7.pfb
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
+INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi9.pfb
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\Lance\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
